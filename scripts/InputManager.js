@@ -18,46 +18,29 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-    This class is the core of the game. It handles the game loop and all
-	other components of game.
+    This class is responsible for getting the input from user
 	
-	@namespace
+	@class
 */
-ZicZacZoe.GameManager	=	function() {
+ZicZacZoe.InputManager	=	function() {
 
 	/** @private */
-    var FPS				=	2.0;
+	var pageX;
 	
 	/** @private */
-	var uiManager		=	new ZicZacZoe.UIManager();
+	var pageY;
 	
-	/** @scope ZicZacZoe.GameManager */	
+	/** @private */
+	$(document).mousemove(function(ev) {
+		pageX			=	ev.pageX;
+		pageY			=	ev.pageY;
+	});
+	
 	return {
-		/** init function */
-		init			:	function()
+		/** return mouse co-ordinates*/
+		getMouse		:	function()
 							{
-								uiManager.init();
-						
-								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
-							},
-		
-		/** game loop */
-		loop			:	function()
-							{
-								ZicZacZoe.GameManager.update();
-								ZicZacZoe.GameManager.draw();
-							},
-		/** update */
-		update			:	function()
-							{
-								console.log('update');
-								
-								var mouse	=	ZicZacZoe.InputManager.getMouse();
-							},
-		/** draw */
-		draw			:	function()
-							{
-								console.log('draw');
+								return	{'x': pageX, 'y': pageY};
 							}
 	};
 }();

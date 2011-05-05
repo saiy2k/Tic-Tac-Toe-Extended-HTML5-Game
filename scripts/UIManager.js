@@ -18,46 +18,45 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-    This class is the core of the game. It handles the game loop and all
-	other components of game.
+    This class handles all the resources files and is responsible for the UI
 	
-	@namespace
+	@class
 */
-ZicZacZoe.GameManager	=	function() {
+ZicZacZoe.UIManager		=	function() {
 
 	/** @private */
-    var FPS				=	2.0;
+	var boardImage;
+		
+	/** @private */
+	var context;
+	
+	this.init			=	function()
+	{
+		loadResources();
+		setUpUI();
+	};
 	
 	/** @private */
-	var uiManager		=	new ZicZacZoe.UIManager();
-	
-	/** @scope ZicZacZoe.GameManager */	
-	return {
-		/** init function */
-		init			:	function()
-							{
-								uiManager.init();
-						
-								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
-							},
-		
-		/** game loop */
-		loop			:	function()
-							{
-								ZicZacZoe.GameManager.update();
-								ZicZacZoe.GameManager.draw();
-							},
-		/** update */
-		update			:	function()
-							{
-								console.log('update');
-								
-								var mouse	=	ZicZacZoe.InputManager.getMouse();
-							},
-		/** draw */
-		draw			:	function()
-							{
-								console.log('draw');
-							}
+	var loadResources	=	function()
+	{
+		if ( $(window).width() > 800 )
+		{
+			boardImage				=	new Image();
+			boardImage.src			=	'images/board2X.jpg';
+		}
+		else
+		{
+			boardImage				=	new Image();
+			boardImage.src			=	'images/board.jpg';
+		}
 	};
-}();
+	
+	/** @private */
+	var setUpUI			=	function()
+	{
+		var canvas				=	document.getElementById("boardCanvas");
+		context					=	canvas.getContext('2d');
+		
+		context.drawImage(boardImage, 0, 0);
+	};
+};
