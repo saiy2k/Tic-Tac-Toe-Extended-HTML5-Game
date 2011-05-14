@@ -27,16 +27,24 @@ ZicZacZoe.GameManager	=	function() {
 
 	/** @private */
     var FPS				=	2.0;
-	
-	/** @private */
-	var uiManager		=	new ZicZacZoe.UIManager();
+
+    /** @private */
+    var context;
+    
+    /** @private */
+	var gBoard          =	new ZicZacZoe.GameBoard();
 	
 	/** @scope ZicZacZoe.GameManager */	
 	return {
 		/** init function */
 		init			:	function()
 							{
-								uiManager.init();
+                                var canvas              =	document.getElementById("boardCanvas");
+		                        context					=	canvas.getContext('2d');
+                                
+                                context.fillStyle       =   '#fff';
+        
+								gBoard.init(context);
 						
 								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
 							},
@@ -49,15 +57,21 @@ ZicZacZoe.GameManager	=	function() {
 							},
 		/** update */
 		update			:	function()
-							{
-								console.log('update');
-								
+							{								
 								var mouse	=	ZicZacZoe.InputManager.getMouse();
+                                
+                                gBoard.update(mouse);
 							},
 		/** draw */
 		draw			:	function()
 							{
-								console.log('draw');
+                                context.fillStyle   =   '#fff';
+                                context.beginPath();
+                                context.rect(0, 0, 480, 480);
+                                context.closePath();
+                                context.fill();
+                                
+                                gBoard.draw(context);
 							}
 	};
 }();
