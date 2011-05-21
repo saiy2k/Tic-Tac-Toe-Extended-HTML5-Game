@@ -43,6 +43,7 @@ ZicZacZoe.GameManager	=	function() {
                                 
                                 context.fillStyle       =   '#fff';
         
+								ZicZacZoe.GameState.init();
 								gBoard.init(context);
 						
 								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
@@ -61,6 +62,9 @@ ZicZacZoe.GameManager	=	function() {
                                 var click   =   ZicZacZoe.InputManager.getClickIfAny();
                                 
                                 gBoard.update(mouse, click);
+								
+								if (click !== null)
+									ZicZacZoe.GameState.endTurn();
 							},
 		/** draw */
 		draw			:	function()

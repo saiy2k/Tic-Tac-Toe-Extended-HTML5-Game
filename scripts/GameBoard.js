@@ -70,9 +70,6 @@ ZicZacZoe.GameBoard		=	function() {
     var selectedTileY;
     
     /** @private */
-    var currentPlayerID;
-    
-    /** @private */
     var tiles           =   [];
     
 	this.init			=	function(ctx) {
@@ -82,15 +79,8 @@ ZicZacZoe.GameBoard		=	function() {
         
         boardX          =   $('#boardCanvas').offset().left;
         boardY          =   $('#boardCanvas').offset().top;
-        
-        for (var i = 0; i < rowCount; i++)
-        {
-            tiles[i]    =   [];
-            for (var  j = 0; j < colCount; j++)
-            {
-                tiles[i][j] =   -1;
-            }
-        }
+		
+		tiles			=	ZicZacZoe.GameState.tiles;
         
 		refreshUI(ctx);
 		loadResources();
@@ -99,17 +89,20 @@ ZicZacZoe.GameBoard		=	function() {
     this.update         =   function(m, clk) {        
         var mx          =   (m.x - boardX);
         var my          =   (m.y - boardY);
-        
+        hoverTileX		=	-1;
+		hoverTileY		=	-1;
+		
         if(mx > 0 && my > 0 && mx < boardWidth && my < boardHeight)
         {
             hoverTileY          =   Math.floor(mx / tileWidth);
             hoverTileX          =   Math.floor(my / tileHeight);
+			
+			if ( tiles[hoverTileX][hoverTileY] !== -1)
+			{
+				hoverTileX		=	-1;
+				hoverTileY		=	-1;
+			}
         }
-		else
-		{
-			hoverTileX			=	-1;
-			hoverTileY			=	-1;
-		}
         
         if(clk !== null)
         {
@@ -121,16 +114,8 @@ ZicZacZoe.GameBoard		=	function() {
                 selectedTileY	=   Math.floor(mx / tileWidth);
                 selectedTileX	=   Math.floor(my / tileHeight);
                 
-                tiles[selectedTileX][selectedTileY] =   currentPlayerID;
-            }
-            
-            if( currentPlayerID === 0 )
-            {
-                currentPlayerID = 1;
-            }
-            else
-            {
-                currentPlayerID = 0;
+				if( tiles[selectedTileX][selectedTileY] === -1 )
+					tiles[selectedTileX][selectedTileY] =   ZicZacZoe.GameState.currentPlayerID;
             }
         }
     };
