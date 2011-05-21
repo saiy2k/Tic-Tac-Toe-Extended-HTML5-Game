@@ -26,8 +26,7 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 ZicZacZoe.GameManager	=	function() {
 
 	/** @private */
-    var FPS				=	2.0;
-
+    var FPS				=	30.0;
     /** @private */
     var context;
     
@@ -58,9 +57,10 @@ ZicZacZoe.GameManager	=	function() {
 		/** update */
 		update			:	function()
 							{								
-								var mouse	=	ZicZacZoe.InputManager.getMouse();
+								var mouse	=   ZicZacZoe.InputManager.getMouse();
+                                var click   =   ZicZacZoe.InputManager.getClickIfAny();
                                 
-                                gBoard.update(mouse);
+                                gBoard.update(mouse, click);
 							},
 		/** draw */
 		draw			:	function()

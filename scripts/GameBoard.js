@@ -28,6 +28,12 @@ ZicZacZoe.GameBoard		=	function() {
 	var boardImage;
     
     /** @private */
+    var xImage;
+    
+    /** @private */
+    var oImage;
+    
+    /** @private */
     var boardX;
     
     /** @private */
@@ -52,47 +58,122 @@ ZicZacZoe.GameBoard		=	function() {
     var tileHeight;
 
     /** @private */
+    var hoverTileX;
+
+    /** @private */
+    var hoverTileY;
+    
+    /** @private */
     var selectedTileX;
 
     /** @private */
     var selectedTileY;
     
+    /** @private */
+    var currentPlayerID;
+    
+    /** @private */
+    var tiles           =   [];
+    
 	this.init			=	function(ctx) {
         rowCount        =   9;
         colCount        =   9;
+        currentPlayerID =   0;
         
         boardX          =   $('#boardCanvas').offset().left;
         boardY          =   $('#boardCanvas').offset().top;
+        
+        for (var i = 0; i < rowCount; i++)
+        {
+            tiles[i]    =   [];
+            for (var  j = 0; j < colCount; j++)
+            {
+                tiles[i][j] =   -1;
+            }
+        }
         
 		loadResources();
 		setUpUI(ctx);
 	};
     
-    this.update         =   function(m) {        
-        var mx          =   (m.x - boardX);        var my          =   (m.y - boardY);
+    this.update         =   function(m, clk) {        
+        var mx          =   (m.x - boardX);
+        var my          =   (m.y - boardY);
         
         if(mx > 0 && my > 0 && mx < boardWidth && my < boardHeight)
         {
-            selectedTileX       =   Math.floor(mx / tileWidth);
-            selectedTileY       =   Math.floor(my / tileHeight);
+            hoverTileY          =   Math.floor(mx / tileWidth);
+            hoverTileX          =   Math.floor(my / tileHeight);
+        }
+        
+        if(clk !== null)
+        {
+            var cx          =   (clk.x - boardX);
+            var cy          =   (clk.y - boardY);
+            
+            if(cx > 0 && cy > 0 && cx < boardWidth && cy < boardHeight)
+            {
+                selectedTileY       =   Math.floor(mx / tileWidth);
+                selectedTileX       =   Math.floor(my / tileHeight);
+                
+                tiles[selectedTileX][selectedTileY] =   currentPlayerID;
+            }
+            
+            if( currentPlayerID === 0 )
+            {
+                currentPlayerID = 1;
+            }
+            else
+            {
+                currentPlayerID = 0;
+            }
         }
     };
     
-    this.draw           =   function(ctx) {        
+    this.draw           =   function(ctx) {
+        //ctx.drawImage(boardImage, 0, 0);
+        
         for (var i = 0; i < rowCount; i++)
         {
+            var str = "";
             for (var  j = 0; j < colCount; j++)
             {
+                var tileID  = tiles[i][j];
+                
+                str = str + ', ' + tileID;
+
+                if( tileID === 0 )
+                {
+                    //ctx.drawImage(xImage, j*tileWidth, i*tileHeight);
+                    ctx.fillStyle   =   'rgb(255, 0, 0);';
+                    ctx.beginPath();
+                    ctx.rect(j*tileWidth, i*tileHeight, tileWidth, tileHeight);
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                }
+                else if( tileID === 1 )
+                {
+                    ctx.fillStyle   =   'rgb(255, 255, 0);';
+                    ctx.beginPath();
+                    ctx.rect(j*tileWidth, i*tileHeight, tileWidth, tileHeight);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+                
                 ctx.beginPath();
                 ctx.rect(i*tileWidth, j*tileHeight, tileWidth, tileHeight);
                 ctx.closePath();
                 ctx.stroke();
             }
+            console.log(str);
         }
+        
+        console.log();
         
         ctx.fillStyle   =   'rgba(255, 0, 0, 0.5);';
         ctx.beginPath();
-        ctx.rect(selectedTileX*tileWidth, selectedTileY*tileHeight, tileWidth, tileHeight);
+        ctx.rect(hoverTileY*tileWidth, hoverTileX*tileHeight, tileWidth, tileHeight);
         ctx.closePath();
         ctx.fill();
         
@@ -111,6 +192,12 @@ ZicZacZoe.GameBoard		=	function() {
             
 			boardImage				=	new Image();
 			boardImage.src			=	'images/board2X.jpg';
+            
+            oImage                  =   new Image();
+            oImage.src              =   'images/oTile2X.png';
+            
+            xImage                  =   new Image();
+            xImage.src              =   'images/xTile2X.png';
 		}
 		else
 		{
@@ -122,12 +209,17 @@ ZicZacZoe.GameBoard		=	function() {
             
 			boardImage				=	new Image();
 			boardImage.src			=	'images/board.jpg';
+            
+            oImage                  =   new Image();
+            oImage.src              =   'images/oTile2X.png';
+            
+            xImage                  =   new Image();
+            xImage.src              =   'images/xTile2X.png';
 		}
 	};
 	
 	/** @private */
 	var setUpUI			=	function(ctx)
 	{
-		ctx.drawImage(boardImage, 0, 0);
 	};
 };

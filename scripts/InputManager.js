@@ -29,11 +29,27 @@ ZicZacZoe.InputManager	=	function() {
 	
 	/** @private */
 	var pageY;
+    
+    /** @private */
+    var isClicked       =   false;
+    
+    /** @private */
+    var clickX;
+    
+    /** @private */
+    var clickY;
 	
 	/** @private */
 	$(document).mousemove(function(ev) {
 		pageX			=	ev.pageX;
 		pageY			=	ev.pageY;
+	});
+    
+    /** @private */
+    $(document).mousedown(function(ev) {
+		clickX			=	ev.pageX;
+		clickY			=	ev.pageY;
+        isClicked       =   true;
 	});
 	
 	return {
@@ -41,6 +57,20 @@ ZicZacZoe.InputManager	=	function() {
 		getMouse		:	function()
 							{
 								return	{'x': pageX, 'y': pageY};
+							},
+                            
+        /** return click co-ordinates, if any*/
+        getClickIfAny	:	function()
+							{
+                                if(isClicked)
+                                {
+                                    isClicked   =   false;
+								    return	{'x': clickX, 'y': clickY};
+                                }
+                                else
+                                {
+                                    return null;
+                                }
 							}
 	};
 }();
