@@ -18,7 +18,7 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-    This class the game Board
+    This game Board class the 
     
 	@class
 */
@@ -76,8 +76,8 @@ ZicZacZoe.GameBoard		=	function() {
     var tiles           =   [];
     
 	this.init			=	function(ctx) {
-        rowCount        =   9;
-        colCount        =   9;
+        rowCount        =   10;
+        colCount        =   10;
         currentPlayerID =   0;
         
         boardX          =   $('#boardCanvas').offset().left;
@@ -92,8 +92,8 @@ ZicZacZoe.GameBoard		=	function() {
             }
         }
         
+		refreshUI(ctx);
 		loadResources();
-		setUpUI(ctx);
 	};
     
     this.update         =   function(m, clk) {        
@@ -105,16 +105,21 @@ ZicZacZoe.GameBoard		=	function() {
             hoverTileY          =   Math.floor(mx / tileWidth);
             hoverTileX          =   Math.floor(my / tileHeight);
         }
+		else
+		{
+			hoverTileX			=	-1;
+			hoverTileY			=	-1;
+		}
         
         if(clk !== null)
         {
-            var cx          =   (clk.x - boardX);
-            var cy          =   (clk.y - boardY);
+            var cx				=   (clk.x - boardX);
+            var cy          	=   (clk.y - boardY);
             
             if(cx > 0 && cy > 0 && cx < boardWidth && cy < boardHeight)
             {
-                selectedTileY       =   Math.floor(mx / tileWidth);
-                selectedTileX       =   Math.floor(my / tileHeight);
+                selectedTileY	=   Math.floor(mx / tileWidth);
+                selectedTileX	=   Math.floor(my / tileHeight);
                 
                 tiles[selectedTileX][selectedTileY] =   currentPlayerID;
             }
@@ -131,95 +136,70 @@ ZicZacZoe.GameBoard		=	function() {
     };
     
     this.draw           =   function(ctx) {
-        //ctx.drawImage(boardImage, 0, 0);
+        ctx.drawImage(boardImage, 0, 0);
         
         for (var i = 0; i < rowCount; i++)
         {
-            var str = "";
             for (var  j = 0; j < colCount; j++)
             {
                 var tileID  = tiles[i][j];
-                
-                str = str + ', ' + tileID;
 
                 if( tileID === 0 )
                 {
-                    //ctx.drawImage(xImage, j*tileWidth, i*tileHeight);
-                    ctx.fillStyle   =   'rgb(255, 0, 0);';
-                    ctx.beginPath();
-                    ctx.rect(j*tileWidth, i*tileHeight, tileWidth, tileHeight);
-                    ctx.closePath();
-                    ctx.fill();
-                    
+                    ctx.drawImage(xImage, j*tileWidth, i*tileHeight);
                 }
                 else if( tileID === 1 )
                 {
-                    ctx.fillStyle   =   'rgb(255, 255, 0);';
-                    ctx.beginPath();
-                    ctx.rect(j*tileWidth, i*tileHeight, tileWidth, tileHeight);
-                    ctx.closePath();
-                    ctx.fill();
-                }
-                
-                ctx.beginPath();
-                ctx.rect(i*tileWidth, j*tileHeight, tileWidth, tileHeight);
-                ctx.closePath();
-                ctx.stroke();
+					ctx.drawImage(oImage, j*tileWidth, i*tileHeight);
+				}
             }
-            console.log(str);
         }
-        
-        console.log();
         
         ctx.fillStyle   =   'rgba(255, 0, 0, 0.5);';
         ctx.beginPath();
         ctx.rect(hoverTileY*tileWidth, hoverTileX*tileHeight, tileWidth, tileHeight);
         ctx.closePath();
         ctx.fill();
-        
     };
 	
 	/** @private */
 	var loadResources	=	function()
 	{
+		var strSize;
+		
 		if ( $(window).width() > 800 )
-		{
-            boardWidth              =   480;
-            boardHeight             =   480;
-            
-            tileWidth               =   boardWidth / colCount;
-            tileHeight              =   boardHeight / rowCount;
-            
-			boardImage				=	new Image();
-			boardImage.src			=	'images/board2X.jpg';
-            
-            oImage                  =   new Image();
-            oImage.src              =   'images/oTile2X.png';
-            
-            xImage                  =   new Image();
-            xImage.src              =   'images/xTile2X.png';
-		}
+			strSize					=	'2X';
 		else
-		{
-            boardWidth              =   320;
-            boardHeight             =   320;
-            
-            tileWidth               =   boardWidth / colCount;
-            tileHeight              =   boardHeight / rowCount;
-            
-			boardImage				=	new Image();
-			boardImage.src			=	'images/board.jpg';
-            
-            oImage                  =   new Image();
-            oImage.src              =   'images/oTile2X.png';
-            
-            xImage                  =   new Image();
-            xImage.src              =   'images/xTile2X.png';
-		}
+			strSize					=	'';
+		
+		boardImage				=	new Image();
+		boardImage.src			=	'images/board' + strSize + '.jpg';
+		
+		oImage                  =   new Image();
+		oImage.src              =   'images/oTile' + strSize + '.png';
+		
+		xImage                  =   new Image();
+		xImage.src              =   'images/xTile' + strSize + '.png';
 	};
 	
 	/** @private */
-	var setUpUI			=	function(ctx)
+	var refreshUI					=	function(ctx)
 	{
+		var	boardCanvas				=	document.getElementById('boardCanvas');
+		
+		if ( $(window).width() > 800 ) {
+			boardWidth              =   480;
+            boardHeight             =   480;
+		}
+		else {
+			boardWidth              =   320;
+            boardHeight             =   320;
+		}
+		
+		boardCanvas.width			=	boardWidth;
+		boardCanvas.height			=	boardHeight;
+		
+		tileWidth					=   boardWidth / colCount;
+		tileHeight              	=   boardHeight / rowCount;
 	};
 };
