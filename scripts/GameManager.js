@@ -27,6 +27,7 @@ ZicZacZoe.GameManager	=	function() {
 
 	/** @private */
     var FPS				=	30.0;
+
     /** @private */
     var context;
     
@@ -43,9 +44,9 @@ ZicZacZoe.GameManager	=	function() {
                                 
                                 context.fillStyle       =   '#fff';
         
-								ZicZacZoe.GameState.init();
+								ZicZacZoe.GameState.reset();
 								gBoard.init(context);
-						
+								
 								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
 							},
 		
@@ -61,10 +62,14 @@ ZicZacZoe.GameManager	=	function() {
 								var mouse	=   ZicZacZoe.InputManager.getMouse();
                                 var click   =   ZicZacZoe.InputManager.getClickIfAny();
                                 
+								ZicZacZoe.GameState.update(mouse, click);
                                 gBoard.update(mouse, click);
 								
 								if (click !== null)
+								{
+									ZicZacZoe.GameLogic.checkMove();
 									ZicZacZoe.GameState.endTurn();
+								}
 							},
 		/** draw */
 		draw			:	function()

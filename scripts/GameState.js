@@ -24,11 +24,17 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 */
 ZicZacZoe.GameState	=	function() {
 	
-	/** @scope ZicZacZoe.GameState */	
+	/** @scope ZicZacZoe.GameState */
 	return {
 		/** init function */
-		init			:	function()
+		reset			:	function()
 							{
+								currentPlayerID		=	0;
+								player1Score		=	0;
+								player2Score		=	0;
+								selectedTileX		=	0;
+								selectedTileY		=	0;
+								
 								for (var i = 0; i < 10; i++)
 								{
 									ZicZacZoe.GameState.tiles[i]    =   [];
@@ -42,6 +48,17 @@ ZicZacZoe.GameState	=	function() {
 		tiles           :   [],
 		
 		currentPlayerID	:	0,
+		
+		player1Score	:	0,
+		player2Score	:	0,
+		
+		selectedTileX	:	0,
+		selectedTileY	:	0,
+		
+		update			:	function(m, clk)
+							{
+							
+							},
 		
 		/** end turn */
 		endTurn			:	function()

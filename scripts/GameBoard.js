@@ -81,8 +81,13 @@ ZicZacZoe.GameBoard		=	function() {
         boardY          =   $('#boardCanvas').offset().top;
 		
 		tiles			=	ZicZacZoe.GameState.tiles;
-        
-		refreshUI(ctx);
+		
+		refreshUI();
+		loadResources();
+	};
+	
+	this.resize			=	function() {
+		refreshUI();
 		loadResources();
 	};
     
@@ -109,14 +114,15 @@ ZicZacZoe.GameBoard		=	function() {
             var cx				=   (clk.x - boardX);
             var cy          	=   (clk.y - boardY);
             
-            if(cx > 0 && cy > 0 && cx < boardWidth && cy < boardHeight)
-            {
-                selectedTileY	=   Math.floor(mx / tileWidth);
-                selectedTileX	=   Math.floor(my / tileHeight);
-                
-				if( tiles[selectedTileX][selectedTileY] === -1 )
-					tiles[selectedTileX][selectedTileY] =   ZicZacZoe.GameState.currentPlayerID;
-            }
+			if( hoverTileX != -1 )
+			{
+				selectedTileX	=	hoverTileX;
+				selectedTileY	=	hoverTileY;
+				tiles[selectedTileX][selectedTileY] =   ZicZacZoe.GameState.currentPlayerID;
+				
+				ZicZacZoe.GameState.selectedTileX	=	selectedTileX;
+				ZicZacZoe.GameState.selectedTileY	=	selectedTileY;
+			}
         }
     };
     
@@ -131,11 +137,11 @@ ZicZacZoe.GameBoard		=	function() {
 
                 if( tileID === 0 )
                 {
-                    ctx.drawImage(xImage, j*tileWidth, i*tileHeight);
+                    ctx.drawImage(xImage, j*tileWidth, i*tileHeight, tileWidth, tileHeight);
                 }
                 else if( tileID === 1 )
                 {
-					ctx.drawImage(oImage, j*tileWidth, i*tileHeight);
+					ctx.drawImage(oImage, j*tileWidth, i*tileHeight, tileWidth, tileHeight);
 				}
             }
         }
@@ -168,7 +174,7 @@ ZicZacZoe.GameBoard		=	function() {
 	};
 	
 	/** @private */
-	var refreshUI					=	function(ctx)
+	var refreshUI					=	function()
 	{
 		var	boardCanvas				=	document.getElementById('boardCanvas');
 		
