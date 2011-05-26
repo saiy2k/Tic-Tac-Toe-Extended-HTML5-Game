@@ -23,6 +23,69 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 	@namespace
 */
 ZicZacZoe.GameState	=	function() {
+
+	var updateCurrentTile			=	function(gBoard, m, clk)
+	{
+		var t			=	ZicZacZoe.GameState;
+		var mx          =   (m.x - gBoard.x());
+		var my          =   (m.y - gBoard.y());
+		t.hoverTileX	=	-1;
+		t.hoverTileY	=	-1;
+
+		if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height())
+		{
+			t.hoverTileY			=   Math.floor(mx / gBoard.tileWidth());
+			t.hoverTileX			=   Math.floor(my / gBoard.tileHeight());
+			
+			if ( t.tiles[t.hoverTileX][t.hoverTileY] !== -1)
+			{
+				t.hoverTileX		=	-1;
+				t.hoverTileY		=	-1;
+			}
+		}
+
+		if(clk !== null)
+		{									
+			if( t.hoverTileX != -1 )
+			{
+				t.selectedTileX	=	t.hoverTileX;
+				t.selectedTileY	=	t.hoverTileY;
+				t.tiles[t.selectedTileX][t.selectedTileY] =   t.currentPlayerID;
+			}
+			
+			for (var i = 0; i < 10; i++)
+			{
+				var str = '';
+				for (var  j = 0; j < 10; j++)
+				{
+					var til	=	ZicZacZoe.GameState.tiles[i][j];
+					str = str + ', ' + til;
+				}
+				
+				console.log(str);
+			}
+		}
+	};
+	
+	var checkMove					=	function()
+	{
+		var t			=	ZicZacZoe.GameState;
+		
+		for ( var i = t.selectedTileX; i < t.selectedTileX + 5; i++)
+		{
+			
+		}
+	};
+	
+	var endTurn						=	function()
+	{
+		var t			=	ZicZacZoe.GameState;
+		
+		if( t.currentPlayerID == 0 )
+			t.currentPlayerID	=	1;
+		else
+			t.currentPlayerID	=	0;
+	};
 	
 	/** @scope ZicZacZoe.GameState */
 	return {
@@ -52,21 +115,23 @@ ZicZacZoe.GameState	=	function() {
 		player1Score	:	0,
 		player2Score	:	0,
 		
+		hoverTileX		:	0,
+		hoverTileY		:	0,
+		
 		selectedTileX	:	0,
 		selectedTileY	:	0,
 		
-		update			:	function(m, clk)
+		update			:	function(gBoard, m, clk)
 							{
-							
+								updateCurrentTile(gBoard, m, clk);
+								
+								if ( clk !== null )
+								{
+									checkMove();
+									endTurn();
+								}
 							},
+
 		
-		/** end turn */
-		endTurn			:	function()
-							{
-								if( ZicZacZoe.GameState.currentPlayerID == 0 )
-									ZicZacZoe.GameState.currentPlayerID	=	1;
-								else
-									ZicZacZoe.GameState.currentPlayerID	=	0;
-							}
 	};
 }();

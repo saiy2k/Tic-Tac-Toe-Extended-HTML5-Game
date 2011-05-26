@@ -62,14 +62,7 @@ ZicZacZoe.GameManager	=	function() {
 								var mouse	=   ZicZacZoe.InputManager.getMouse();
                                 var click   =   ZicZacZoe.InputManager.getClickIfAny();
                                 
-								ZicZacZoe.GameState.update(mouse, click);
-                                gBoard.update(mouse, click);
-								
-								if (click !== null)
-								{
-									ZicZacZoe.GameLogic.checkMove();
-									ZicZacZoe.GameState.endTurn();
-								}
+								ZicZacZoe.GameState.update(gBoard, mouse, click);
 							},
 		/** draw */
 		draw			:	function()

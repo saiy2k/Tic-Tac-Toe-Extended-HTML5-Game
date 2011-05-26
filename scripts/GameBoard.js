@@ -56,18 +56,6 @@ ZicZacZoe.GameBoard		=	function() {
     
     /** @private */
     var tileHeight;
-
-    /** @private */
-    var hoverTileX;
-
-    /** @private */
-    var hoverTileY;
-    
-    /** @private */
-    var selectedTileX;
-
-    /** @private */
-    var selectedTileY;
     
     /** @private */
     var tiles           =   [];
@@ -90,41 +78,13 @@ ZicZacZoe.GameBoard		=	function() {
 		refreshUI();
 		loadResources();
 	};
-    
-    this.update         =   function(m, clk) {        
-        var mx          =   (m.x - boardX);
-        var my          =   (m.y - boardY);
-        hoverTileX		=	-1;
-		hoverTileY		=	-1;
-		
-        if(mx > 0 && my > 0 && mx < boardWidth && my < boardHeight)
-        {
-            hoverTileY          =   Math.floor(mx / tileWidth);
-            hoverTileX          =   Math.floor(my / tileHeight);
-			
-			if ( tiles[hoverTileX][hoverTileY] !== -1)
-			{
-				hoverTileX		=	-1;
-				hoverTileY		=	-1;
-			}
-        }
-        
-        if(clk !== null)
-        {
-            var cx				=   (clk.x - boardX);
-            var cy          	=   (clk.y - boardY);
-            
-			if( hoverTileX != -1 )
-			{
-				selectedTileX	=	hoverTileX;
-				selectedTileY	=	hoverTileY;
-				tiles[selectedTileX][selectedTileY] =   ZicZacZoe.GameState.currentPlayerID;
-				
-				ZicZacZoe.GameState.selectedTileX	=	selectedTileX;
-				ZicZacZoe.GameState.selectedTileY	=	selectedTileY;
-			}
-        }
-    };
+	
+	this.x				=	function() {	return		boardX;			}
+	this.y				=	function() {	return		boardY;			}
+	this.width			=	function() {	return		boardWidth;		}
+	this.height			=	function() {	return		boardHeight;	}
+	this.tileWidth		=	function() {	return		tileWidth;		}
+	this.tileHeight		=	function() {	return		tileHeight;		}
     
     this.draw           =   function(ctx) {
         ctx.drawImage(boardImage, 0, 0);
@@ -148,7 +108,7 @@ ZicZacZoe.GameBoard		=	function() {
         
         ctx.fillStyle   =   'rgba(255, 0, 0, 0.5);';
         ctx.beginPath();
-        ctx.rect(hoverTileY*tileWidth, hoverTileX*tileHeight, tileWidth, tileHeight);
+        ctx.rect(ZicZacZoe.GameState.hoverTileY*tileWidth, ZicZacZoe.GameState.hoverTileX*tileHeight, tileWidth, tileHeight);
         ctx.closePath();
         ctx.fill();
     };
