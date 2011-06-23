@@ -68,16 +68,16 @@ ZicZacZoe.GameState	=	function() {
 	
 	var checkMove					=	function()
 	{
-	/*
 		var t			=	ZicZacZoe.GameState;
 		var	p			=	t.currentPlayerID;
 		var giveScore;
 		var	tmpScore	=	0;
-
+		
+		
 		giveScore		=	true;
 		for ( var i = t.selectedTileX; i >= 0 && i > t.selectedTileX - 5 ; i-- )
 		{
-			if ( t.tiles[i][t.selectedTileY] != p )
+			if ( t.tiles[t.selectedTileY][i] != p )
 			{
 				giveScore	=	false;
 				break;
@@ -86,14 +86,11 @@ ZicZacZoe.GameState	=	function() {
 		if ( giveScore )
 			tmpScore++;
 		
-			
-		giveScore	=	true;
-		var str = '';
+		
+		giveScore		=	true;
 		for ( var i = t.selectedTileX; i < 10 && i < t.selectedTileX + 5 ; i++ )
 		{
-			console.log(i + ', ' + t.selectedTileY + ':  ' + t.tiles[i][t.selectedTileY]);
-			str			=	str + ', ' + t.tiles[i][t.selectedTileY];
-			if ( t.tiles[i][t.selectedTileY] != p )
+			if ( t.tiles[t.selectedTileY][i] != p )
 			{
 				giveScore	=	false;
 				break;
@@ -101,15 +98,12 @@ ZicZacZoe.GameState	=	function() {
 		}
 		if ( giveScore )
 			tmpScore++;
-
-
-		giveScore	=	true;
-		var str = '';
-		for ( var i = t.selectedTileX; i < 10 && i < t.selectedTileX + 5 ; i++ )
+		
+		
+		giveScore		=	true;
+		for ( var j = t.selectedTileY; j < 10 && j < t.selectedTileY + 5 ; j++ )
 		{
-			console.log(i + ', ' + t.selectedTileY + ':  ' + t.tiles[i][t.selectedTileY]);
-			str			=	str + ', ' + t.tiles[i][t.selectedTileY];
-			if ( t.tiles[i][t.selectedTileY] != p )
+			if ( t.tiles[j][t.selectedTileX] != p )
 			{
 				giveScore	=	false;
 				break;
@@ -117,16 +111,24 @@ ZicZacZoe.GameState	=	function() {
 		}
 		if ( giveScore )
 			tmpScore++;
-
 			
+			
+		giveScore		=	true;
+		for ( var j = t.selectedTileY; j >= 0 && j > t.selectedTileY - 5 ; j-- )
+		{
+			if ( t.tiles[j][t.selectedTileX] != p )
+			{
+				giveScore	=	false;
+				break;
+			}
+		}
+		if ( giveScore )
+			tmpScore++;
 		
 		if(p == 0)
 			t.player1Score	+=	tmpScore;
 		else
 			t.player2Score	+=	tmpScore;
-			
-		console.log('t score' + tmpScore);
-	*/
 	};
 	
 	var endTurn						=	function()
@@ -137,6 +139,14 @@ ZicZacZoe.GameState	=	function() {
 			t.currentPlayerID	=	1;
 		else
 			t.currentPlayerID	=	0;
+	};
+	
+	var updateUI					=	function()
+	{
+		var t			=	ZicZacZoe.GameState;
+		
+		$("#player1Score").text(t.player1Score);
+		$("#player2Score").text(t.player2Score);
 	};
 	
 	/** @scope ZicZacZoe.GameState */
@@ -181,6 +191,7 @@ ZicZacZoe.GameState	=	function() {
 								{
 									checkMove();
 									endTurn();
+									updateUI();
 								}
 							},
 
