@@ -34,10 +34,10 @@ ZicZacZoe.GameState	=	function() {
 
 		if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height())
 		{
-			t.hoverTileY			=   Math.floor(mx / gBoard.tileWidth());
-			t.hoverTileX			=   Math.floor(my / gBoard.tileHeight());
+			t.hoverTileX			=   Math.floor(mx / gBoard.tileWidth());
+			t.hoverTileY			=   Math.floor(my / gBoard.tileHeight());
 			
-			if ( t.tiles[t.hoverTileX][t.hoverTileY] !== -1)
+			if ( t.tiles[t.hoverTileY][t.hoverTileX] !== -1)
 			{
 				t.hoverTileX		=	-1;
 				t.hoverTileY		=	-1;
@@ -50,31 +50,83 @@ ZicZacZoe.GameState	=	function() {
 			{
 				t.selectedTileX	=	t.hoverTileX;
 				t.selectedTileY	=	t.hoverTileY;
-				t.tiles[t.selectedTileX][t.selectedTileY] =   t.currentPlayerID;
+				t.tiles[t.selectedTileY][t.selectedTileX] =   t.currentPlayerID;
 			}
 			
-			for (var i = 0; i < 10; i++)
+			for (var j = 0; j < 10; j++)
 			{
 				var str = '';
-				for (var  j = 0; j < 10; j++)
+				for (var  i = 0; i < 10; i++)
 				{
-					var til	=	ZicZacZoe.GameState.tiles[i][j];
+					var til	=	ZicZacZoe.GameState.tiles[j][i];
 					str = str + ', ' + til;
 				}
-				
-				console.log(str);
+				//console.log(str);
 			}
 		}
 	};
 	
 	var checkMove					=	function()
 	{
+	/*
 		var t			=	ZicZacZoe.GameState;
-		
-		for ( var i = t.selectedTileX; i < t.selectedTileX + 5; i++)
+		var	p			=	t.currentPlayerID;
+		var giveScore;
+		var	tmpScore	=	0;
+
+		giveScore		=	true;
+		for ( var i = t.selectedTileX; i >= 0 && i > t.selectedTileX - 5 ; i-- )
 		{
-			
+			if ( t.tiles[i][t.selectedTileY] != p )
+			{
+				giveScore	=	false;
+				break;
+			}
 		}
+		if ( giveScore )
+			tmpScore++;
+		
+			
+		giveScore	=	true;
+		var str = '';
+		for ( var i = t.selectedTileX; i < 10 && i < t.selectedTileX + 5 ; i++ )
+		{
+			console.log(i + ', ' + t.selectedTileY + ':  ' + t.tiles[i][t.selectedTileY]);
+			str			=	str + ', ' + t.tiles[i][t.selectedTileY];
+			if ( t.tiles[i][t.selectedTileY] != p )
+			{
+				giveScore	=	false;
+				break;
+			}
+		}
+		if ( giveScore )
+			tmpScore++;
+
+
+		giveScore	=	true;
+		var str = '';
+		for ( var i = t.selectedTileX; i < 10 && i < t.selectedTileX + 5 ; i++ )
+		{
+			console.log(i + ', ' + t.selectedTileY + ':  ' + t.tiles[i][t.selectedTileY]);
+			str			=	str + ', ' + t.tiles[i][t.selectedTileY];
+			if ( t.tiles[i][t.selectedTileY] != p )
+			{
+				giveScore	=	false;
+				break;
+			}
+		}
+		if ( giveScore )
+			tmpScore++;
+
+			
+		
+		if(p == 0)
+			t.player1Score	+=	tmpScore;
+		else
+			t.player2Score	+=	tmpScore;
+			
+		console.log('t score' + tmpScore);
+	*/
 	};
 	
 	var endTurn						=	function()
@@ -98,12 +150,12 @@ ZicZacZoe.GameState	=	function() {
 								selectedTileX		=	0;
 								selectedTileY		=	0;
 								
-								for (var i = 0; i < 10; i++)
+								for (var j = 0; j < 10; j++)
 								{
-									ZicZacZoe.GameState.tiles[i]    =   [];
-									for (var  j = 0; j < 10; j++)
+									ZicZacZoe.GameState.tiles[j]    =   [];
+									for (var  i = 0; i < 10; i++)
 									{
-										ZicZacZoe.GameState.tiles[i][j] =   -1;
+										ZicZacZoe.GameState.tiles[j][i] =   -1;
 									}
 								}
 							},

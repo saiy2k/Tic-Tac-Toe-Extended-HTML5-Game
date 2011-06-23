@@ -89,26 +89,26 @@ ZicZacZoe.GameBoard		=	function() {
     this.draw           =   function(ctx) {
         ctx.drawImage(boardImage, 0, 0);
         
-        for (var i = 0; i < rowCount; i++)
+        for (var j = 0; j < rowCount; j++)
         {
-            for (var  j = 0; j < colCount; j++)
+            for (var i = 0; i < colCount; i++)
             {
-                var tileID  = tiles[i][j];
+                var tileID  = tiles[j][i];
 
                 if( tileID === 0 )
                 {
-                    ctx.drawImage(xImage, j*tileWidth, i*tileHeight, tileWidth, tileHeight);
+					ctx.drawImage(xImage, i*tileWidth, j*tileHeight, tileWidth, tileHeight);
                 }
                 else if( tileID === 1 )
                 {
-					ctx.drawImage(oImage, j*tileWidth, i*tileHeight, tileWidth, tileHeight);
+					ctx.drawImage(oImage, i*tileWidth, j*tileHeight, tileWidth, tileHeight);
 				}
             }
         }
         
         ctx.fillStyle   =   'rgba(255, 0, 0, 0.5);';
         ctx.beginPath();
-        ctx.rect(ZicZacZoe.GameState.hoverTileY*tileWidth, ZicZacZoe.GameState.hoverTileX*tileHeight, tileWidth, tileHeight);
+        ctx.rect(ZicZacZoe.GameState.hoverTileX*tileWidth, ZicZacZoe.GameState.hoverTileY*tileHeight, tileWidth, tileHeight);
         ctx.closePath();
         ctx.fill();
     };
