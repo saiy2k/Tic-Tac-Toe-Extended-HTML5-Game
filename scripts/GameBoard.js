@@ -60,9 +60,9 @@ ZicZacZoe.GameBoard		=	function() {
     /** @private */
     var tiles           =   [];
     
-	this.init			=	function(ctx) {
-        rowCount        =   10;
-        colCount        =   10;
+	this.init			=	function(ctx, rows, cols) {
+        rowCount        =   rows;
+        colCount        =   cols;
         currentPlayerID =   0;
         
         boardX          =   $('#boardCanvas').offset().left;
@@ -85,6 +85,10 @@ ZicZacZoe.GameBoard		=	function() {
 	this.height			=	function() {	return		boardHeight;	}
 	this.tileWidth		=	function() {	return		tileWidth;		}
 	this.tileHeight		=	function() {	return		tileHeight;		}
+	
+	this.update			=	function() {
+		
+	};
     
     this.draw           =   function(ctx) {
         ctx.drawImage(boardImage, 0, 0);
@@ -95,11 +99,11 @@ ZicZacZoe.GameBoard		=	function() {
             {
                 var tileID  = tiles[j][i];
 
-                if( tileID === 0 )
+                if( tileID == 0 )
                 {
 					ctx.drawImage(xImage, i*tileWidth, j*tileHeight, tileWidth, tileHeight);
                 }
-                else if( tileID === 1 )
+                else if( tileID == 1 )
                 {
 					ctx.drawImage(oImage, i*tileWidth, j*tileHeight, tileWidth, tileHeight);
 				}

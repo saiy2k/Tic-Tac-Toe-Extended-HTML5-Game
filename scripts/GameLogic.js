@@ -26,33 +26,158 @@ ZicZacZoe.GameLogic	=	function() {
 	
 	/** @scope ZicZacZoe.GameLogic */
 	return {
-		/** check move function */
-		checkMove		:	function()
+		updateCurrentTile:	function(t, gBoard, m, clk)
 							{
-								var	selX		=	ZicZacZoe.GameState.selectedTileX;
-								var	selY		=	ZicZacZoe.GameState.selectedTileY;
-								
-								var scored		=	true;
-								
-								//console.log(selX + ',' + selY);
-								/*
-								for (var i = selX; i < selX + 5; i++)
+								var mx          =   (m.x - gBoard.x());
+								var my          =   (m.y - gBoard.y());
+								t.hoverTileX	=	-1;
+								t.hoverTileY	=	-1;
+
+								if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height())
 								{
-									console.log(i + ',' + selY + ': ' + ZicZacZoe.GameState.tiles[selY][i]);
-									if( ZicZacZoe.GameState.tiles[selY][i] != ZicZacZoe.GameState.currentPlayerID )
+									t.hoverTileX			=   Math.floor(mx / gBoard.tileWidth());
+									t.hoverTileY			=   Math.floor(my / gBoard.tileHeight());
+									
+									if ( t.tiles[t.hoverTileY][t.hoverTileX] !== -1)
 									{
-										scored	=	false;
-										break;
+										t.hoverTileX		=	-1;
+										t.hoverTileY		=	-1;
 									}
 								}
-								console.log('');
+
+								if(clk !== null)
+								{									
+									if( t.hoverTileX != -1 )
+									{
+										t.selectedTileX	=	t.hoverTileX;
+										t.selectedTileY	=	t.hoverTileY;
+										t.tiles[t.selectedTileY][t.selectedTileX] =   t.currentPlayerID;
+									}
+									
+									
+									/*for (var j = 0; j < ROW; j++)
+									{
+										var str = '';
+										for (var  i = 0; i < COL; i++)
+										{
+											var til	=	ZicZacZoe.GameState.tiles[j][i];
+											str = str + ', ' + til;
+										}
+										console.log(str);
+									}*/
+								}						
+							},
+							
+		/** check move function */
+		checkMove		:	function(t)
+							{								
+								var	p1			=	0;
+								var	p2			=	0;
 								
-								if ( scored )
+								for (var j = 0; j < t.rows; j++)
 								{
-									ZicZacZoe.GameState.player1Score++;
-									console.log('score ' + ZicZacZoe.GameState.player1Score);
+									for (var i = 0; i < t.cols; i++)
+									{
+										var			cVal;
+										var			cnt;
+										cVal	=	t.tiles[j][i];
+										
+										//check if the current tile is not blank
+										if (cVal != -1)
+										{
+											//count the number of 0s and 1s in the next 'BLOCK' tiles in the current row
+											cnt	=	0;
+											for (var z = i; z < i + t.block && z < t.cols; z++)
+											{
+												if (0 == t.tiles[j][z])
+													cnt++;
+												else if(1 == t.tiles[j][z])
+													cnt--;
+												else
+													break;
+											}
+											if (cnt == t.block)			//if there were 'BLOCK' consecutive tiles with value 0, this would have been true
+												p1++;
+											if (cnt == -t.block)		//if there were 'BLOCK' consecutive tiles with value 1, this would have been true
+												p2++;
+											
+											
+											//count the number of 0s and 1s in the next 'BLOCK' tiles in the current t.colsumn
+											cnt	=	0;
+											for (var z = j; z < j + t.block && z < t.rows; z++)
+											{
+												if (0 == t.tiles[z][i])
+													cnt++;
+												else if(1 == t.tiles[z][i])
+													cnt--;
+												else
+													break;
+											}
+											if (cnt == t.block)
+												p1++;
+											if (cnt == -t.block)
+												p2++;
+												
+											
+											//count the number of 0s and 1s in the straight diagonal
+											cnt	=	0;
+											for (var z = 0; z < t.block; z++)
+											{
+												if ( z+j >= t.cols || z+i >= t.rows )
+													break;
+													
+												if (0 == t.tiles[z+j][z+i])
+													cnt++;
+												else if(1 == t.tiles[z+j][z+i])
+													cnt--;
+												else
+													break;
+											}
+											if (cnt == t.block)
+												p1++;
+											if (cnt == -t.block)
+												p2++;
+												
+											
+											//count the number of 0s and 1s in the reverse diagonal
+											cnt	=	0;
+											for (var z = 0; z < t.block; z++)
+											{
+												if ( j+z >= t.cols || i-z < 0 )
+													break;
+													
+												if (0 == t.tiles[j+z][i-z])
+													cnt++;
+												else if(1 == t.tiles[j+z][i-z])
+													cnt--;
+												else
+													break;
+											}
+											if (cnt == t.block)
+												p1++;
+											if (cnt == -t.block)
+												p2++;
+										}
+									}
 								}
-								*/
+								
+								//update the playerScore
+								t.player1Score	=	p1;
+								t.player2Score	=	p2;
+							},
+							
+		endTurn			:	function(t)
+							{		
+								if( t.currentPlayerID	== 0 )
+									t.currentPlayerID	=	1;
+								else
+									t.currentPlayerID	=	0;
+							},							
+							
+		updateUI		:	function(t)
+							{								
+								$("#player1Score").text(t.player1Score);
+								$("#player2Score").text(t.player2Score);
 							}
-	};
+	}
 }();
