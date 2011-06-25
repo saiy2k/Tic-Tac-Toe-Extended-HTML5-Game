@@ -1,0 +1,20 @@
+CACHE MANIFEST
+#This is a comment
+
+CACHE
+index.html
+style.css
+README
+images/board.jpg
+images/board2X.jpg
+images/oTile.jpg
+images/oTile2X.jpg
+images/xTile.jpg
+images/xTile2X.jpg
+lib/jquery-1.5.2.js
+scripts/GameBoard.js
+scripts/GameLogic.js
+scripts/GameManager.js
+scripts/GameState.js
+scripts/InputManager.js
+scripts/ZicZacZoe.js
