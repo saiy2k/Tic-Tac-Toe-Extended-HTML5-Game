@@ -51,12 +51,11 @@ ZicZacZoe.GameManager	=	function() {
         
 								ZicZacZoe.GameState.reset();
 								gBoard					=	new ZicZacZoe.GameBoard(context, ZicZacZoe.GameState.rows, ZicZacZoe.GameState.cols);
-								//gBoard.init(context, ZicZacZoe.GameState.rows, ZicZacZoe.GameState.cols);
 								
 								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
 							},
 
-		/** Game Loop. Getting called as per the given FPS*/
+		/** Game Loop. Getting called as per the given FPS */
 		loop			:	function()
 							{
 								ZicZacZoe.GameManager.update();
@@ -68,20 +67,22 @@ ZicZacZoe.GameManager	=	function() {
 							{								
 								var mouse	=   ZicZacZoe.InputManager.getMouse();
                                 var click   =   ZicZacZoe.InputManager.getClickIfAny();
+
+								gBoard.update(mouse, click);
 								
 								if ( click !== null )
 								{
 									ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);
 									ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 									ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+									
+									console.log(ZicZacZoe.GameState.currentPlayerID);
 								}
-								
-								gBoard.update(mouse, click);
 							},
-							
+
 		/** draw the current screen */
 		draw			:	function()
-							{  
+							{
                                 gBoard.draw(context);
 							}
 	};

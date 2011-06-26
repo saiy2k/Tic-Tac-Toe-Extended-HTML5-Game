@@ -23,17 +23,42 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 	@class
 */
 ZicZacZoe.BoardTile		=	function() {
-    
-	this.init			=	function() {
 	
-	};
+	/**	image of the tile
+		@type	image
+		@private */
+	var image;
 	
+	/**	x co-ordinate of the tile in the grid
+		@type	int
+		@private */
+    var tileX;
+
+    /**	y co-ordinate of the tile in the grid
+		@type	int
+		@private */
+    var tileY;
+	
+	/**	width of the tile
+		@type	double
+		@private */
+    var tileWidth;
+	
+	/**	height of the tile
+		@type	double
+		@private */
+    var tileHeight;
+	
+	
+	/**	
+	*/
 	this.update			=	function() {
 		
 	};
     
+	/**	
+	*/
     this.draw           =   function(ctx) {
 
     };
-	
 };

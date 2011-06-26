@@ -128,7 +128,7 @@ ZicZacZoe.GameLogic	=	function() {
 		/** Ends the current turn, by alternating the player ID
 			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
 		endTurn			:	function(t)
-							{		
+							{
 								if( t.currentPlayerID	== 0 )
 									t.currentPlayerID	=	1;
 								else
