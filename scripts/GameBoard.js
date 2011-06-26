@@ -18,78 +18,175 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-    This game Board class the 
+    Handles all the game board logic, incuding managing
+	and updating all the tiles
     
 	@class
 */
-ZicZacZoe.GameBoard		=	function() {
-
-	/** @private */
+ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
+	/**	Background Picture
+		@type	image
+		@private */
 	var boardImage;
     
-    /** @private */
+    /**	Player 1's Image
+		@type	image
+		@private */
     var xImage;
     
-    /** @private */
+    /**	Player 2's Image
+		@type	image
+		@private */
     var oImage;
     
-    /** @private */
+    /**	x co-ordinate of the board
+		@type	double
+		@private */
     var boardX;
-    
-    /** @private */
+
+    /**	y co-ordinate of the board
+		@type	double
+		@private */
     var boardY;
     
-    /** @private */
+    /**	width of the board
+		@type	double
+		@private */
     var boardWidth;
     
-    /** @private */
+    /**	height of the board
+		@type	double
+		@private */
     var boardHeight;
     
-    /** @private */
+    /**	number of rows, as specified in GameState
+		@type	int
+		@private */
     var rowCount;
     
-    /** @private */
+    /**	number of columns, as specified in GameState
+		@type	int
+		@private */
     var colCount;
     
-    /** @private */
+    /**	width of a single tile ( = boardWidth / colCount )
+		@type	double
+		@private */
     var tileWidth;
     
-    /** @private */
+    /**	height of a single tile ( = boardHeight / rowCount )
+		@type	double
+		@private */
     var tileHeight;
     
-    /** @private */
+    /**	2D Array of tiles
+		@type	BoardTile[][]
+		@private */
     var tiles           =   [];
-    
-	this.init			=	function(ctx, rows, cols) {
-        rowCount        =   rows;
-        colCount        =   cols;
-        currentPlayerID =   0;
-        
-        boardX          =   $('#boardCanvas').offset().left;
-        boardY          =   $('#boardCanvas').offset().top;
+	
+	
+	/** Loads all the images appropriate for the board. Based on the screen
+		size, either a high-res or low-res image is selected
+		@private */
+	var loadResources	=	function()
+	{
+		var strSize;
 		
-		tiles			=	ZicZacZoe.GameState.tiles;
+		if ( $(window).width() > 800 )
+			strSize					=	'2X';
+		else
+			strSize					=	'';
 		
-		refreshUI();
-		loadResources();
+		boardImage					=	new Image();
+		boardImage.src				=	'images/board' + strSize + '.jpg';
+		
+		oImage						=   new Image();
+		oImage.src					=   'images/oTile' + strSize + '.png';
+		
+		xImage                  	=   new Image();
+		xImage.src					=   'images/xTile' + strSize + '.png';
 	};
 	
+	/** Updates the x, y, width, height variables based on the current screen size
+		@private */
+	var refreshUI					=	function()
+	{
+		var	boardCanvas				=	document.getElementById('boardCanvas');
+		
+		if ( $(window).width() > 800 ) {
+			boardWidth              =   480;
+            boardHeight             =   480;
+		}
+		else {
+			boardWidth              =   320;
+            boardHeight             =   320;
+		}
+		
+		boardCanvas.width			=	boardWidth;
+		boardCanvas.height			=	boardHeight;
+		
+		tileWidth					=   boardWidth / colCount;
+		tileHeight              	=   boardHeight / rowCount;
+	};
+
+	/** @returns	{double}	x co-ordinate of the board */
+	this.x				=	function() {	return		boardX;			}
+	
+	/** @returns	{double}	y co-ordinate of the board */
+	this.y				=	function() {	return		boardY;			}
+	
+	/** @returns	{double}	width of the board */
+	this.width			=	function() {	return		boardWidth;		}
+	
+	/** @returns	{double}	height of the board */
+	this.height			=	function() {	return		boardHeight;	}
+	
+	/** @returns	{double}	tile width of the board */
+	this.tileWidth		=	function() {	return		tileWidth;		}
+	
+	/** @returns	{double}	tile height of the board */
+	this.tileHeight		=	function() {	return		tileHeight;		}	
+	
+	/** refreshes the board layout based on the screen size	*/
 	this.resize			=	function() {
 		refreshUI();
 		loadResources();
 	};
 	
-	this.x				=	function() {	return		boardX;			}
-	this.y				=	function() {	return		boardY;			}
-	this.width			=	function() {	return		boardWidth;		}
-	this.height			=	function() {	return		boardHeight;	}
-	this.tileWidth		=	function() {	return		tileWidth;		}
-	this.tileHeight		=	function() {	return		tileHeight;		}
-	
-	this.update			=	function() {
+	/** Updates the board state based on user input.
+		Updates the tiles array */
+	this.update			=	function(m, clk) {
+		var t			=	ZicZacZoe.GameState;
+		var mx          =   (m.x - boardX);
+		var my          =   (m.y - boardY);
 		
+		t.hoverTileX	=	-1;
+		t.hoverTileY	=	-1;
+
+		if(mx > 0 && my > 0 && mx < boardWidth && my < boardHeight)
+		{
+			t.hoverTileX			=   Math.floor(mx / tileWidth);
+			t.hoverTileY			=   Math.floor(my / tileHeight);
+			
+			if ( t.tiles[t.hoverTileY][t.hoverTileX] !== -1)
+			{
+				t.hoverTileX		=	-1;
+				t.hoverTileY		=	-1;
+			}
+		}
+
+		if(clk !== null)
+		{									
+			if( t.hoverTileX != -1 )
+			{
+				t.selectedTileX	=	t.hoverTileX;
+				t.selectedTileY	=	t.hoverTileY;
+				t.tiles[t.selectedTileY][t.selectedTileX] =   t.currentPlayerID;
+			}
+		}
 	};
     
+	/**	Draw the board and the tiles */
     this.draw           =   function(ctx) {
         ctx.drawImage(boardImage, 0, 0);
         
@@ -117,44 +214,16 @@ ZicZacZoe.GameBoard		=	function() {
         ctx.fill();
     };
 	
-	/** @private */
-	var loadResources	=	function()
-	{
-		var strSize;
-		
-		if ( $(window).width() > 800 )
-			strSize					=	'2X';
-		else
-			strSize					=	'';
-		
-		boardImage				=	new Image();
-		boardImage.src			=	'images/board' + strSize + '.jpg';
-		
-		oImage                  =   new Image();
-		oImage.src              =   'images/oTile' + strSize + '.png';
-		
-		xImage                  =   new Image();
-		xImage.src              =   'images/xTile' + strSize + '.png';
-	};
 	
-	/** @private */
-	var refreshUI					=	function()
-	{
-		var	boardCanvas				=	document.getElementById('boardCanvas');
-		
-		if ( $(window).width() > 800 ) {
-			boardWidth              =   480;
-            boardHeight             =   480;
-		}
-		else {
-			boardWidth              =   320;
-            boardHeight             =   320;
-		}
-		
-		boardCanvas.width			=	boardWidth;
-		boardCanvas.height			=	boardHeight;
-		
-		tileWidth					=   boardWidth / colCount;
-		tileHeight              	=   boardHeight / rowCount;
-	};
+	rowCount        	=   rows;
+	colCount        	=   cols;
+	currentPlayerID 	=   0;
+	
+	boardX          	=   $('#boardCanvas').offset().left;
+	boardY          	=   $('#boardCanvas').offset().top;
+	
+	tiles				=	ZicZacZoe.GameState.tiles;
+
+	refreshUI();
+	loadResources();
 };

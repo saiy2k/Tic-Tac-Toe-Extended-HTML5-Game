@@ -18,18 +18,17 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-    GameState
+    Holds the current state of the game which includes the tile matrix,
+	player scores, current player, etc.,
+	<br> <br>
+	This is a static class and so any other classes/objects can access
+	this class by ZicZacZoe.GameState. Some other global constants like number
+	of rows and columns are also stored in this class
 	
 	@namespace
 */
 
-ZicZacZoe.GameState	=	function() {	
-	var endTurn						=	function()
-	{
-		
-	};
-	
-
+ZicZacZoe.GameState	=	function() {
 	
 	/** @scope ZicZacZoe.GameState */
 	return {
@@ -74,7 +73,7 @@ ZicZacZoe.GameState	=	function() {
 		
 		update			:	function(gBoard, m, clk)
 							{
-								ZicZacZoe.GameLogic.updateCurrentTile(ZicZacZoe.GameState, gBoard, m, clk);
+								//ZicZacZoe.GameLogic.updateCurrentTile(ZicZacZoe.GameState, gBoard, m, clk);
 								
 								if ( clk !== null )
 								{

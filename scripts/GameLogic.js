@@ -25,49 +25,7 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 ZicZacZoe.GameLogic	=	function() {
 	
 	/** @scope ZicZacZoe.GameLogic */
-	return {
-		updateCurrentTile:	function(t, gBoard, m, clk)
-							{
-								var mx          =   (m.x - gBoard.x());
-								var my          =   (m.y - gBoard.y());
-								t.hoverTileX	=	-1;
-								t.hoverTileY	=	-1;
-
-								if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height())
-								{
-									t.hoverTileX			=   Math.floor(mx / gBoard.tileWidth());
-									t.hoverTileY			=   Math.floor(my / gBoard.tileHeight());
-									
-									if ( t.tiles[t.hoverTileY][t.hoverTileX] !== -1)
-									{
-										t.hoverTileX		=	-1;
-										t.hoverTileY		=	-1;
-									}
-								}
-
-								if(clk !== null)
-								{									
-									if( t.hoverTileX != -1 )
-									{
-										t.selectedTileX	=	t.hoverTileX;
-										t.selectedTileY	=	t.hoverTileY;
-										t.tiles[t.selectedTileY][t.selectedTileX] =   t.currentPlayerID;
-									}
-									
-									
-									/*for (var j = 0; j < ROW; j++)
-									{
-										var str = '';
-										for (var  i = 0; i < COL; i++)
-										{
-											var til	=	ZicZacZoe.GameState.tiles[j][i];
-											str = str + ', ' + til;
-										}
-										console.log(str);
-									}*/
-								}						
-							},
-							
+	return {							
 		/** check move function */
 		checkMove		:	function(t)
 							{								

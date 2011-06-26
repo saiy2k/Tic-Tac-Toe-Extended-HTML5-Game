@@ -18,54 +18,62 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-    This class is the core of the game. It handles the game loop and all
-	other components of game.
-	
+    This class is the master class that manages the screen flow and
+	updates the other components of the game
+
 	@namespace
+	@author			<a href="saiy2k.blogspot.com">Saiyasodharan</a>
 */
 ZicZacZoe.GameManager	=	function() {
 
-	/** @private */
+	/**	Frames per Second (30)
+		@type	double
+		@private */
     var FPS				=	30.0;
 
-    /** @private */
+    /**	2D drawing context to the HTML5 canvas. This object is used to make all the draw calls
+		@type	canvas context
+		@private */
     var context;
     
-    /** @private */
-	var gBoard          =	new ZicZacZoe.GameBoard();
+    /** GameBoard object
+		@type	ZicZacZoe.GameBoard
+		@private */
+	var gBoard;//          =	new ZicZacZoe.GameBoard();
 	
 	/** @scope ZicZacZoe.GameManager */	
 	return {
-		/** init function */
+		/** Initializes the canvas context, game board, gamestate and sets the game loop */
 		init			:	function()
 							{
                                 var canvas              =	document.getElementById("boardCanvas");
 		                        context					=	canvas.getContext('2d');
-                                
-                                context.fillStyle       =   '#fff';
         
 								ZicZacZoe.GameState.reset();
-								gBoard.init(context, ZicZacZoe.GameState.rows, ZicZacZoe.GameState.cols);
+								gBoard					=	new ZicZacZoe.GameBoard(context, ZicZacZoe.GameState.rows, ZicZacZoe.GameState.cols);
+								//gBoard.init(context, ZicZacZoe.GameState.rows, ZicZacZoe.GameState.cols);
 								
 								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
 							},
-		
-		/** game loop */
+
+		/** Game Loop. Getting called as per the given FPS*/
 		loop			:	function()
 							{
 								ZicZacZoe.GameManager.update();
 								ZicZacZoe.GameManager.draw();
 							},
-		/** update */
+
+		/** update the current screen */
 		update			:	function()
 							{								
 								var mouse	=   ZicZacZoe.InputManager.getMouse();
                                 var click   =   ZicZacZoe.InputManager.getClickIfAny();
                                 
 								ZicZacZoe.GameState.update(gBoard, mouse, click);
-								//gBoard.update();
+								gBoard.update(mouse, click);
 							},
-		/** draw */
+							
+		/** draw the current screen */
 		draw			:	function()
 							{
                                 context.fillStyle   =   '#fff';

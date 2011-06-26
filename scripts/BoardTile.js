@@ -35,4 +35,5 @@ ZicZacZoe.BoardTile		=	function() {
     this.draw           =   function(ctx) {
 
     };
+	
 };
