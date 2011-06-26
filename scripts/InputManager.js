@@ -24,34 +24,35 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 */
 ZicZacZoe.InputManager	=	function() {
 
-	/** @private */
+	/** x coordinate of the mouse in the page, in pixels
+		@type	double
+		@private */
 	var pageX;
 	
-	/** @private */
+	/** y coordinate of the mouse in the page, in pixels
+		@type	double
+		@private */
 	var pageY;
     
-    /** @private */
+    /** if the mouse has been clicked or not
+		@type	bool
+		@private */
     var isClicked       =   false;
-    
-    /** @private */
-    var clickX;
-    
-    /** @private */
-    var clickY;
 	
-	/** @private */
+	/** jquery event handler for mousemove */
 	$(document).mousemove(function(ev) {
 		pageX			=	ev.pageX;
 		pageY			=	ev.pageY;
 	});
     
-    /** @private */
+    /** jquery event handler for mousedown */
     $(document).mousedown(function(ev) {
-		clickX			=	ev.pageX;
-		clickY			=	ev.pageY;
+		pageX			=	ev.pageX;
+		pageY			=	ev.pageY;
         isClicked       =   true;
 	});
 	
+	/** @scope ZicZacZoe.InputManager */
 	return {
 		/** return mouse co-ordinates*/
 		getMouse		:	function()
@@ -65,7 +66,7 @@ ZicZacZoe.InputManager	=	function() {
                                 if(isClicked)
                                 {
                                     isClicked   =   false;
-								    return	{'x': clickX, 'y': clickY};
+								    return	{'x': pageX, 'y': pageX};
                                 }
                                 else
                                 {

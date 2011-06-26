@@ -22,6 +22,9 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 	and updating all the tiles
     
 	@class
+	@param	{context} 	ctx		2D drawing context to the HTML5 canvas
+	@param	{int}		rows	number of rows
+	@param	{int}		cols	number of cols
 */
 ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 	/**	Background Picture
@@ -154,7 +157,9 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 	};
 	
 	/** Updates the board state based on user input.
-		Updates the tiles array */
+		Updates the tiles array
+		@param	{point}		m		the current mouse co-ordinate
+		@param	{bool}		clk		indicates if the mouse is clicked */
 	this.update			=	function(m, clk) {
 		var t			=	ZicZacZoe.GameState;
 		var mx          =   (m.x - boardX);
@@ -163,6 +168,7 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 		t.hoverTileX	=	-1;
 		t.hoverTileY	=	-1;
 
+		//if the mouse is hovered over the board, find the tile above which the mouse is placed
 		if(mx > 0 && my > 0 && mx < boardWidth && my < boardHeight)
 		{
 			t.hoverTileX			=   Math.floor(mx / tileWidth);
@@ -175,6 +181,7 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 			}
 		}
 
+		//if the mouse is clicked in a valid blank tile, then update the tiles[][] array appropriately
 		if(clk !== null)
 		{									
 			if( t.hoverTileX != -1 )
@@ -186,10 +193,14 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 		}
 	};
     
-	/**	Draw the board and the tiles */
+	/**	Draw the board and the tiles
+		@param	{context} 	ctx		2D drawing context to the HTML5 canvas */
     this.draw           =   function(ctx) {
+	
+		//draws the background image
         ctx.drawImage(boardImage, 0, 0);
         
+		//draw all the tiles
         for (var j = 0; j < rowCount; j++)
         {
             for (var i = 0; i < colCount; i++)
@@ -207,6 +218,7 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
             }
         }
         
+		//mark the hovered tile in red color
         ctx.fillStyle   =   'rgba(255, 0, 0, 0.5);';
         ctx.beginPath();
         ctx.rect(ZicZacZoe.GameState.hoverTileX*tileWidth, ZicZacZoe.GameState.hoverTileY*tileHeight, tileWidth, tileHeight);
@@ -217,7 +229,6 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 	
 	rowCount        	=   rows;
 	colCount        	=   cols;
-	currentPlayerID 	=   0;
 	
 	boardX          	=   $('#boardCanvas').offset().left;
 	boardY          	=   $('#boardCanvas').offset().top;

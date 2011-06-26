@@ -39,9 +39,9 @@ ZicZacZoe.GameManager	=	function() {
     /** GameBoard object
 		@type	ZicZacZoe.GameBoard
 		@private */
-	var gBoard;//          =	new ZicZacZoe.GameBoard();
+	var gBoard;
 	
-	/** @scope ZicZacZoe.GameManager */	
+	/** @scope ZicZacZoe.GameManager */
 	return {
 		/** Initializes the canvas context, game board, gamestate and sets the game loop */
 		init			:	function()
@@ -68,20 +68,20 @@ ZicZacZoe.GameManager	=	function() {
 							{								
 								var mouse	=   ZicZacZoe.InputManager.getMouse();
                                 var click   =   ZicZacZoe.InputManager.getClickIfAny();
-                                
-								ZicZacZoe.GameState.update(gBoard, mouse, click);
+								
+								if ( click !== null )
+								{
+									ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);
+									ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
+									ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+								}
+								
 								gBoard.update(mouse, click);
 							},
 							
 		/** draw the current screen */
 		draw			:	function()
-							{
-                                context.fillStyle   =   '#fff';
-                                context.beginPath();
-                                context.rect(0, 0, 480, 480);
-                                context.closePath();
-                                context.fill();
-                                
+							{  
                                 gBoard.draw(context);
 							}
 	};

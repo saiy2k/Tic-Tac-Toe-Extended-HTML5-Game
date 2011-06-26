@@ -32,7 +32,52 @@ ZicZacZoe.GameState	=	function() {
 	
 	/** @scope ZicZacZoe.GameState */
 	return {
-		/** init function */
+	
+		/**	2D Array of numbers that indicate the tile type
+			@type	int[][] */
+		tiles           :   [],
+		
+		/**	ID of the current player, either 0 or 1
+			@type	int */
+		currentPlayerID	:	0,
+		
+		/** score of player 1
+			@type	int */
+		player1Score	:	0,
+		
+		/** score of player 2
+			@type	int */
+		player2Score	:	0,
+		
+		/** x coordinate of the currently hovered tile. -1, if none
+			@type	int */
+		hoverTileX		:	0,
+		
+		/** y coordinate of the currently hovered tile. -1, if none
+			@type	int */
+		hoverTileY		:	0,
+		
+		/** x coordinate of the currently selected(valid click) tile. -1, if none
+			@type	int */
+		selectedTileX	:	0,
+		
+		/** y coordinate of the currently selected(valid click) tile. -1, if none
+			@type	int */
+		selectedTileY	:	0,
+		
+		/** number of rows
+			@type	int */
+		rows			:	10,
+		
+		/** number of columns
+			@type	int */
+		cols			:	10,
+		
+		/** number of consecutive tiles to check for score
+			@type	int */
+		block			:	4,
+
+		/** resets the gamestate function */
 		reset			:	function()
 							{
 								var						s;
@@ -52,37 +97,6 @@ ZicZacZoe.GameState	=	function() {
 										ZicZacZoe.GameState.tiles[j][i] =   -1;
 									}
 								}
-							},
-							
-		tiles           :   [],
-		
-		currentPlayerID	:	0,
-		
-		player1Score	:	0,
-		player2Score	:	0,
-		
-		hoverTileX		:	0,
-		hoverTileY		:	0,
-		
-		selectedTileX	:	0,
-		selectedTileY	:	0,
-		
-		rows			:	10,
-		cols			:	10,
-		block			:	4,
-		
-		update			:	function(gBoard, m, clk)
-							{
-								//ZicZacZoe.GameLogic.updateCurrentTile(ZicZacZoe.GameState, gBoard, m, clk);
-								
-								if ( clk !== null )
-								{
-									ZicZacZoe.GameLogic.checkMove(ZicZacZoe.GameState);
-									ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
-									ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
-								}
-							},
-
-		
+							}
 	};
 }();

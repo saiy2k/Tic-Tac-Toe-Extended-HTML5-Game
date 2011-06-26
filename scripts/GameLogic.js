@@ -26,8 +26,9 @@ ZicZacZoe.GameLogic	=	function() {
 	
 	/** @scope ZicZacZoe.GameLogic */
 	return {							
-		/** check move function */
-		checkMove		:	function(t)
+		/** Analyzes the current tile array and calculates the score
+			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
+		updateScore		:	function(t)
 							{								
 								var	p1			=	0;
 								var	p2			=	0;
@@ -123,7 +124,9 @@ ZicZacZoe.GameLogic	=	function() {
 								t.player1Score	=	p1;
 								t.player2Score	=	p2;
 							},
-							
+		
+		/** Ends the current turn, by alternating the player ID
+			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
 		endTurn			:	function(t)
 							{		
 								if( t.currentPlayerID	== 0 )
@@ -131,7 +134,9 @@ ZicZacZoe.GameLogic	=	function() {
 								else
 									t.currentPlayerID	=	0;
 							},							
-							
+		
+		/** Updates the Score Div's with the score
+			@param	{GameState}		t	reference to the ZicZacZoe.GameState */		
 		updateUI		:	function(t)
 							{								
 								$("#player1Score").text(t.player1Score);
