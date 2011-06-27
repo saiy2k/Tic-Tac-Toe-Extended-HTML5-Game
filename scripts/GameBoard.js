@@ -189,8 +189,15 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 				t.selectedTileX	=	t.hoverTileX;
 				t.selectedTileY	=	t.hoverTileY;
 				t.tiles[t.selectedTileY][t.selectedTileX] =   t.currentPlayerID;
+				tiles[t.selectedTileY][t.selectedTileX].setState(t.currentPlayerID);
 			}
 		}
+		
+		for (var j = 0; j < rowCount; j++)
+			for (var i = 0; i < colCount; i++)
+			{
+				tiles[j][i].update();
+			}
 	};
     
 	/**	Draw the board and the tiles
@@ -201,22 +208,9 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
         ctx.drawImage(boardImage, 0, 0);
         
 		//draw all the tiles
-        for (var j = 0; j < rowCount; j++)
-        {
-            for (var i = 0; i < colCount; i++)
-            {
-                var tileID  = tiles[j][i];
-
-                if( tileID == 0 )
-                {
-					ctx.drawImage(xImage, i*tileWidth, j*tileHeight, tileWidth, tileHeight);
-                }
-                else if( tileID == 1 )
-                {
-					ctx.drawImage(oImage, i*tileWidth, j*tileHeight, tileWidth, tileHeight);
-				}
-            }
-        }
+		for (var j = 0; j < rowCount; j++)
+			for (var i = 0; i < colCount; i++)
+				tiles[j][i].draw(ctx);
         
 		//mark the hovered tile in red color
         ctx.fillStyle   =   'rgba(255, 0, 0, 0.5);';
@@ -233,8 +227,14 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 	boardX          	=   $('#boardCanvas').offset().left;
 	boardY          	=   $('#boardCanvas').offset().top;
 	
-	tiles				=	ZicZacZoe.GameState.tiles;
-
 	refreshUI();
 	loadResources();
+	
+	for (var j = 0; j < rowCount; j++)
+	{
+		tiles[j]    =   [];
+		for (var i = 0; i < colCount; i++)
+			tiles[j][i]	=	new ZicZacZoe.BoardTile(xImage, oImage, i, j, tileWidth, tileHeight);
+			
+	}
 };
