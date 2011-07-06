@@ -46,10 +46,23 @@ body
 	background-color		:	#fff;
 }
 
+#playOptionsDiv
+{
+	background-color		:	#fff;
+	border-top				:	1px solid;
+}
+
 .scoreBoardLabel
 {
 	display					:	inline-block;
 	width					:	19%;
+	border					:	0px solid;
+}
+
+.playOptionsHalf
+{
+	display					:	inline-block;
+	width					:	49%;
 	border					:	0px solid;
 }
 

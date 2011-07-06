@@ -76,6 +76,10 @@ ZicZacZoe.GameState	=	function() {
 		/** number of consecutive tiles to check for score
 			@type	int */
 		block			:	4,
+		
+		/**	indicates if the game is over
+			@typle	bool */
+		isGameOver		:	false,
 
 		/** resets the gamestate function */
 		reset			:	function()

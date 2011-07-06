@@ -41,16 +41,43 @@ ZicZacZoe.GameManager	=	function() {
 		@private */
 	var gBoard;
 	
+	/**	GameOver Screen
+		@type	ZicZacZoe.GameOver
+		@private */
+	var gOver;
+	
+	/**	Current Game Screen. Possible Values: "Splash", "Game", "End"
+		@type	string
+		@private */
+	var	currentScreen;
+	
+	$("#vsHumanButton").click(function()
+	{
+		console.log('resetting...');
+	
+		ZicZacZoe.GameState.reset();
+		gBoard.reset();
+		
+		
+	});
+	
+	$("#vsAIButton").click(function() {
+		console.log("AA");
+	});
+	
 	/** @scope ZicZacZoe.GameManager */
 	return {
 		/** Initializes the canvas context, game board, gamestate and sets the game loop */
 		init			:	function()
 							{
+								currentScreen			=	"Game";
+							
                                 var canvas              =	document.getElementById("boardCanvas");
 		                        context					=	canvas.getContext('2d');
         
 								ZicZacZoe.GameState.reset();
 								gBoard					=	new ZicZacZoe.GameBoard(context, ZicZacZoe.GameState.rows, ZicZacZoe.GameState.cols);
+								gOver					=	new ZicZacZoe.GameOver(context);
 								
 								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
 							},
@@ -68,22 +95,57 @@ ZicZacZoe.GameManager	=	function() {
 								var mouse	=   ZicZacZoe.InputManager.getMouse();
                                 var click   =   ZicZacZoe.InputManager.getClickIfAny();
 
-								gBoard.update(mouse, click);
-								
-								if ( click !== null )
+								var	mx		=	mouse.x - gBoard.x();
+								var my		=	mouse.y - gBoard.y();
+															
+								if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height())
 								{
-									ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);
-									ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
-									ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+									if(currentScreen		==	"Game")
+									{
+										gBoard.update(mouse, click);
+										
+										if ( click != null )
+										{
+											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);
+											ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
+											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+											
+											if(ZicZacZoe.GameState.isGameOver)
+											{
+												currentScreen = "End";
+											}
+										}
+									}
+									else if(currentScreen	==	"End")
+									{
+										if ( click != null )
+										{
+											gOver.update(mouse, click);
+										}
+									}
+									else if(currentScreen	==	"Splash")
+									{
 									
-									console.log(ZicZacZoe.GameState.currentPlayerID);
+									}
 								}
 							},
 
 		/** draw the current screen */
 		draw			:	function()
 							{
-                                gBoard.draw(context);
+								if(currentScreen		==	"Game")
+								{
+									gBoard.draw(context);
+								}
+								else if(currentScreen	==	"End")
+								{
+									gBoard.draw(context);
+									gOver.draw(context);
+								}
+								else if(currentScreen	==	"Splash")
+								{
+								
+								}
 							}
 	};
 }();

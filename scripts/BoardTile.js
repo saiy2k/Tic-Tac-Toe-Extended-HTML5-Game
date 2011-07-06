@@ -97,21 +97,20 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 		else if (tileState	==	"toX")
 		{
 			ctx.globalAlpha	=	keyValue;
-			ctx.drawImage(xImage,
+			/*ctx.drawImage(xImage,
 				tileX*tileWidth - (tileWidth / 2) * (1.0 - keyValue),
 				tileY*tileHeight - (tileHeight / 2) * (1.0 - keyValue),
 				(tileWidth * (2.0 - keyValue)),
-				tileHeight * (2.0 - keyValue));
+				tileHeight * (2.0 - keyValue));*/
+			ctx.drawImage(xImage, tileX*tileWidth, tileY*tileHeight, tileWidth / keyValue, tileHeight / keyValue);
 			ctx.globalAlpha	=	1.0;
-			
-			console.log(keyValue);
 		}
 		else if (tileState	==	"toO")
 		{
 			ctx.globalAlpha	=	keyValue;
 			ctx.drawImage(oImage, tileX*tileWidth, tileY*tileHeight, tileWidth / keyValue, tileHeight / keyValue);
 			ctx.globalAlpha	=	1.0;
-		}	
+		}
     };
 
 	/** Sets the state of the tile. And resets the keyValue to 0.0

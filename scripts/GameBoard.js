@@ -220,6 +220,15 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
         ctx.fill();
     };
 	
+	/** Resets the game board and its tiles */
+	this.reset			=	function() {
+		for (var j = 0; j < rowCount; j++)
+		{
+			tiles[j]    =   [];
+			for (var i = 0; i < colCount; i++)
+				tiles[j][i]	=	new ZicZacZoe.BoardTile(xImage, oImage, i, j, tileWidth, tileHeight);
+		}
+	};
 	
 	rowCount        	=   rows;
 	colCount        	=   cols;
@@ -230,11 +239,5 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 	refreshUI();
 	loadResources();
 	
-	for (var j = 0; j < rowCount; j++)
-	{
-		tiles[j]    =   [];
-		for (var i = 0; i < colCount; i++)
-			tiles[j][i]	=	new ZicZacZoe.BoardTile(xImage, oImage, i, j, tileWidth, tileHeight);
-			
-	}
+	this.reset();
 };

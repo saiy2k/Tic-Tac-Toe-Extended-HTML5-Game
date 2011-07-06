@@ -29,6 +29,7 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 	<script type="text/javascript" src="scripts/GameLogic.js"></script>
 	<script type="text/javascript" src="scripts/BoardTile.js"></script>
 	<script type="text/javascript" src="scripts/GameBoard.js"></script>
+	<script type="text/javascript" src="scripts/GameOver.js"></script>
 	<script type="text/javascript" src="scripts/GameManager.js"></script>
 	<script>
 		function init()
@@ -57,6 +58,16 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 			<div id="timeTaken"		class="scoreBoardLabel">00:00</div>
 			<div id="player2Score"	class="scoreBoardLabel" style="background-color:#efefef">0</div>
 			<div id="player2Sign"	class="scoreBoardLabel">O</div>
+		</div>
+		<div id="playOptionsDiv">
+			<div id="newGameDiv"	class="playOptionsHalf">
+				<div class="playOptionsRow"> New Game </div>
+				<a id="vsHumanButton" class="playOptionsRow" href="#"> Human vs Human </a> <br />
+				<a id="vsAIButton"	class="playOptionsRow" href="#"> Human vs AI </a>
+			</div>
+			<div id="creditsDiv"	class="playOptionsHalf">
+				<div class="playOptionsRow"> GAME DEVELOPED BY SAIYASODHARAN </div>
+			</div>
 		</div>
 	</div>
 </body>

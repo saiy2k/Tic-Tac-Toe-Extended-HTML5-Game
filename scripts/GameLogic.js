@@ -129,14 +129,40 @@ ZicZacZoe.GameLogic	=	function() {
 			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
 		endTurn			:	function(t)
 							{
+								var						isGameOver;
+								var						count = 0;
+								
 								if( t.currentPlayerID	== 0 )
 									t.currentPlayerID	=	1;
 								else
 									t.currentPlayerID	=	0;
-							},							
+								
+								isGameOver				=	true;
+								for (var j = 0; j < t.rows; j++)
+								{
+									for (var i = 0; i < t.cols; i++)
+									{/*
+										if (t.tiles[j][i] == -1)
+										{
+											isGameOver	=	false;
+										}*/
+										if (t.tiles[j][i] == 1)
+										{
+											count++;
+										}
+									}
+								}
+								
+								if (count < 5)
+								{
+									isGameOver	=	false;
+								}
+								
+								t.isGameOver			=	isGameOver;
+							},					
 		
 		/** Updates the Score Div's with the score
-			@param	{GameState}		t	reference to the ZicZacZoe.GameState */		
+			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
 		updateUI		:	function(t)
 							{								
 								$("#player1Score").text(t.player1Score);
