@@ -48,8 +48,8 @@ body
 
 #playOptionsDiv
 {
-	background-color		:	#fff;
 	border-top				:	1px solid;
+	height					:	100px;
 }
 
 .scoreBoardLabel
@@ -63,7 +63,15 @@ body
 {
 	display					:	inline-block;
 	width					:	49%;
-	border					:	0px solid;
+	float					:	left;
+}
+
+.playOptionsRow
+{
+	display					:	block;
+	height					:	32px;
+	text-decoration			:	none;
+	padding-top				:	12px;
 }
 
 /* big screens */

@@ -51,19 +51,17 @@ ZicZacZoe.GameManager	=	function() {
 		@private */
 	var	currentScreen;
 	
-	$("#vsHumanButton").click(function()
-	{
-		console.log('resetting...');
-	
-		ZicZacZoe.GameState.reset();
-		gBoard.reset();
+	function setupJqueryHandlers() {
+		$( "#vsHumanButton" ).click(function() {
+			ZicZacZoe.GameState.reset();
+			gBoard.reset();
+		});
 		
-		
-	});
-	
-	$("#vsAIButton").click(function() {
-		console.log("AA");
-	});
+		$("#vsAIButton").click(function() {
+			ZicZacZoe.GameState.reset();
+			gBoard.reset();
+		});
+	}
 	
 	/** @scope ZicZacZoe.GameManager */
 	return {
@@ -80,6 +78,8 @@ ZicZacZoe.GameManager	=	function() {
 								gOver					=	new ZicZacZoe.GameOver(context);
 								
 								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
+								
+								setupJqueryHandlers();
 							},
 
 		/** Game Loop. Getting called as per the given FPS */
