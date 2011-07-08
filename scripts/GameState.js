@@ -80,6 +80,18 @@ ZicZacZoe.GameState	=	function() {
 		/**	indicates if the game is over
 			@typle	bool */
 		isGameOver		:	false,
+		
+		/** time when the last update was called
+			@type	Date */
+		lastUpdatedTime	:	new Date(),
+		
+		/** player 1's time
+			@type	double */
+		p1ElapsedTime	:	0.0,
+		
+		/** player 2's time
+			@type	double */
+		p2ElapsedTime	:	0.0,
 
 		/** resets the gamestate function */
 		reset			:	function()
@@ -92,6 +104,9 @@ ZicZacZoe.GameState	=	function() {
 								s.player2Score		=	0;
 								s.selectedTileX		=	0;
 								s.selectedTileY		=	0;
+								s.lastUpdatedTime	=	new Date();
+								s.p1ElapsedTime		=	0.0;
+								s.p2ElapsedTime		=	0.0;
 								
 								for (var j = 0; j < 10; j++)
 								{

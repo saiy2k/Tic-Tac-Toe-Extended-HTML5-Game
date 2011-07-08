@@ -159,7 +159,41 @@ ZicZacZoe.GameLogic	=	function() {
 								}
 								
 								t.isGameOver			=	isGameOver;
-							},					
+							},
+
+		/** Calculates and updates the elapsed time for both the players
+			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
+		calcTime		:	function(t)
+							{
+								var							currentTime;
+								var							elapsedTime;
+								var 						timeString;
+								var							p1Sec;
+								var							p1Min;
+								var							p2Sec;
+								var							p2Min;
+								
+								currentTime				=	new Date();
+								elapsedTime				=	currentTime - t.lastUpdatedTime;
+								t.lastUpdatedTime		=	currentTime;
+								
+								if( t.currentPlayerID	== 0 )
+									t.p1ElapsedTime		+=	elapsedTime;
+								else
+									t.p2ElapsedTime		+=	elapsedTime;
+								
+								p1Sec					=	t.p1ElapsedTime / 1000.0;
+								p1Min					=	Math.floor(p1Sec / 60);
+								p1Sec					=	Math.floor(p1Sec % 60);
+								
+								p2Sec					=	t.p2ElapsedTime / 1000.0;
+								p2Min					=	Math.floor(p2Sec / 60);
+								p2Sec					=	Math.floor(p2Sec % 60);
+								
+								timeString				=	p1Min + ":" + p1Sec + "  /  " + p2Min + ":" + p2Sec;
+							
+								$("#timeTaken").text(timeString);
+							},
 		
 		/** Updates the Score Div's with the score
 			@param	{GameState}		t	reference to the ZicZacZoe.GameState */

@@ -119,14 +119,15 @@ ZicZacZoe.GameOver		=	function(ctx) {
     this.draw           =   function(ctx) {
 		ctx.fillStyle   =   'rgba(0, 0, 0, 0.2);';
 		ctx.beginPath();
-		ctx.rect(0, 0, 480, 480);
+		ctx.rect(0, 0, boardWidth, boardHeight);
 		ctx.closePath();
 		ctx.fill();
 		
 		ctx.fillStyle   =   'rgba(0, 0, 0, 0.8);';
 		ctx.textAlign	=	'center';
 		ctx.font		=	'56px Arial';
-		ctx.fillText("Player 1 Wins", 240, 240);
+		
+		ctx.fillText("Player 1 Wins", boardWidth / 2, boardHeight / 2);
     };
 	
 	boardX          	=   $('#boardCanvas').offset().left;

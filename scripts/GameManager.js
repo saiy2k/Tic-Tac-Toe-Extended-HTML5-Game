@@ -98,35 +98,38 @@ ZicZacZoe.GameManager	=	function() {
 								var	mx		=	mouse.x - gBoard.x();
 								var my		=	mouse.y - gBoard.y();
 															
-								if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height())
+								if(currentScreen		==	"Game")
 								{
-									if(currentScreen		==	"Game")
+									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height())
 									{
-										gBoard.update(mouse, click);
-										
-										if ( click != null )
-										{
-											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);
-											ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
-											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+											gBoard.update(mouse, click);
 											
-											if(ZicZacZoe.GameState.isGameOver)
+											if ( click != null )
 											{
-												currentScreen = "End";
+												ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);
+												ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
+												ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+												
+												if(ZicZacZoe.GameState.isGameOver)
+												{
+													currentScreen = "End";
+												}
 											}
-										}
 									}
-									else if(currentScreen	==	"End")
-									{
-										if ( click != null )
-										{
-											gOver.update(mouse, click);
-										}
-									}
-									else if(currentScreen	==	"Splash")
-									{
 									
+									ZicZacZoe.GameLogic.calcTime(ZicZacZoe.GameState);
+									
+								}
+								else if(currentScreen	==	"End")
+								{
+									if ( click != null )
+									{
+										gOver.update(mouse, click);
 									}
+								}
+								else if(currentScreen	==	"Splash")
+								{
+								
 								}
 							},
 
