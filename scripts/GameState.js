@@ -67,11 +67,11 @@ ZicZacZoe.GameState	=	function() {
 		
 		/** number of rows
 			@type	int */
-		rows			:	10,
+		rows			:	9,
 		
 		/** number of columns
 			@type	int */
-		cols			:	10,
+		cols			:	9,
 		
 		/** number of consecutive tiles to check for score
 			@type	int */

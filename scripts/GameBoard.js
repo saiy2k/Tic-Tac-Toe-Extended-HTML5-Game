@@ -101,7 +101,7 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 			strSize					=	'';
 		
 		boardImage					=	new Image();
-		boardImage.src				=	'images/board' + strSize + '.jpg';
+		boardImage.src				=	'images/board' + strSize + '.png';
 		
 		oImage						=   new Image();
 		oImage.src					=   'images/oTile' + strSize + '.png';

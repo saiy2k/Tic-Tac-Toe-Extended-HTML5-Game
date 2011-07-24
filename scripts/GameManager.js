@@ -53,11 +53,13 @@ ZicZacZoe.GameManager	=	function() {
 	
 	function setupJqueryHandlers() {
 		$( "#vsHumanButton" ).click(function() {
+			currentScreen		=	"Game";
 			ZicZacZoe.GameState.reset();
 			gBoard.reset();
 		});
 		
 		$("#vsAIButton").click(function() {
+			currentScreen		=	"Game";
 			ZicZacZoe.GameState.reset();
 			gBoard.reset();
 		});
@@ -112,6 +114,12 @@ ZicZacZoe.GameManager	=	function() {
 												
 												if(ZicZacZoe.GameState.isGameOver)
 												{
+													if( ZicZacZoe.GameState.player1Score > ZicZacZoe.GameState.player2Score )
+														gOver.setStatus("Player 1 Wins");
+													else if( ZicZacZoe.GameState.player1Score < ZicZacZoe.GameState.player2Score )
+														gOver.setStatus("Player 2 Wins");
+													else
+														gOver.setStatus("Match Draw");
 													currentScreen = "End";
 												}
 											}

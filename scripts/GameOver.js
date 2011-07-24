@@ -54,6 +54,11 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		@private */
     var tiles           =   [];
 	
+	/** Player who won the game in string
+		@type	string
+		@private */
+	var statusString;
+	
 	
 	/** Loads all the images appropriate for the board. Based on the screen
 		size, either a high-res or low-res image is selected
@@ -102,6 +107,11 @@ ZicZacZoe.GameOver		=	function(ctx) {
 	/** @returns	{double}	height of the board */
 	this.height			=	function() {	return		boardHeight;	}
 	
+	/** sets the status string to be displayed */
+	this.setStatus		=	function(tStatus) {
+		statusString	=	tStatus;
+	}
+	
 	/** refreshes the board layout based on the screen size	*/
 	this.resize			=	function() {
 		refreshUI();
@@ -127,7 +137,7 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		ctx.textAlign	=	'center';
 		ctx.font		=	'56px Arial';
 		
-		ctx.fillText("Player 1 Wins", boardWidth / 2, boardHeight / 2);
+		ctx.fillText(statusString, boardWidth / 2, boardHeight / 2);
     };
 	
 	boardX          	=   $('#boardCanvas').offset().left;
