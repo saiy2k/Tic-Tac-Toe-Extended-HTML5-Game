@@ -21,19 +21,15 @@ body
 {
     background-color		:	#dddddd;
 	text-align				:	center;
+	color					:	#4b3318;
 }
 
 #container
 {
 	position				:	absolute;
-	border					:	3px solid;
+	border					:	4px solid #865c2a;
 	top						:	50%;
 	left					:	50%;
-}
-
-#titleDiv
-{
-	background-color		:	#fff;
 }
 
 #canvasContainer
@@ -41,15 +37,10 @@ body
 	background-color		:	#eee;
 }
 
-#scoreBoardDiv
-{
-	background-color		:	#fff;
-}
-
-#playOptionsDiv
-{
-	border-top				:	1px solid;
+#playOptionsDiv {
+	border-top				:	2px solid #97672e;
 	height					:	100px;
+	font					:	12px verdana;
 }
 
 .scoreBoardLabel
@@ -64,14 +55,20 @@ body
 	display					:	inline-block;
 	width					:	49%;
 	float					:	left;
+	margin					:	2px;
+	background				:	url('images/brownTransparent.png');
 }
 
 .playOptionsRow
 {
 	display					:	block;
-	height					:	32px;
+	height					:	42px;
 	text-decoration			:	none;
 	padding-top				:	12px;
+}
+.playOptionsRow:hover
+{
+	background				:	url('images/brownTransparent.png');
 }
 
 /* big screens */
@@ -81,6 +78,7 @@ body
 		width				:	480px;
 		height				:	640px;
 		margin				:	-320px 0 0 -240px;
+		background			:	url('images/mainUI2X.png');
 	}
 	
 	#titleDiv
@@ -105,6 +103,7 @@ body
 		width				:	320px;
 		height				:	480px;
 		margin				:	-240px 0 0 -160px;
+		background			:	url('images/mainUI.png');
 	}
 	
 	#canvasContainer

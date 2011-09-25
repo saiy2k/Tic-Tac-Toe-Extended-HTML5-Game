@@ -148,11 +148,11 @@ ZicZacZoe.GameLogic	=	function() {
 											isGameOver	=	false;
 										}
 										*/
+										
 										if (t.tiles[j][i] == 1)
 										{
 											count++;
 										}
-										
 									}
 								}
 								
