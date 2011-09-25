@@ -157,7 +157,7 @@ ZicZacZoe.GameLogic	=	function() {
 								}
 								
 								
-								if (count < 5)
+								if (count < 1)
 								{
 									isGameOver	=	false;
 								}								

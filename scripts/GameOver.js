@@ -127,17 +127,15 @@ ZicZacZoe.GameOver		=	function(ctx) {
 	/**	Draw the screen
 		@param	{context} 	ctx		2D drawing context to the HTML5 canvas */
     this.draw           =   function(ctx) {
-		ctx.fillStyle   =   'rgba(0, 0, 0, 0.2);';
-		ctx.beginPath();
-		ctx.rect(0, 0, boardWidth, boardHeight);
-		ctx.closePath();
-		ctx.fill();
+		ctx.drawImage(bgImage, 0, 0);
 		
-		ctx.fillStyle   =   'rgba(0, 0, 0, 0.8);';
+		ctx.fillStyle   =   'rgba(223/255.0, 170/255.0, 110/255.0, 1.0);';
 		ctx.textAlign	=	'center';
 		ctx.font		=	'56px Arial';
+		ctx.fillText(statusString, boardWidth / 2, boardHeight / 3);
 		
-		ctx.fillText(statusString, boardWidth / 2, boardHeight / 2);
+		ctx.font		=	'18px Arial';
+		ctx.fillText("Share your Victory", boardWidth / 2, boardHeight / 3 + 30);
     };
 	
 	boardX          	=   $('#boardCanvas').offset().left;
