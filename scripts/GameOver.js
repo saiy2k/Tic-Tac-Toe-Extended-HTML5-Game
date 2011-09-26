@@ -59,6 +59,11 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		@private */
 	var statusString;
 	
+	/** font size to draw the game over status
+		@type	int
+		@private */
+	var statusFontSize;
+	
 	
 	/** Loads all the images appropriate for the board. Based on the screen
 		size, either a high-res or low-res image is selected
@@ -93,6 +98,8 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		
 		boardCanvas.width			=	boardWidth;
 		boardCanvas.height			=	boardHeight;
+		
+		statusFontSize				=	boardWidth / 10;
 	};
 
 	/** @returns	{double}	x co-ordinate of the board */
@@ -131,10 +138,10 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		
 		ctx.fillStyle   =   'rgba(223/255.0, 170/255.0, 110/255.0, 1.0);';
 		ctx.textAlign	=	'center';
-		ctx.font		=	'56px Arial';
+		ctx.font		=	statusFontSize + 'px Arial';
 		ctx.fillText(statusString, boardWidth / 2, boardHeight / 3);
 		
-		ctx.font		=	'18px Arial';
+		ctx.font		=	(statusFontSize/2) + 'px Arial';
 		ctx.fillText("Share your Victory", boardWidth / 2, boardHeight / 3 + 30);
     };
 	

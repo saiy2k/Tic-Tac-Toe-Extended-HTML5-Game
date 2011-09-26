@@ -116,6 +116,8 @@ ZicZacZoe.GameState	=	function() {
 										ZicZacZoe.GameState.tiles[j][i] =   -1;
 									}
 								}
+								
+								$('#shareScoreWidget').hide();
 							}
 	};
 }();

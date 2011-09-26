@@ -35,6 +35,15 @@ body
 #canvasContainer
 {
 	background-color		:	#eee;
+	text-align				:	center;
+}
+
+#shareScoreWidget {
+	position				:	absolute;
+	top						:	240px;
+	text-align				:	center;
+	color					:	#bbb;
+	width					:	100%;	
 }
 
 #playOptionsDiv {

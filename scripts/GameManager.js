@@ -80,7 +80,7 @@ ZicZacZoe.GameManager	=	function() {
 								gOver					=	new ZicZacZoe.GameOver(context);
 								
 								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
-								
+																
 								setupJqueryHandlers();
 							},
 
@@ -121,6 +121,8 @@ ZicZacZoe.GameManager	=	function() {
 													else
 														gOver.setStatus("Match Draw");
 													currentScreen = "End";
+													
+													$('#shareScoreWidget').show();
 												}
 											}
 									}
