@@ -192,7 +192,18 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 				tiles[t.selectedTileY][t.selectedTileX].setState(t.currentPlayerID);
 			}
 		}
-		
+				
+		if (t.highlightTiles.length != 0)
+		{
+			for(var z = 0; z < t.highlightTiles.length; z++)
+			{
+				tiles[t.highlightTiles[z].y][t.highlightTiles[z].x].highlight();
+				console.log(t.highlightTiles[z]);
+			}
+			
+			t.highlightTiles.length = 0;
+		}
+
 		for (var j = 0; j < rowCount; j++)
 			for (var i = 0; i < colCount; i++)
 			{

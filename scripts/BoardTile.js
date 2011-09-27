@@ -61,10 +61,16 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
     var tileHeight;
 
 	/** State of the tile. Possible States:
-		"empty", "x", "o", "toO", "toX"	
+		"empty", "x", "o", "toO", "toX", "blinkX", "blinkO"
 		@type	string
 		@private */
 	var	tileState;
+	
+	/** Previous state of the tile. Possible States:
+		"empty", "x", "o", "toO", "toX", "blinkX", "blinkO"
+		@type	string
+		@private */
+	var	prevState;
 	
 	/**	Key value (ranges from 0.0 to 1.0). Used to animate the tile.
 		@type	double
@@ -73,13 +79,27 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 	
 	/**	Updates the Key value if the tile is is animation state */
 	this.update			=	function() {
-		if (tileState	==	"toX")
+		if (tileState	==	"blinkX")
+		{		
+			if (keyValue	>=	1.0)
+				tileState	=	"x";
+				
+			keyValue		+=	0.03;
+		}
+		else if (tileState	==	"blinkO")
+		{		
+			if (keyValue	>=	1.0)
+				tileState	=	"o";
+				
+			keyValue		+=	0.02;
+		}
+		else if (tileState	==	"toX")
 		{
 			if (keyValue	>=	1.0)
 				tileState	=	"x";
 			keyValue		+=	0.05;
 		}
-		if (tileState	==	"toO")
+		else if (tileState	==	"toO")
 		{
 			if (keyValue	>=	1.0)
 				tileState	=	"o";
@@ -94,6 +114,18 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 			ctx.drawImage(xImage, tileX*tileWidth, tileY*tileHeight, tileWidth, tileHeight);
 		else if (tileState	==	"o")
 			ctx.drawImage(oImage, tileX*tileWidth, tileY*tileHeight, tileWidth, tileHeight);
+		else if (tileState	==	"blinkX")
+		{
+			ctx.globalAlpha	=	((keyValue * 100) % 20) / 20.0;
+			ctx.drawImage(xImage, tileX*tileWidth, tileY*tileHeight, tileWidth, tileHeight);
+			ctx.globalAlpha	=	1.0;
+		}
+		else if (tileState	==	"blinkO")
+		{
+			ctx.globalAlpha	=	((keyValue * 100) % 20) / 20.0;
+			ctx.drawImage(oImage, tileX*tileWidth, tileY*tileHeight, tileWidth, tileHeight);
+			ctx.globalAlpha	=	1.0;
+		}
 		else if (tileState	==	"toX")
 		{
 			ctx.globalAlpha	=	keyValue;
@@ -123,6 +155,15 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 			case	1:		tileState = "toO";			break;
 		}
 		
+		keyValue		=	0.0;
+	};
+	
+	this.highlight		=	function() {
+		prevState		=	tileState;
+		if (tileState == "x" || tileState	==	"toX")
+			tileState		=	"blinkX";
+		if (tileState == "o" || tileState	==	"toO")
+			tileState		=	"blinkO";
 		keyValue		=	0.0;
 	};
 	

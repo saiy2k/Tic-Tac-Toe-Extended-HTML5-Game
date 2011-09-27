@@ -57,6 +57,7 @@ body
 	display					:	inline-block;
 	width					:	10%;
 	border					:	0px solid;
+	font					:	22px Verdana;
 }
 
 .playOptionsHalf
@@ -71,7 +72,7 @@ body
 .playOptionsRow
 {
 	display					:	block;
-	height					:	42px;
+	height					:	38px;
 	text-decoration			:	none;
 	padding-top				:	12px;
 }

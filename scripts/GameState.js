@@ -37,6 +37,10 @@ ZicZacZoe.GameState	=	function() {
 			@type	int[][] */
 		tiles           :   [],
 		
+		/** reference to tiles that need to be highlighted
+			@type	Point[] */
+		highlightTiles	:	[],
+		
 		/**	ID of the current player, either 0 or 1
 			@type	int */
 		currentPlayerID	:	0,

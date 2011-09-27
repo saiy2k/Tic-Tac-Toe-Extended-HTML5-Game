@@ -108,7 +108,7 @@ ZicZacZoe.GameManager	=	function() {
 											
 											if ( click != null )
 											{
-												ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);
+												ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
 												ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 												ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 												

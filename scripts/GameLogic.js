@@ -32,6 +32,13 @@ ZicZacZoe.GameLogic	=	function() {
 							{								
 								var	p1			=	0;
 								var	p2			=	0;
+								var tileArray;
+								var isHightlight;
+								var highlightCount = 0;
+								
+								t.highlightTiles.length = 0;
+								
+								//console.log(t.selectedTileX + "," + t.selectedTileY);
 								
 								for (var j = 0; j < t.rows; j++)
 								{
@@ -46,8 +53,16 @@ ZicZacZoe.GameLogic	=	function() {
 										{
 											//count the number of 0s and 1s in the next 'BLOCK' tiles in the current row
 											cnt	=	0;
+											tileArray = [];
+											isHightlight = false;
 											for (var z = i; z < i + t.block && z < t.cols; z++)
 											{
+												if(t.selectedTileX == z && t.selectedTileY == j)
+													isHightlight = true;
+													
+												var pt = {x:z, y:j};
+												tileArray.push(pt);
+												
 												if (0 == t.tiles[j][z])
 													cnt++;
 												else if(1 == t.tiles[j][z])
@@ -56,15 +71,36 @@ ZicZacZoe.GameLogic	=	function() {
 													break;
 											}
 											if (cnt == t.block)			//if there were 'BLOCK' consecutive tiles with value 0, this would have been true
+											{
 												p1++;
+												
+												if(isHightlight) {													
+													for (var k = 0; k < t.block; k++)
+														t.highlightTiles[highlightCount++] = tileArray[k];
+												}
+											}
 											if (cnt == -t.block)		//if there were 'BLOCK' consecutive tiles with value 1, this would have been true
+											{
 												p2++;
-											
+												
+												if(isHightlight) {													
+													for (var k = 0; k < t.block; k++)
+														t.highlightTiles[highlightCount++] = tileArray[k];
+												}
+											}											
 											
 											//count the number of 0s and 1s in the next 'BLOCK' tiles in the current t.colsumn
 											cnt	=	0;
+											tileArray = [];
+											isHightlight = false;
 											for (var z = j; z < j + t.block && z < t.rows; z++)
 											{
+												if(t.selectedTileX == i && t.selectedTileY == z)
+													isHightlight = true;
+													
+												var pt = {x:i, y:z};
+												tileArray.push(pt);
+												
 												if (0 == t.tiles[z][i])
 													cnt++;
 												else if(1 == t.tiles[z][i])
@@ -72,16 +108,35 @@ ZicZacZoe.GameLogic	=	function() {
 												else
 													break;
 											}
-											if (cnt == t.block)
+											if (cnt == t.block) {
 												p1++;
-											if (cnt == -t.block)
+												
+												if(isHightlight) {													
+													for (var k = 0; k < t.block; k++)
+														t.highlightTiles[highlightCount++] = tileArray[k];
+												}
+											}
+											if (cnt == -t.block) {
 												p2++;
 												
+												if(isHightlight) {													
+													for (var k = 0; k < t.block; k++)
+														t.highlightTiles[highlightCount++] = tileArray[k];
+												}
+											}
 											
 											//count the number of 0s and 1s in the straight diagonal
 											cnt	=	0;
+											tileArray = [];
+											isHightlight = false;
 											for (var z = 0; z < t.block; z++)
 											{
+												if(t.selectedTileX == z+i && t.selectedTileY == z+j)
+													isHightlight = true;
+													
+												var pt = {x:z+i, y:z+j};
+												tileArray.push(pt);
+												
 												if ( z+j >= t.cols || z+i >= t.rows )
 													break;
 													
@@ -92,16 +147,36 @@ ZicZacZoe.GameLogic	=	function() {
 												else
 													break;
 											}
-											if (cnt == t.block)
+											if (cnt == t.block) {
 												p1++;
-											if (cnt == -t.block)
+												
+												if(isHightlight) {													
+													for (var k = 0; k < t.block; k++)
+														t.highlightTiles[highlightCount++] = tileArray[k];
+												}
+											}
+											if (cnt == -t.block) {
 												p2++;
+												
+												if(isHightlight) {													
+													for (var k = 0; k < t.block; k++)
+														t.highlightTiles[highlightCount++] = tileArray[k];
+												}
+											}
 												
 											
 											//count the number of 0s and 1s in the reverse diagonal
 											cnt	=	0;
+											tileArray = [];
+											isHightlight = false;
 											for (var z = 0; z < t.block; z++)
 											{
+												if(t.selectedTileX == i-z && t.selectedTileY == z+j)
+													isHightlight = true;
+													
+												var pt = {x:i-z, y:z+j};
+												tileArray.push(pt);
+												
 												if ( j+z >= t.cols || i-z < 0 )
 													break;
 													
@@ -112,10 +187,22 @@ ZicZacZoe.GameLogic	=	function() {
 												else
 													break;
 											}
-											if (cnt == t.block)
+											if (cnt == t.block) {
 												p1++;
-											if (cnt == -t.block)
+												
+												if(isHightlight) {													
+													for (var k = 0; k < t.block; k++)
+														t.highlightTiles[highlightCount++] = tileArray[k];
+												}
+											}
+											if (cnt == -t.block) {
 												p2++;
+												
+												if(isHightlight) {													
+													for (var k = 0; k < t.block; k++)
+														t.highlightTiles[highlightCount++] = tileArray[k];
+												}
+											}
 										}
 									}
 								}
@@ -142,25 +229,17 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									for (var i = 0; i < t.cols; i++)
 									{
-										/*
 										if (t.tiles[j][i] == -1)
 										{
 											isGameOver	=	false;
 										}
-										*/
-										
+																				
 										if (t.tiles[j][i] == 1)
 										{
 											count++;
 										}
 									}
 								}
-								
-								
-								if (count < 1)
-								{
-									isGameOver	=	false;
-								}								
 								
 								t.isGameOver			=	isGameOver;
 							},
