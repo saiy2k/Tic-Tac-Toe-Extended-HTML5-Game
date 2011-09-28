@@ -284,6 +284,15 @@ ZicZacZoe.GameLogic	=	function() {
 							{								
 								$("#player1Score").text(t.player1Score);
 								$("#player2Score").text(t.player2Score);
+							},
+							
+		/** analyzes the board and find the best move for ai
+			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
+		aiMove			:	function(t)
+							{
+								t.aiTileX = 5;
+								t.aiTileY = 1;
+								t.tiles[t.aiTileY][t.aiTileX] =   t.currentPlayerID;
 							}
 	}
 }();

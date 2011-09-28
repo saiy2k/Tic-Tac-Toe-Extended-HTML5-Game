@@ -112,6 +112,12 @@ ZicZacZoe.GameManager	=	function() {
 												ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 												ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 												
+												ZicZacZoe.GameLogic.aiMove(ZicZacZoe.GameState);
+												gBoard.updateAIMove(ZicZacZoe.GameState);
+												ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
+												ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
+												ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+												
 												if(ZicZacZoe.GameState.isGameOver)
 												{
 													if( ZicZacZoe.GameState.player1Score > ZicZacZoe.GameState.player2Score )

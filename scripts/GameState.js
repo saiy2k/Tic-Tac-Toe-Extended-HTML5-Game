@@ -96,7 +96,15 @@ ZicZacZoe.GameState	=	function() {
 		/** player 2's time
 			@type	double */
 		p2ElapsedTime	:	0.0,
+		
+		/** AI's selected tile's X
+			@type	int */
+		aiTileX			:	0.0,
 
+		/** AI's selected tile's Y
+			@type	int */
+		aiTileY			:	0.0,
+		
 		/** resets the gamestate function */
 		reset			:	function()
 							{

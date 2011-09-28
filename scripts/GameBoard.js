@@ -241,6 +241,11 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 		}
 	};
 	
+	/** updates the ai's move from game logic class */
+	this.updateAIMove	=	function(t) {
+		tiles[t.aiTileY][t.aiTileX].setState(t.currentPlayerID);
+	};
+	
 	rowCount        	=   rows;
 	colCount        	=   cols;
 	
