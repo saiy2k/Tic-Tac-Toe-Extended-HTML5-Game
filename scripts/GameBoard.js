@@ -171,10 +171,10 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 		//if the mouse is hovered over the board, find the tile above which the mouse is placed
 		if(mx > 0 && my > 0 && mx < boardWidth && my < boardHeight)
 		{
-			t.hoverTileX			=   Math.floor(mx / tileWidth);
-			t.hoverTileY			=   Math.floor(my / tileHeight);
+			t.hoverTileX			=   Math.floor(my / tileHeight);
+			t.hoverTileY			=   Math.floor(mx / tileWidth);
 			
-			if ( t.tiles[t.hoverTileY][t.hoverTileX] !== -1)
+			if ( t.tiles[t.hoverTileX][t.hoverTileY] !== -1)
 			{
 				t.hoverTileX		=	-1;
 				t.hoverTileY		=	-1;
@@ -188,8 +188,8 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 			{
 				t.selectedTileX	=	t.hoverTileX;
 				t.selectedTileY	=	t.hoverTileY;
-				t.tiles[t.selectedTileY][t.selectedTileX] =   t.currentPlayerID;
-				tiles[t.selectedTileY][t.selectedTileX].setState(t.currentPlayerID);
+				t.tiles[t.selectedTileX][t.selectedTileY] =   t.currentPlayerID;
+				tiles[t.selectedTileX][t.selectedTileY].setState(t.currentPlayerID);
 			}
 		}
 				
@@ -197,17 +197,17 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 		{
 			for(var z = 0; z < t.highlightTiles.length; z++)
 			{
-				tiles[t.highlightTiles[z].y][t.highlightTiles[z].x].highlight();
+				tiles[t.highlightTiles[z].x][t.highlightTiles[z].y].highlight();
 				console.log(t.highlightTiles[z]);
 			}
 			
 			t.highlightTiles.length = 0;
 		}
 
-		for (var j = 0; j < rowCount; j++)
-			for (var i = 0; i < colCount; i++)
+		for (var i = 0; i < rowCount; i++)
+			for (var j = 0; j < colCount; j++)
 			{
-				tiles[j][i].update();
+				tiles[i][j].update();
 			}
 	};
     
@@ -219,25 +219,25 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
         ctx.drawImage(boardImage, 0, 0);
         
 		//draw all the tiles
-		for (var j = 0; j < rowCount; j++)
-			for (var i = 0; i < colCount; i++)
-				tiles[j][i].draw(ctx);
+		for (var i = 0; i < rowCount; i++)
+			for (var j = 0; j < colCount; j++)
+				tiles[i][j].draw(ctx);
         
 		//mark the hovered tile in red color
         ctx.fillStyle   =   'rgba(255, 0, 0, 0.5);';
         ctx.beginPath();
-        ctx.rect(ZicZacZoe.GameState.hoverTileX*tileWidth, ZicZacZoe.GameState.hoverTileY*tileHeight, tileWidth, tileHeight);
+        ctx.rect(ZicZacZoe.GameState.hoverTileY*tileWidth, ZicZacZoe.GameState.hoverTileX*tileHeight, tileWidth, tileHeight);
         ctx.closePath();
         ctx.fill();
     };
 	
 	/** Resets the game board and its tiles */
 	this.reset			=	function() {
-		for (var j = 0; j < rowCount; j++)
+		for (var i = 0; i < rowCount; i++)
 		{
-			tiles[j]    =   [];
-			for (var i = 0; i < colCount; i++)
-				tiles[j][i]	=	new ZicZacZoe.BoardTile(xImage, oImage, i, j, tileWidth, tileHeight);
+			tiles[i]    =   [];
+			for (var j = 0; j < colCount; j++)
+				tiles[i][j]	=	new ZicZacZoe.BoardTile(xImage, oImage, i, j, tileWidth, tileHeight);
 		}
 	};
 	

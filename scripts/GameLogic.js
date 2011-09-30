@@ -290,6 +290,40 @@ ZicZacZoe.GameLogic	=	function() {
 			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
 		aiMove			:	function(t)
 							{
+								var scoreTile = [];
+								
+								for (var j = 0; j < 10; j++) {
+									scoreTile[j]    =   [];
+									for (var  i = 0; i < 10; i++) {
+										scoreTile[j][i] =   0;
+									}
+								}
+								
+								for (var j = 0; j < 10; j++)
+								{
+									var weight = 0;
+									for (var  i = 0; i < 10; i++)
+									{
+										if(t.tiles[i][j] == -1) {
+											scoreTile[i][j] = weight;
+											weight = 0;
+										}
+										if(t.tiles[i][j] != -1 && t.tiles[i][j] != t.currentPlayerID) {
+											weight++;
+										}
+									}
+								}
+								
+								for (var j = 0; j < 10; j++)
+								{
+									var str = '';
+									for (var  i = 0; i < 10; i++)
+									{
+										str = str + ', ' + scoreTile[j][i];
+									}
+									console.log(str);
+								}
+							
 								t.aiTileX = 5;
 								t.aiTileY = 1;
 								t.tiles[t.aiTileY][t.aiTileX] =   t.currentPlayerID;

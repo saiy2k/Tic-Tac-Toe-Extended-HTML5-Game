@@ -111,19 +111,19 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 		@param	{context}	ctx		2D Drawing context of the Canvas */
     this.draw           =   function(ctx) {
 		if (tileState	==	"x")
-			ctx.drawImage(xImage, tileX*tileWidth, tileY*tileHeight, tileWidth, tileHeight);
+			ctx.drawImage(xImage, tileY*tileWidth, tileX*tileHeight, tileWidth, tileHeight);
 		else if (tileState	==	"o")
-			ctx.drawImage(oImage, tileX*tileWidth, tileY*tileHeight, tileWidth, tileHeight);
+			ctx.drawImage(oImage, tileY*tileWidth, tileX*tileHeight, tileWidth, tileHeight);
 		else if (tileState	==	"blinkX")
 		{
 			ctx.globalAlpha	=	((keyValue * 100) % 20) / 20.0;
-			ctx.drawImage(xImage, tileX*tileWidth, tileY*tileHeight, tileWidth, tileHeight);
+			ctx.drawImage(xImage, tileY*tileWidth, tileX*tileHeight, tileWidth, tileHeight);
 			ctx.globalAlpha	=	1.0;
 		}
 		else if (tileState	==	"blinkO")
 		{
 			ctx.globalAlpha	=	((keyValue * 100) % 20) / 20.0;
-			ctx.drawImage(oImage, tileX*tileWidth, tileY*tileHeight, tileWidth, tileHeight);
+			ctx.drawImage(oImage, tileY*tileWidth, tileX*tileHeight, tileWidth, tileHeight);
 			ctx.globalAlpha	=	1.0;
 		}
 		else if (tileState	==	"toX")
@@ -134,13 +134,13 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 				tileY*tileHeight - (tileHeight / 2) * (1.0 - keyValue),
 				(tileWidth * (2.0 - keyValue)),
 				tileHeight * (2.0 - keyValue));*/
-			ctx.drawImage(xImage, tileX*tileWidth, tileY*tileHeight, tileWidth / keyValue, tileHeight / keyValue);
+			ctx.drawImage(xImage, tileY*tileWidth, tileX*tileHeight, tileWidth / keyValue, tileHeight / keyValue);
 			ctx.globalAlpha	=	1.0;
 		}
 		else if (tileState	==	"toO")
 		{
 			ctx.globalAlpha	=	keyValue;
-			ctx.drawImage(oImage, tileX*tileWidth, tileY*tileHeight, tileWidth / keyValue, tileHeight / keyValue);
+			ctx.drawImage(oImage, tileY*tileWidth, tileX*tileHeight, tileWidth / keyValue, tileHeight / keyValue);
 			ctx.globalAlpha	=	1.0;
 		}
     };

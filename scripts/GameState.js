@@ -25,6 +25,25 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 	this class by ZicZacZoe.GameState. Some other global constants like number
 	of rows and columns are also stored in this class
 	
+	Grid Data Structure:
+	How the tiles are organised
+	(0, 0) (0, 1) (0, 2) (0, 3) (0, 4) (0, 5) (0, 6)
+	(1, 0) (1, 1) (1, 2) (1, 3) (1, 4) (1, 5) (1, 6)
+	(2, 0) (2, 1) (2, 2) (2, 3) (2, 4) (2, 5) (2, 6)
+	(3, 0) (3, 1) (3, 2) (3, 3) (3, 4) (3, 5) (3, 6)
+	(4, 0) (4, 1) (4, 2) (4, 3) (4, 4) (4, 5) (4, 6)
+	
+	How the tiles are traversed row by column
+	for (i = 0; i < rows; i++)
+		for (j = 0; j < cols; j++)
+			arr[i][j]
+			
+	Position of a tile given the tild id (i, j)
+	(x, y) = (width * j, height * i)
+	
+	Tile id given the position (x y)
+	(i, j) = (y / height, x / width)
+	
 	@namespace
 */
 
@@ -120,12 +139,12 @@ ZicZacZoe.GameState	=	function() {
 								s.p1ElapsedTime		=	0.0;
 								s.p2ElapsedTime		=	0.0;
 								
-								for (var j = 0; j < 10; j++)
+								for (var i = 0; i < s.rows; i++)
 								{
-									ZicZacZoe.GameState.tiles[j]    =   [];
-									for (var  i = 0; i < 10; i++)
+									s.tiles[i]    =   [];
+									for (var  j = 0; j < s.cols; j++)
 									{
-										ZicZacZoe.GameState.tiles[j][i] =   -1;
+										s.tiles[i][j] =   -1;
 									}
 								}
 								
