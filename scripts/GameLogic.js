@@ -299,20 +299,138 @@ ZicZacZoe.GameLogic	=	function() {
 									}
 								}
 								
+								// checking consecutive tiles in current row from left to right
 								for (var i = 0; i < t.rows; i++)
 								{
 									var weight = 0;
 									for (var  j = 0; j < t.cols; j++)
 									{
 										if(t.tiles[i][j] == -1) {
-											scoreTile[i][j] += weight;
+											if (scoreTile[i][j] < weight)
+												scoreTile[i][j] = weight;
 											weight = 0;
 										}
-										else {
+										else if(t.tiles[i][j] == t.currentPlayerID) {
+											weight = 0;
+										}
+										else if(t.tiles[i][j] != t.currentPlayerID) {
 											weight++;
 										}
 									}
 								}
+								
+								// checking consecutive tiles in current row from right to left
+								for (var i = 0; i < t.rows; i++)
+								{
+									var weight = 0;
+									for (var  j = t.cols - 1; j >= 0; j--)
+									{
+										if(t.tiles[i][j] == -1) {
+											if (scoreTile[i][j] < weight)
+												scoreTile[i][j] = weight;
+											weight = 0;
+										}
+										else if(t.tiles[i][j] == t.currentPlayerID) {
+											weight = 0;
+										}
+										else if(t.tiles[i][j] != t.currentPlayerID) {
+											weight++;
+										}
+									}
+								}
+								
+								// checking consecutive tiles in current col from top to bottom
+								for (var  j = 0; j < t.cols; j++)
+								{
+									var weight = 0;
+									for (var i = 0; i < t.rows; i++)
+									{
+										if(t.tiles[i][j] == -1) {
+											if (scoreTile[i][j] < weight)
+												scoreTile[i][j] = weight;
+											weight = 0;
+										}
+										else if(t.tiles[i][j] == t.currentPlayerID) {
+											weight = 0;
+										}
+										else if(t.tiles[i][j] != t.currentPlayerID) {
+											weight++;
+										}
+									}
+								}
+								
+								// checking consecutive tiles in current col from bottom to top
+								for (var  j = 0; j < t.cols; j++)
+								{
+									var weight = 0;
+									for (var i = t.rows - 1; i >= 0; i--)
+									{
+										if(t.tiles[i][j] == -1) {
+											if (scoreTile[i][j] < weight)
+												scoreTile[i][j] = weight;
+											weight = 0;
+										}
+										else if(t.tiles[i][j] == t.currentPlayerID) {
+											weight = 0;
+										}
+										else if(t.tiles[i][j] != t.currentPlayerID) {
+											weight++;
+										}
+									}
+								}
+								
+								// checking consecutive tiles in diagonal from top left to bottom right
+								var weight = 0;
+								for (var i = 0; i < t.rows; i++)
+								{
+									var k = i;
+									for (var  j = 0; j < t.cols; j++)
+									{
+										if (k >= t.rows)
+											break;
+
+										if(t.tiles[k][j] == -1) {
+											if (scoreTile[k][j] < weight)
+												scoreTile[k][j] = weight;
+											weight = 0;
+										}
+										else if(t.tiles[k][j] == t.currentPlayerID) {
+											weight = 0;
+										}
+										else if(t.tiles[k][j] != t.currentPlayerID) {
+											weight++;
+										}
+										
+										k++;
+									}
+								}
+								
+								var weight = 0;
+								for (var j = 0; j < t.cols; j++)
+								{
+									var k = j;
+									for (var  i = 0; i < t.rows; i++)
+									{
+										if (k >= t.cols)
+											break;
+
+										if(t.tiles[i][k] == -1) {
+											if (scoreTile[i][k] < weight)
+												scoreTile[i][k] = weight;
+											weight = 0;
+										}
+										else if(t.tiles[i][k] == t.currentPlayerID) {
+											weight = 0;
+										}
+										else if(t.tiles[i][k] != t.currentPlayerID) {
+											weight++;
+										}
+										
+										k++;
+									}
+								}
+								
+								
 								
 								var maxScore = 0;
 								var bestTileI;
@@ -339,17 +457,6 @@ ZicZacZoe.GameLogic	=	function() {
 								t.aiTileX = bestTileI;
 								t.aiTileY = bestTileJ;
 								t.tiles[t.aiTileX][t.aiTileY] =   t.currentPlayerID;
-								
-								console.log('norm tile');
-								for (var i = 0; i < t.rows; i++)
-								{
-									var str = '';
-									for (var j = 0; j < t.cols; j++)
-									{
-										str = str + ', ' + t.tiles[i][j];
-									}
-									console.log(str);
-								}
 							}
 	}
 }();
