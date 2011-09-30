@@ -205,10 +205,12 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 		}
 
 		for (var i = 0; i < rowCount; i++)
+		{
 			for (var j = 0; j < colCount; j++)
 			{
 				tiles[i][j].update();
 			}
+		}
 	};
     
 	/**	Draw the board and the tiles
@@ -243,7 +245,7 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 	
 	/** updates the ai's move from game logic class */
 	this.updateAIMove	=	function(t) {
-		tiles[t.aiTileY][t.aiTileX].setState(t.currentPlayerID);
+		tiles[t.aiTileX][t.aiTileY].setState(t.currentPlayerID);
 	};
 	
 	rowCount        	=   rows;

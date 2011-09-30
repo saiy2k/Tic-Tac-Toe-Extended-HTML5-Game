@@ -129,11 +129,6 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 		else if (tileState	==	"toX")
 		{
 			ctx.globalAlpha	=	keyValue;
-			/*ctx.drawImage(xImage,
-				tileX*tileWidth - (tileWidth / 2) * (1.0 - keyValue),
-				tileY*tileHeight - (tileHeight / 2) * (1.0 - keyValue),
-				(tileWidth * (2.0 - keyValue)),
-				tileHeight * (2.0 - keyValue));*/
 			ctx.drawImage(xImage, tileY*tileWidth, tileX*tileHeight, tileWidth / keyValue, tileHeight / keyValue);
 			ctx.globalAlpha	=	1.0;
 		}
