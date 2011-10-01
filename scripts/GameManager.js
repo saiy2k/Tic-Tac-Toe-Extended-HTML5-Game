@@ -104,33 +104,33 @@ ZicZacZoe.GameManager	=	function() {
 								{
 									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height())
 									{
-											gBoard.update(mouse, click);
+										gBoard.update(mouse, click);
+										
+										if ( click != null )
+										{
+											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
+											ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
+											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 											
-											if ( click != null )
+											ZicZacZoe.GameLogic.aiMove(ZicZacZoe.GameState);
+											gBoard.updateAIMove(ZicZacZoe.GameState);
+											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
+											ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
+											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+											
+											if(ZicZacZoe.GameState.isGameOver)
 											{
-												ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
-												ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
-												ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+												if( ZicZacZoe.GameState.player1Score > ZicZacZoe.GameState.player2Score )
+													gOver.setStatus("Player 1 Wins");
+												else if( ZicZacZoe.GameState.player1Score < ZicZacZoe.GameState.player2Score )
+													gOver.setStatus("Player 2 Wins");
+												else
+													gOver.setStatus("Match Draw");
+												currentScreen = "End";
 												
-												ZicZacZoe.GameLogic.aiMove(ZicZacZoe.GameState);
-												gBoard.updateAIMove(ZicZacZoe.GameState);
-												ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
-												ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
-												ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
-												
-												if(ZicZacZoe.GameState.isGameOver)
-												{
-													if( ZicZacZoe.GameState.player1Score > ZicZacZoe.GameState.player2Score )
-														gOver.setStatus("Player 1 Wins");
-													else if( ZicZacZoe.GameState.player1Score < ZicZacZoe.GameState.player2Score )
-														gOver.setStatus("Player 2 Wins");
-													else
-														gOver.setStatus("Match Draw");
-													currentScreen = "End";
-													
-													$('#shareScoreWidget').show();
-												}
+												$('#shareScoreWidget').show();
 											}
+										}
 									}
 									
 									ZicZacZoe.GameLogic.calcTime(ZicZacZoe.GameState);

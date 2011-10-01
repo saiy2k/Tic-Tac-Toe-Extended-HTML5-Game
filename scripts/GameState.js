@@ -142,9 +142,12 @@ ZicZacZoe.GameState	=	function() {
 								for (var i = 0; i < s.rows; i++)
 								{
 									s.tiles[i]    =   [];
+									ZicZacZoe.GameLogic.scoreTile[i] = [];
+									
 									for (var  j = 0; j < s.cols; j++)
 									{
 										s.tiles[i][j] =   -1;
+										ZicZacZoe.GameLogic.scoreTile[i][j] = 0;
 									}
 								}
 								
