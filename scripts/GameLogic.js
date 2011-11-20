@@ -235,14 +235,22 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									for (var j = 0; j < t.cols; j++)
 									{
+									
 										if (t.tiles[i][j] == -1)
 										{
 											isGameOver	=	false;
 										}
-																				
-										if (t.tiles[i][j] == 1)
+							
+										if (t.tiles[i][j] == 1 || t.tiles[i][j] == 0)
 										{
 											count++;
+											
+											
+											if (count > 10) {
+												t.isGameOver = true;
+												console.log("game is over");
+												return;
+											}
 										}
 									}
 								}

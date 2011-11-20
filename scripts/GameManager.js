@@ -87,6 +87,18 @@ ZicZacZoe.GameManager	=	function() {
 		$("#shareTwitterWidget").click(function() {
 			console.log("share in twitter");
 		});
+		
+		$("#p1NameDiv1").keypress(function() {
+			$("#p1NameDiv2").text($("#p1NameDiv1").val());
+		});
+		
+		$("#p1NameDiv1").blur(function() {
+			ZicZacZoe.GameState.p1Name = $("#p1NameDiv1").val();
+		});
+		
+		$("#p2NameDiv1").blur(function() {
+			ZicZacZoe.GameState.p2Name = $("#p2NameDiv1").val();
+		});
 	}
 	
 	function getShareString() {
@@ -96,12 +108,34 @@ ZicZacZoe.GameManager	=	function() {
 		st						=	ZicZacZoe.GameState;
 		
 		if(isAI) {
-			shareString			=	"Player scored " + st.player1Score + " points in Zic Zac Zoe and won the game";			
+			shareString			=	st.p1Name + " Wins";
 		} else {
-			if(st.currentPlayerID == 0)
-				shareString		=	"Player scored " + st.player1Score + " points in Zic Zac Zoe and won the game";
+			if(st.currentPlayerID == 1)
+				shareString		=	st.p1Name + " Wins";
 			else 
-				shareString		=	"Player scored " + st.player2Score + " points in Zic Zac Zoe and won the game";
+				shareString		=	st.p2Name + " Wins";
+		}
+		
+		console.log(st.p1Name);
+		console.log(st.p2Name);
+		console.log(st.currentPlayerID);
+		
+		return						shareString;
+	}
+	
+	function getSubShareString() {
+		var							shareString;
+		var							st;
+		
+		st						=	ZicZacZoe.GameState;
+		
+		if(isAI) {
+			shareString			=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and won the game";			
+		} else {
+			if(st.currentPlayerID == 1)
+				shareString		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and won the game";
+			else 
+				shareString		=	st.p2Name + " scored " + st.player2Score + " points in Tic Tac Tow and won the game";
 		}
 		
 		return						shareString;
@@ -154,6 +188,21 @@ ZicZacZoe.GameManager	=	function() {
 											ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 											
+											if(ZicZacZoe.GameState.isGameOver)
+											{
+												if( ZicZacZoe.GameState.player1Score != ZicZacZoe.GameState.player2Score ) {
+													gOver.setStatus(getShareString());
+													gOver.setSubStatus(getSubShareString());
+												}
+												else
+													gOver.setStatus("Match Draw");
+												currentScreen = "End";
+												
+												$('#shareScoreWidget').show();
+												
+												return;
+											}
+											
 											if(isAI) {
 												if(ZicZacZoe.GameState.isValidMove) {
 													ZicZacZoe.GameLogic.aiMove(ZicZacZoe.GameState);
@@ -162,19 +211,21 @@ ZicZacZoe.GameManager	=	function() {
 													ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 													ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 												}
-											}
-											
-											if(ZicZacZoe.GameState.isGameOver)
-											{
-												if( ZicZacZoe.GameState.player1Score > ZicZacZoe.GameState.player2Score )
-													gOver.setStatus("Player 1 Wins");
-												else if( ZicZacZoe.GameState.player1Score < ZicZacZoe.GameState.player2Score )
-													gOver.setStatus("Player 2 Wins");
-												else
-													gOver.setStatus("Match Draw");
-												currentScreen = "End";
 												
-												$('#shareScoreWidget').show();
+												if(ZicZacZoe.GameState.isGameOver)
+												{
+													if( ZicZacZoe.GameState.player1Score != ZicZacZoe.GameState.player2Score ) {
+														gOver.setStatus(getShareString());
+														gOver.setSubStatus(getSubShareString());
+													}
+													else
+														gOver.setStatus("Match Draw");
+													currentScreen = "End";
+													
+													$('#shareScoreWidget').show();
+													
+													return;
+												}
 											}
 										}
 									}

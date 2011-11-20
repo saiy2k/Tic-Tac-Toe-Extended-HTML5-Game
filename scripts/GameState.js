@@ -128,9 +128,16 @@ ZicZacZoe.GameState	=	function() {
 			@type	bool */
 		isValidMove		:	false,
 		
+		/** name of player 1
+			@type	string */
+		p1Name			:	"Player 1",
+		
+		/** name of player 2
+			@type	string */
+		p2Name			:	"Player 2",
+		
 		/** resets the gamestate function */
-		reset			:	function()
-							{
+		reset			:	function() {
 								var						s;
 								s					=	ZicZacZoe.GameState;
 								
@@ -143,19 +150,17 @@ ZicZacZoe.GameState	=	function() {
 								s.p1ElapsedTime		=	0.0;
 								s.p2ElapsedTime		=	0.0;
 								
-								for (var i = 0; i < s.rows; i++)
-								{
+								for (var i = 0; i < s.rows; i++) {
 									s.tiles[i]    =   [];
 									ZicZacZoe.GameLogic.scoreTile[i] = [];
 									
-									for (var  j = 0; j < s.cols; j++)
-									{
+									for (var  j = 0; j < s.cols; j++) {
 										s.tiles[i][j] =   -1;
 										ZicZacZoe.GameLogic.scoreTile[i][j] = 0;
 									}
 								}
 								
-								//$('#shareScoreWidget').hide();
+								$('#shareScoreWidget').hide();
 							}
 	};
 }();

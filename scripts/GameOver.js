@@ -54,10 +54,15 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		@private */
     var tiles           =   [];
 	
-	/** Player who won the game in string
+	/** Player who won the game
 		@type	string
 		@private */
 	var statusString;
+	
+	/** string describing the status of the game
+		@type	string
+		@private */
+	var statusSubString;
 	
 	/** font size to draw the game over status
 		@type	int
@@ -119,6 +124,10 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		statusString	=	tStatus;
 	}
 	
+	this.setSubStatus	=	function(tStatus) {
+		statusSubString	=	tStatus;
+	}
+	
 	/** refreshes the board layout based on the screen size	*/
 	this.resize			=	function() {
 		refreshUI();
@@ -141,8 +150,8 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		ctx.font		=	statusFontSize + 'px Arial';
 		ctx.fillText(statusString, boardWidth / 2, boardHeight / 3);
 		
-		ctx.font		=	(statusFontSize/2) + 'px Arial';
-		ctx.fillText("Share your Victory", boardWidth / 2, boardHeight / 3 + 30);
+		ctx.font		=	(statusFontSize/4) + 'px Arial';
+		ctx.fillText(statusSubString, boardWidth / 2, boardHeight / 3 + 30);
     };
 	
 	boardX          	=   $('#boardCanvas').offset().left;
