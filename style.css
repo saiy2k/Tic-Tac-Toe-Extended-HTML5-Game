@@ -74,6 +74,11 @@ body{
 	background				:	url('images/brownTransparent.png');
 }
 
+.nameInputBox {
+	border					:	2px solid #ff9999;
+	background-color		:	#ee8888;
+}
+
 /* big screens */
 @media screen and (min-width: 800px) {
 	#container

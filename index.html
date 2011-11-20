@@ -19,7 +19,7 @@ along with Zic Zac Zoe.  If not, see <http://www.gnu.org/licenses/>.
 <!DOCTYPE html>
 <html manifest="/offline.manifest">
 <head>
-	<title> Zic Zac Zoe </title>
+	<title> Tic Tac Toe Extended </title>
 
 	<meta property="og:title" content="Zic Zac Zoe" />
 	<meta property="og:type" content="website" />
@@ -91,8 +91,18 @@ along with Zic Zac Zoe.  If not, see <http://www.gnu.org/licenses/>.
 		</div>
 		<div id="playOptionsDiv">
 			<div id="newGameDiv"	class="playOptionsHalf">
-				<a 	id="vsHumanButton"	class="playOptionsRow" href="#"> START Human vs Human Match </a>
-				<a	id="vsAIButton"		class="playOptionsRow" href="#"> START Human vs AI Match </a>
+				<div id="vsHumanButton"	class="playOptionsRow">
+					New
+					<input type="text" size="4" value="Player1" class="nameInputBox"/>
+					vs
+					<input type="text" size="4" value="Player2" class="nameInputBox"/>
+					Game
+				</div>
+				<div id="vsAIButton"	class="playOptionsRow">
+					New
+					<input type="text" size="4" value="Player1" class="nameInputBox"/>
+					vs AI Game
+				</div>
 			</div>
 			<div id="creditsDiv"	class="playOptionsHalf">
 				<div class="playOptionsRow" style="height: 88px">
