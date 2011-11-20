@@ -1,42 +1,43 @@
 <!--
 Copyright 2011 Saiyasodharan (http://saiy2k.blogspot.com/)
 
-This file is part of the open source game, Zic Zac Zoe (https://github.com/saiy2k/zic-zac-zoe/)
+This file is part of the open source game, Tic Tac Toe Extended (https://github.com/saiy2k/Tic-Tac-Toe-Extended-HTML5-Game)
 
-Zic Zac Zoe is free software: you can redistribute it and/or modify
+Tic Tac Toe Extended is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Zic Zac Zoe is distributed in the hope that it will be useful,
+Tic Tac Toe Extended is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Zic Zac Zoe.  If not, see <http://www.gnu.org/licenses/>.
+along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <!DOCTYPE html>
-<html manifest="/offline.manifest">
+<html>
 <head>
 	<title> Tic Tac Toe Extended </title>
 
-	<meta property="og:title" content="Zic Zac Zoe" />
+	<meta property="og:title" content="Tic Tac Toe Extended" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="http://www.gethugames.in/ziczaczoe/" />
+	<meta property="og:url" content="http://www.gethugames.in/tictactoe/" />
 	<meta property="og:image" content="https://lh5.googleusercontent.com/-UV__GZ-xeTM/Tmho-72dHRI/AAAAAAAAAcQ/LDezwfyCnI0/s800/spiroGraph128.png" />
 	<meta property="og:site_name" content="Zic Zac Zoe" />
 	<meta property="fb:admins" content="100000655597076" />
-	<meta property="og:description" content="Extended version of Zic Zac Zoe game made in HTML5"/>
+	<meta property="og:description" content="Extended version of Tic Tac Toe Extended game made in HTML5"/>
 		  
 	<html itemscope itemtype="http://schema.org/Product">
-	<meta itemprop="name" content="Zic Zac Zoe">
-	<meta itemprop="description" content="Extended version of Zic Zac Zoe game made in HTML5">
+	<meta itemprop="name" content="Tic Tac Toe Extended">
+	<meta itemprop="description" content="Extended version of Tic Tac Toe Extended game made in HTML5">
 	
     <link type="text/css" href="style.css" rel="Stylesheet" />
 	
 	<script type="text/javascript" src="lib/jquery-1.5.2.js"></script>
 	<script type="text/javascript" src="scripts/ZicZacZoe.js"></script>
+	<script type="text/javascript" src="scripts/FBWrapper.js"></script>
 	<script type="text/javascript" src="scripts/InputManager.js"></script>
 	<script type="text/javascript" src="scripts/GameState.js"></script>
 	<script type="text/javascript" src="scripts/GameLogic.js"></script>
@@ -47,12 +48,9 @@ along with Zic Zac Zoe.  If not, see <http://www.gnu.org/licenses/>.
 	<script>
 		function init()
 		{
-			if($.browser.msie)
-			{
+			if($.browser.msie) {
 				//SHOW SOME MESSAGE
-			}
-			else
-			{
+			} else {
 				ZicZacZoe.GameManager.init();
 			}
 		}
@@ -68,13 +66,12 @@ along with Zic Zac Zoe.  If not, see <http://www.gnu.org/licenses/>.
 			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		  })();
-
 	</script>
 </head>
 
 <body onload="init()">
 	<div id="container">
-		<div id="titleDiv">Zic Zac Zoe</div>
+		<div id="titleDiv">Tic Tac Toe Extended</div>
 		<div id="canvasContainer">
 			<canvas id="boardCanvas" width="480" height="480" ></canvas>
 			<div id="shareScoreWidget">
@@ -121,7 +118,7 @@ along with Zic Zac Zoe.  If not, see <http://www.gnu.org/licenses/>.
 					</div>
 				
 					<div id="fb" style="display:block; float:left; width: 80px; height: 70px;">
-						<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=267249556660656&amp;xfbml=1"></script><fb:like href="http://www.gethugames.in/ziczaczoe/" send="false" layout="box_count" width="100" show_faces="false" colorscheme="dark" font=""></fb:like>
+						<fb:like href="http://www.gethugames.in/tictactoe/" send="false" layout="box_count" width="100" show_faces="false" colorscheme="dark" font=""></fb:like>
 					</div>
 				</div>
 			</div>
@@ -130,19 +127,29 @@ along with Zic Zac Zoe.  If not, see <http://www.gnu.org/licenses/>.
 	
 <!--Importing Facebook's Javascript SDK - Begin-->
 <div id="fb-root"></div>
-<script type="text/javascript">
-    window.fbAsyncInit = function() {
-        FB.init({appId: '267249556660656', status: true, cookie: true, xfbml: true});
-    };
-    (function() {
-        var e = document.createElement('script');
-        e.type = 'text/javascript';
-        e.src = 'http://connect.facebook.net/en_US/all.js';
-        e.async = true;
-        document.getElementById('fb-root').appendChild(e);
-    }());
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267249556660656', // App ID
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      oauth      : true, // enable OAuth 2.0
+      xfbml      : true  // parse XFBML
+    });
+
+	ZicZacZoe.FBWrapper.init();
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     d.getElementsByTagName('head')[0].appendChild(js);
+   }(document));
 </script>
 <!--Importing Facebook's Javascript SDK - End-->
+
 </body>
 
 </html>
