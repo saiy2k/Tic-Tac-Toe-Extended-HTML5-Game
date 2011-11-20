@@ -17,23 +17,20 @@ You should have received a copy of the GNU General Public License
 along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-body
-{
+body{
     background-color		:	#dddddd;
 	text-align				:	center;
 	color					:	#4b3318;
 }
 
-#container
-{
+#container{
 	position				:	absolute;
 	border					:	4px solid #865c2a;
 	top						:	50%;
 	left					:	50%;
 }
 
-#canvasContainer
-{
+#canvasContainer{
 	background-color		:	#eee;
 	text-align				:	center;
 }
@@ -52,16 +49,14 @@ body
 	font					:	12px verdana;
 }
 
-.scoreBoardLabel
-{
+.scoreBoardLabel{
 	display					:	inline-block;
 	width					:	10%;
 	border					:	0px solid;
 	font					:	22px Verdana;
 }
 
-.playOptionsHalf
-{
+.playOptionsHalf{
 	display					:	inline-block;
 	width					:	49%;
 	float					:	left;
@@ -69,15 +64,13 @@ body
 	background				:	url('images/brownTransparent.png');
 }
 
-.playOptionsRow
-{
+.playOptionsRow{
 	display					:	block;
 	height					:	38px;
 	text-decoration			:	none;
 	padding-top				:	12px;
 }
-.playOptionsRow:hover
-{
+.playOptionsRow:hover{
 	background				:	url('images/brownTransparent.png');
 }
 

@@ -19,7 +19,18 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 <!DOCTYPE html>
 <html manifest="/offline.manifest">
 <head>
-
+	<meta property="og:title" content="Zic Zac Zoe" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.gethugames.in/ziczaczoe/" />
+	<meta property="og:image" content="https://lh5.googleusercontent.com/-UV__GZ-xeTM/Tmho-72dHRI/AAAAAAAAAcQ/LDezwfyCnI0/s800/spiroGraph128.png" />
+	<meta property="og:site_name" content="Zic Zac Zoe" />
+	<meta property="fb:admins" content="100000655597076" />
+	<meta property="og:description" content="Extended version of Zic Zac Zoe game made in HTML5"/>
+		  
+	<html itemscope itemtype="http://schema.org/Product">
+	<meta itemprop="name" content="Zic Zac Zoe">
+	<meta itemprop="description" content="Extended version of Zic Zac Zoe game made in HTML5">
+	
     <link type="text/css" href="style.css" rel="Stylesheet" />
 	
 	<script type="text/javascript" src="lib/jquery-1.5.2.js"></script>
@@ -44,6 +55,19 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 			}
 		}
 	</script>
+	
+	<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-24593968-2']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+	</script>
 </head>
 
 <body onload="init()">
@@ -52,9 +76,8 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 		<div id="canvasContainer">
 			<canvas id="boardCanvas" width="480" height="480" ></canvas>
 			<div id="shareScoreWidget">
-				Google+ <br/>
-				Facebook <br/>
-				Twitter <br/>
+				<div id="shareFacebookWidget"> Facebook </div> <br/>
+				<div id="shareTwitterWidget"> Twitter </div> <br/>
 			</div>
 		</div>
 		<div id="scoreBoardDiv">
@@ -70,10 +93,45 @@ along with Zic-Zac-Zoe.  If not, see <http://www.gnu.org/licenses/>.
 				<a	id="vsAIButton"		class="playOptionsRow" href="#"> START Human vs AI Match(wont work now) </a>
 			</div>
 			<div id="creditsDiv"	class="playOptionsHalf">
-				<div class="playOptionsRow" style="height: 88px"> COPYRIGHT INFO... <br /> CREDITS </div>
+				<div class="playOptionsRow" style="height: 88px">
+					<div id="gplus" style="display:block; float:left; width: 100px; height: 70px;">
+					<!-- Place this tag where you want the +1 button to render -->
+					<g:plusone size="tall"></g:plusone>
+
+					<!-- Place this render call where appropriate -->
+					<script type="text/javascript">
+					  (function() {
+						var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+						po.src = 'https://apis.google.com/js/plusone.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					  })();
+					</script>
+					</div>
+				
+					<div id="fb" style="display:block; float:left; width: 100px; height: 70px;">
+						<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=145439352170764&amp;xfbml=1"></script><fb:like href="http://www.gethugames.in/spirocanvas/" send="false" layout="box_count" width="100" show_faces="false" colorscheme="dark" font=""></fb:like>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	
+<!--Importing Facebook's Javascript SDK - Begin-->
+<div id="fb-root"></div>
+<script type="text/javascript">
+    window.fbAsyncInit = function() {
+        FB.init({appId: '145439352170764', status: true, cookie: true, xfbml: true});
+		FB.Event.subscribe('auth.statusChange', function() { $( "#shareFacebook" ).html("Upload"); } );
+    };
+    (function() {
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.src = 'http://connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+    }());
+</script>
+<!--Importing Facebook's Javascript SDK - End-->
 </body>
 
 </html>

@@ -51,17 +51,33 @@ ZicZacZoe.GameManager	=	function() {
 		@private */
 	var	currentScreen;
 	
+	
+	/** if true, AI will take the role of Player 2 and make its move automatically
+		@type	bool
+		@private */
+	var isAI;
+	
 	function setupJqueryHandlers() {
 		$( "#vsHumanButton" ).click(function() {
 			currentScreen		=	"Game";
+			isAI				=	false;
 			ZicZacZoe.GameState.reset();
 			gBoard.reset();
 		});
 		
 		$("#vsAIButton").click(function() {
 			currentScreen		=	"Game";
+			isAI				=	true;
 			ZicZacZoe.GameState.reset();
 			gBoard.reset();
+		});
+		
+		$("#shareFacebookWidget").click(function() {
+			
+		});
+		
+		$("#shareTwitterWidget").click(function() {
+			
 		});
 	}
 	
@@ -112,11 +128,13 @@ ZicZacZoe.GameManager	=	function() {
 											ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 											
-											ZicZacZoe.GameLogic.aiMove(ZicZacZoe.GameState);
-											gBoard.updateAIMove(ZicZacZoe.GameState);
-											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
-											ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
-											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+											if(isAI) {
+												ZicZacZoe.GameLogic.aiMove(ZicZacZoe.GameState);
+												gBoard.updateAIMove(ZicZacZoe.GameState);
+												ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
+												ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
+												ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+											}
 											
 											if(ZicZacZoe.GameState.isGameOver)
 											{
