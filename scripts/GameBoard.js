@@ -201,7 +201,6 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 			for(var z = 0; z < t.highlightTiles.length; z++)
 			{
 				tiles[t.highlightTiles[z].x][t.highlightTiles[z].y].highlight();
-				console.log(t.highlightTiles[z]);
 			}
 			
 			t.highlightTiles.length = 0;

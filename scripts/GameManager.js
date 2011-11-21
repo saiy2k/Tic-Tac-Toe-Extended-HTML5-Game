@@ -144,8 +144,7 @@ ZicZacZoe.GameManager	=	function() {
 	/** @scope ZicZacZoe.GameManager */
 	return {
 		/** Initializes the canvas context, game board, gamestate and sets the game loop */
-		init			:	function()
-							{
+		init			:	function() {
 								currentScreen			=	"Game";
 							
                                 var canvas              =	document.getElementById("boardCanvas");
@@ -161,35 +160,29 @@ ZicZacZoe.GameManager	=	function() {
 							},
 
 		/** Game Loop. Getting called as per the given FPS */
-		loop			:	function()
-							{
+		loop			:	function() {
 								ZicZacZoe.GameManager.update();
 								ZicZacZoe.GameManager.draw();
 							},
 
 		/** update the current screen */
-		update			:	function()
-							{								
+		update			:	function() {								
 								var mouse	=   ZicZacZoe.InputManager.getMouse();
                                 var click   =   ZicZacZoe.InputManager.getClickIfAny();
 
 								var	mx		=	mouse.x - gBoard.x();
 								var my		=	mouse.y - gBoard.y();
 															
-								if(currentScreen		==	"Game")
-								{
-									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height())
-									{
+								if(currentScreen		==	"Game") {
+									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height()) {
 										gBoard.update(mouse, click);
 										
-										if ( click != null )
-										{
+										if ( click != null ) {
 											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
 											ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 											
-											if(ZicZacZoe.GameState.isGameOver)
-											{
+											if(ZicZacZoe.GameState.isGameOver) {
 												if( ZicZacZoe.GameState.player1Score != ZicZacZoe.GameState.player2Score ) {
 													gOver.setStatus(getShareString());
 													gOver.setSubStatus(getSubShareString());
@@ -212,8 +205,7 @@ ZicZacZoe.GameManager	=	function() {
 													ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 												}
 												
-												if(ZicZacZoe.GameState.isGameOver)
-												{
+												if(ZicZacZoe.GameState.isGameOver) {
 													if( ZicZacZoe.GameState.player1Score != ZicZacZoe.GameState.player2Score ) {
 														gOver.setStatus(getShareString());
 														gOver.setSubStatus(getSubShareString());
@@ -232,25 +224,18 @@ ZicZacZoe.GameManager	=	function() {
 									
 									ZicZacZoe.GameLogic.calcTime(ZicZacZoe.GameState);
 									
-								}
-								else if(currentScreen	==	"End")
-								{
-									if ( click != null )
-									{
+								} else if(currentScreen	==	"End") {
+									if ( click != null ) {
 										gOver.update(mouse, click);
 									}
-								}
-								else if(currentScreen	==	"Splash")
-								{
+								} else if(currentScreen	==	"Splash") {
 								
 								}
 							},
 
 		/** draw the current screen */
-		draw			:	function()
-							{
-								if(currentScreen		==	"Game")
-								{
+		draw			:	function() {
+								if(currentScreen		==	"Game") {
 									gBoard.draw(context);
 								}
 								else if(currentScreen	==	"End")

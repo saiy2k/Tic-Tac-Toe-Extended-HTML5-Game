@@ -44,8 +44,6 @@ ZicZacZoe.GameLogic	=	function() {
 								
 								t.highlightTiles.length = 0;
 								
-								//console.log(t.selectedTileX + "," + t.selectedTileY);
-								
 								for (var i = 0; i < t.rows; i++)
 								{
 									for (var j = 0; j < t.cols; j++)
@@ -240,7 +238,7 @@ ZicZacZoe.GameLogic	=	function() {
 										{
 											isGameOver	=	false;
 										}
-							
+										/*
 										if (t.tiles[i][j] == 1 || t.tiles[i][j] == 0)
 										{
 											count++;
@@ -252,6 +250,7 @@ ZicZacZoe.GameLogic	=	function() {
 												return;
 											}
 										}
+										*/
 									}
 								}
 								
@@ -294,16 +293,14 @@ ZicZacZoe.GameLogic	=	function() {
 		
 		/** Updates the Score Div's with the score
 			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
-		updateUI		:	function(t)
-							{								
+		updateUI		:	function(t) {
 								$("#player1Score").text(t.player1Score);
 								$("#player2Score").text(t.player2Score);
 							},
 							
 		/** analyzes the board and find the best move for ai
 			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
-		aiMove			:	function(t)
-							{			
+		aiMove			:	function(t) {			
 								var l = ZicZacZoe.GameLogic;
 
 								for (var i = 0; i < t.rows; i++) {
@@ -313,83 +310,78 @@ ZicZacZoe.GameLogic	=	function() {
 									}
 								}
 								
+								console.log("left to right");
 								// checking consecutive tiles in current row from left to right
-								for (var i = 0; i < t.rows; i++)
-								{
+								for (var i = 0; i < t.rows; i++) {
 									var weight = 0;
-									for (var  j = 0; j < t.cols; j++)
-									{
+									var oldID = -1;
+									for (var  j = 0; j < t.cols; j++) {
 										if(t.tiles[i][j] == -1) {
-											if (l.scoreTile[i][j] < weight)
-												l.scoreTile[i][j] = weight;
+											//if (l.scoreTile[i][j] < weight)
+												l.scoreTile[i][j] += weight;
 											weight = 0;
-										}
-										else if(t.tiles[i][j] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[i][j] != t.currentPlayerID) {
+										} else if(t.tiles[i][j] == oldID) {
 											weight++;
+										} else if(t.tiles[i][j] != oldID) {
+											weight = 1;
 										}
+										oldID = t.tiles[i][j];
 									}
 								}
 								
+								console.log("right to left");
 								// checking consecutive tiles in current row from right to left
-								for (var i = 0; i < t.rows; i++)
-								{
+								for (var i = 0; i < t.rows; i++) {
 									var weight = 0;
-									for (var  j = t.cols - 1; j >= 0; j--)
-									{
+									var oldID = -1;
+									for (var  j = t.cols - 1; j >= 0; j--) {
 										if(t.tiles[i][j] == -1) {
-											if (l.scoreTile[i][j] < weight)
-												l.scoreTile[i][j] = weight;
+											//if (l.scoreTile[i][j] < weight)
+												l.scoreTile[i][j] += weight;
 											weight = 0;
-										}
-										else if(t.tiles[i][j] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[i][j] != t.currentPlayerID) {
+										} else if(t.tiles[i][j] == oldID) {
 											weight++;
+										} else if(t.tiles[i][j] != oldID) {
+											weight = 1;
 										}
+										oldID = t.tiles[i][j];
 									}
 								}
 								
+								console.log("top to bottom");
 								// checking consecutive tiles in current col from top to bottom
-								for (var  j = 0; j < t.cols; j++)
-								{
+								for (var  j = 0; j < t.cols; j++) {
 									var weight = 0;
-									for (var i = 0; i < t.rows; i++)
-									{
+									var oldID = -1;
+									for (var i = 0; i < t.rows; i++) {
 										if(t.tiles[i][j] == -1) {
-											if (l.scoreTile[i][j] < weight)
-												l.scoreTile[i][j] = weight;
+											//if (l.scoreTile[i][j] < weight)
+												l.scoreTile[i][j] += weight;
 											weight = 0;
-										}
-										else if(t.tiles[i][j] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[i][j] != t.currentPlayerID) {
+										} else if(t.tiles[i][j] == oldID) {
 											weight++;
+										} else if(t.tiles[i][j] != oldID) {
+											weight = 1;
 										}
+										oldID = t.tiles[i][j];
 									}
 								}
 								
 								// checking consecutive tiles in current col from bottom to top
-								for (var  j = 0; j < t.cols; j++)
-								{
+								for (var  j = 0; j < t.cols; j++) {
 									var weight = 0;
-									for (var i = t.rows - 1; i >= 0; i--)
-									{
+									var oldID = -1;
+									for (var i = t.rows - 1; i >= 0; i--) {
 										if(t.tiles[i][j] == -1) {
-											if (l.scoreTile[i][j] < weight)
-												l.scoreTile[i][j] = weight;
+											//if (l.scoreTile[i][j] < weight)
+												l.scoreTile[i][j] += weight;
 											weight = 0;
-										}
-										else if(t.tiles[i][j] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[i][j] != t.currentPlayerID) {
+										} else if(t.tiles[i][j] == oldID) {
 											weight++;
+										} else if(t.tiles[i][j] != oldID) {
+											weight = 1;
 										}
+										oldID = t.tiles[i][j];
 									}
 								}
 								
@@ -400,20 +392,21 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									var k = i;
 									weight = 0;
+									var oldID = -1;
 									for (var  j = 0; j < t.cols && k < t.rows; j++)
 									{
 										if(t.tiles[k][j] == -1) {
-											if (l.scoreTile[k][j] < weight)
-												l.scoreTile[k][j] = weight;
+											//if (l.scoreTile[k][j] < weight)
+												l.scoreTile[k][j] += weight;
 											weight = 0;
 										}
-										else if(t.tiles[k][j] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[k][j] != t.currentPlayerID) {
+										else if(t.tiles[k][j] == oldID) {
 											weight++;
 										}
-										
+										else if(t.tiles[k][j] != oldID) {
+											weight = 1;
+										}
+										oldID = t.tiles[k][j];
 										k++;
 									}
 								}
@@ -423,20 +416,21 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									var k = j;
 									weight = 0;
+									var oldID = -1;
 									for (var  i = 0; i < t.rows && k < t.cols; i++)
 									{
 										if(t.tiles[i][k] == -1) {
-											if (l.scoreTile[i][k] < weight)
-												l.scoreTile[i][k] = weight;
+											//if (l.scoreTile[i][k] < weight)
+												l.scoreTile[i][k] += weight;
 											weight = 0;
 										}
-										else if(t.tiles[i][k] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[i][k] != t.currentPlayerID) {
+										else if(t.tiles[i][k] == oldID) {
 											weight++;
 										}
-										
+										else if(t.tiles[i][k] != oldID) {
+											weight = 1;
+										}
+										oldID = t.tiles[i][k];
 										k++;
 									}
 								}
@@ -448,25 +442,23 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									var k = i;
 									weight = 0;
+									var oldID = -1;
 									for (var  j = t.cols - 1; j >= 0 && k >= 0; j--)
 									{
 										if(t.tiles[k][j] == -1) {
-											console.log('at i,j,k' + i + ', ' + j + ', ' + k);
-											if (l.scoreTile[k][j] < weight)
+											//if (l.scoreTile[k][j] < weight)
 											{
-												console.log('inc1 weight at i,j,k' + i + ', ' + j + ', ' + k);
-												l.scoreTile[k][j] = weight;
+												l.scoreTile[k][j] += weight;
 											}
 											weight = 0;
 										}
-										else if(t.tiles[k][j] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[k][j] != t.currentPlayerID) {
-											console.log('inc111 weight at i,j,k' + i + ', ' + j + ', ' + k);
+										else if(t.tiles[k][j] == oldID) {
 											weight++;
 										}
-										
+										else if(t.tiles[k][j] != oldID) {
+											weight = 1;
+										}
+										oldID = t.tiles[k][j];
 										k--;
 									}
 								}
@@ -476,22 +468,23 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									var k = j;
 									weight = 0;
+									var oldID = -1;
 									for (var  i = t.rows - 1; i >= 0 && k >= 0; i--)
 									{
 										if(t.tiles[i][k] == -1) {
-											if (l.scoreTile[i][k] < weight)
+											//if (l.scoreTile[i][k] < weight)
 											{
-												l.scoreTile[i][k] = weight;
+												l.scoreTile[i][k] += weight;
 											}
 											weight = 0;
 										}
-										else if(t.tiles[i][k] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[i][k] != t.currentPlayerID) {
+										else if(t.tiles[i][k] == oldID) {
 											weight++;
 										}
-										
+										else if(t.tiles[i][k] != oldID) {
+											weight = 1;
+										}
+										oldID = t.tiles[i][k];
 										k--;
 									}
 								}
@@ -503,20 +496,21 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									var k = i;
 									weight = 0;
+									var oldID = -1;
 									for (var  j = t.cols - 1; j >= 0 && k < t.rows; j--)
 									{
 										if(t.tiles[k][j] == -1) {
-											if (l.scoreTile[k][j] < weight)
-												l.scoreTile[k][j] = weight;
+											//if (l.scoreTile[k][j] < weight)
+												l.scoreTile[k][j] += weight;
 											weight = 0;
 										}
-										else if(t.tiles[k][j] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[k][j] != t.currentPlayerID) {
+										else if(t.tiles[k][j] == oldID) {
 											weight++;
 										}
-										
+										else if(t.tiles[k][j] != oldID) {
+											weight = 1;
+										}
+										oldID = t.tiles[k][j];
 										k++;
 									}
 								}
@@ -526,20 +520,21 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									var k = j;
 									weight = 0;
+									var oldID = -1;
 									for (var  i = 0; i < t.rows && k > 0; i++)
 									{
 										if(t.tiles[i][k] == -1) {
-											if (l.scoreTile[i][k] < weight)
-												l.scoreTile[i][k] = weight;
+											//if (l.scoreTile[i][k] < weight)
+												l.scoreTile[i][k] += weight;
 											weight = 0;
 										}
-										else if(t.tiles[i][k] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[i][k] != t.currentPlayerID) {
+										else if(t.tiles[i][k] == oldID) {
 											weight++;
 										}
-										
+										else if(t.tiles[i][k] != oldID) {
+											weight = 1;
+										}
+										oldID = t.tiles[i][k];
 										k--;
 									}
 								}
@@ -551,22 +546,23 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									var k = i;
 									weight = 0;
+									var oldID = -1;
 									for (var  j = 0; j < t.cols && k >= 0; j++)
 									{
 										if(t.tiles[k][j] == -1) {
-											if (l.scoreTile[k][j] < weight)
+											//if (l.scoreTile[k][j] < weight)
 											{
-												l.scoreTile[k][j] = weight;
+												l.scoreTile[k][j] += weight;
 											}
 											weight = 0;
 										}
-										else if(t.tiles[k][j] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[k][j] != t.currentPlayerID) {
+										else if(t.tiles[k][j] == oldID) {
 											weight++;
 										}
-										
+										else if(t.tiles[k][j] != oldID) {
+											weight = 1;
+										}
+										oldID = t.tiles[k][j];
 										k--;
 									}
 								}
@@ -576,30 +572,30 @@ ZicZacZoe.GameLogic	=	function() {
 								{
 									var k = j;
 									weight = 0;
+									var oldID = -1;
 									for (var  i = t.rows - 1; i >= 0 && k >= 0; i--)
 									{
 										if(t.tiles[i][k] == -1) {
-											if (l.scoreTile[i][k] < weight)
+											//if (l.scoreTile[i][k] < weight)
 											{
-												l.scoreTile[i][k] = weight;
+												l.scoreTile[i][k] += weight;
 											}
 											weight = 0;
 										}
-										else if(t.tiles[i][k] == t.currentPlayerID) {
-											weight = 0;
-										}
-										else if(t.tiles[i][k] != t.currentPlayerID) {
+										else if(t.tiles[i][k] == oldID) {
 											weight++;
 										}
-										
+										else if(t.tiles[i][k] != oldID) {
+											weight = 1;
+										}
+										oldID = t.tiles[i][k];
 										k++;
 									}
 								}
-
 								
 								var maxScore = 0;
-								var bestTileI;
-								var bestTileJ;
+								var bestTileI = 0;
+								var bestTileJ = 0;
 								
 								console.log('score tile');
 								for (var i = 0; i < t.rows; i++)
@@ -608,7 +604,6 @@ ZicZacZoe.GameLogic	=	function() {
 									for (var  j = 0; j < t.cols; j++)
 									{
 										str = str + ', ' + l.scoreTile[i][j];
-										
 										if (l.scoreTile[i][j] > maxScore)
 										{
 											maxScore = l.scoreTile[i][j];
@@ -618,9 +613,10 @@ ZicZacZoe.GameLogic	=	function() {
 									}
 									console.log(str);
 								}
-							
+								
 								t.aiTileX = bestTileI;
 								t.aiTileY = bestTileJ;
+								
 								t.tiles[t.aiTileX][t.aiTileY] =   t.currentPlayerID;
 							}
 	}

@@ -118,11 +118,11 @@ ZicZacZoe.GameState	=	function() {
 		
 		/** AI's selected tile's X
 			@type	int */
-		aiTileX			:	0.0,
+		aiTileX			:	0,
 
 		/** AI's selected tile's Y
 			@type	int */
-		aiTileY			:	0.0,
+		aiTileY			:	0,
 		
 		/** is the last move Valid
 			@type	bool */
