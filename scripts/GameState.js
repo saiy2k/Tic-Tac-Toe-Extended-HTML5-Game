@@ -135,7 +135,15 @@ ZicZacZoe.GameState	=	function() {
 		/** name of player 2
 			@type	string */
 		p2Name			:	"Player 2",
+	
+		/** game end status
+			@type	string */
+		gameStatus		:	"",
 		
+		/** game end description
+			@type	string */
+		gameDescription		:	"",
+
 		/** resets the gamestate function */
 		reset			:	function() {
 								var						s;

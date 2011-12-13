@@ -72,16 +72,7 @@ ZicZacZoe.GameManager	=	function() {
 		});
 		
 		$("#shareFacebookWidget").click(function() {
-			var						shareString;
-			var						st;
-			
-			st					=	ZicZacZoe.GameState;
-			shareString			=	getShareString();
-			
-			if(isAI)
-				ZicZacZoe.FBWrapper.shareAIWinText();
-			else
-				ZicZacZoe.FBWrapper.shareAIWinText();
+			ZicZacZoe.FBWrapper.shareAIWinText();
 		});
 		
 		$("#shareTwitterWidget").click(function() {
@@ -101,24 +92,23 @@ ZicZacZoe.GameManager	=	function() {
 		});
 	}
 	
-	function getShareString() {
+	function updateGameOverStatus() {
 		var							shareString;
 		var							st;
 		
 		st						=	ZicZacZoe.GameState;
 		
 		if(isAI) {
-			shareString			=	st.p1Name + " Wins";
+			if(st.player1Score > st.player2Score)
+				shareString			=	st.p1Name + " Wins";
+			else
+				shareString			=	st.p1Name + " Loses";
 		} else {
 			if(st.currentPlayerID == 1)
-				shareString		=	st.p1Name + " Wins";
+				shareString			=	st.p1Name + " Wins";
 			else 
-				shareString		=	st.p2Name + " Wins";
+				shareString			=	st.p2Name + " Wins";
 		}
-		
-		console.log(st.p1Name);
-		console.log(st.p2Name);
-		console.log(st.currentPlayerID);
 		
 		return						shareString;
 	}
@@ -178,44 +168,31 @@ ZicZacZoe.GameManager	=	function() {
 										gBoard.update(mouse, click);
 										
 										if ( click != null ) {
-											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
-											ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
+											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);	
+											if(ZicZacZoe.GameState.isValidMove)
+												ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 											
 											if(ZicZacZoe.GameState.isGameOver) {
-												if( ZicZacZoe.GameState.player1Score != ZicZacZoe.GameState.player2Score ) {
-													gOver.setStatus(getShareString());
-													gOver.setSubStatus(getSubShareString());
-												}
-												else
-													gOver.setStatus("Match Draw");
+												updateGameOverStatus();
 												currentScreen = "End";
-												
 												$('#shareScoreWidget').show();
-												
 												return;
 											}
 											
 											if(isAI) {
 												if(ZicZacZoe.GameState.isValidMove) {
 													ZicZacZoe.GameLogic.aiMove(ZicZacZoe.GameState);
-													gBoard.updateAIMove(ZicZacZoe.GameState);
 													ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
+													gBoard.updateAIMove(ZicZacZoe.GameState);
 													ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 													ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
 												}
 												
 												if(ZicZacZoe.GameState.isGameOver) {
-													if( ZicZacZoe.GameState.player1Score != ZicZacZoe.GameState.player2Score ) {
-														gOver.setStatus(getShareString());
-														gOver.setSubStatus(getSubShareString());
-													}
-													else
-														gOver.setStatus("Match Draw");
+													updateGameOverStatus();		
 													currentScreen = "End";
-													
 													$('#shareScoreWidget').show();
-													
 													return;
 												}
 											}

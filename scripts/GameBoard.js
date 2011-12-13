@@ -248,6 +248,16 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 	/** updates the ai's move from game logic class */
 	this.updateAIMove	=	function(t) {
 		tiles[t.aiTileX][t.aiTileY].setState(t.currentPlayerID);
+		if (t.highlightTiles.length != 0)
+		{
+			console.log("highlighting tiles");
+			for(var z = 0; z < t.highlightTiles.length; z++)
+			{
+				tiles[t.highlightTiles[z].x][t.highlightTiles[z].y].highlight();
+			}
+			
+			t.highlightTiles.length = 0;
+		}
 	};
 	
 	rowCount        	=   rows;

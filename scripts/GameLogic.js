@@ -40,9 +40,7 @@ ZicZacZoe.GameLogic	=	function() {
 								var	p2			=	0;
 								var tileArray;
 								var isHightlight;
-								var highlightCount = 0;
-								
-								t.highlightTiles.length = 0;
+								var highlightCount		=	t.highlightTiles.length; 
 								
 								for (var i = 0; i < t.rows; i++)
 								{
@@ -616,7 +614,9 @@ ZicZacZoe.GameLogic	=	function() {
 								
 								t.aiTileX = bestTileI;
 								t.aiTileY = bestTileJ;
-								
+								t.selectedTileX = t.aiTileX;
+								t.selectedTileY = t.aiTileY;
+
 								t.tiles[t.aiTileX][t.aiTileY] =   t.currentPlayerID;
 							}
 	}
