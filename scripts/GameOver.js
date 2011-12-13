@@ -54,16 +54,6 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		@private */
     var tiles           =   [];
 	
-	/** Player who won the game
-		@type	string
-		@private */
-	var statusString;
-	
-	/** string describing the status of the game
-		@type	string
-		@private */
-	var statusSubString;
-	
 	/** font size to draw the game over status
 		@type	int
 		@private */
@@ -119,15 +109,6 @@ ZicZacZoe.GameOver		=	function(ctx) {
 	/** @returns	{double}	height of the board */
 	this.height			=	function() {	return		boardHeight;	}
 	
-	/** sets the status string to be displayed */
-	this.setStatus		=	function(tStatus) {
-		statusString	=	tStatus;
-	}
-	
-	this.setSubStatus	=	function(tStatus) {
-		statusSubString	=	tStatus;
-	}
-	
 	/** refreshes the board layout based on the screen size	*/
 	this.resize			=	function() {
 		refreshUI();
@@ -142,17 +123,19 @@ ZicZacZoe.GameOver		=	function(ctx) {
     
 	/**	Draw the screen
 		@param	{context} 	ctx		2D drawing context to the HTML5 canvas */
-    this.draw           =   function(ctx) {
+	this.draw           =   function(ctx) {
+		var t = ZicZacZoe.GameState;
+		
 		ctx.drawImage(bgImage, 0, 0);
 		
 		ctx.fillStyle   =   'rgba(223/255.0, 170/255.0, 110/255.0, 1.0);';
 		ctx.textAlign	=	'center';
 		ctx.font		=	statusFontSize + 'px Arial';
-		ctx.fillText(statusString, boardWidth / 2, boardHeight / 3);
+		ctx.fillText(t.gameStatus, boardWidth / 2, boardHeight / 3);
 		
 		ctx.font		=	(statusFontSize/4) + 'px Arial';
-		ctx.fillText(statusSubString, boardWidth / 2, boardHeight / 3 + 30);
-    };
+		ctx.fillText(t.gameDescription, boardWidth / 2, boardHeight / 3 + 30);
+	};
 	
 	boardX          	=   $('#boardCanvas').offset().left;
 	boardY          	=   $('#boardCanvas').offset().top;

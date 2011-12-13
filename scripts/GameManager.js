@@ -93,42 +93,26 @@ ZicZacZoe.GameManager	=	function() {
 	}
 	
 	function updateGameOverStatus() {
-		var							shareString;
 		var							st;
-		
 		st						=	ZicZacZoe.GameState;
 		
 		if(isAI) {
-			if(st.player1Score > st.player2Score)
-				shareString			=	st.p1Name + " Wins";
-			else
-				shareString			=	st.p1Name + " Loses";
+			if(st.player1Score > st.player2Score) {
+				st.gameStatus			=	st.p1Name + " Wins";
+				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and won the game";			
+			} else {
+				st.gameStatus			=	st.p1Name + " Loses";
+				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and lost the game";			
+			}
 		} else {
-			if(st.currentPlayerID == 1)
-				shareString			=	st.p1Name + " Wins";
-			else 
-				shareString			=	st.p2Name + " Wins";
+			if(st.currentPlayerID == 1) {
+				st.gameStatus			=	st.p1Name + " Wins";
+				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and won the game";
+			} else {
+				st.gameStatus			=	st.p2Name + " Wins";
+				st.gameDescription		=	st.p2Name + " scored " + st.player2Score + " points in Tic Tac Tow and won the game";
+			}
 		}
-		
-		return						shareString;
-	}
-	
-	function getSubShareString() {
-		var							shareString;
-		var							st;
-		
-		st						=	ZicZacZoe.GameState;
-		
-		if(isAI) {
-			shareString			=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and won the game";			
-		} else {
-			if(st.currentPlayerID == 1)
-				shareString		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and won the game";
-			else 
-				shareString		=	st.p2Name + " scored " + st.player2Score + " points in Tic Tac Tow and won the game";
-		}
-		
-		return						shareString;
 	}
 	
 	/** @scope ZicZacZoe.GameManager */
