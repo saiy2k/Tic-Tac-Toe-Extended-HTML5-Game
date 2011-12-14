@@ -73,7 +73,7 @@ ZicZacZoe.GameManager	=	function() {
 		});
 		
 		$("#shareFacebookWidget").click(function() {
-			ZicZacZoe.FBWrapper.shareAIWinText();
+			ZicZacZoe.FBWrapper.shareStatus();
 		});
 		
 		$("#shareTwitterWidget").click(function() {
