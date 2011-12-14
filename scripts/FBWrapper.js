@@ -21,35 +21,14 @@ ZicZacZoe.FBWrapper	=	function() {
 	
 	/** @scope ZicZacZoe.FBWrapper */
 	return {
-		
-		/** name of the player in FB
-			@type	String */
-		userName		:	"",
-		
-		/** inits FB Wrapper class */
-		init			:	function() {
-								FB.getLoginStatus(function (response) {
-									if (response.authResponse) {
-										FB.api('/me', function(response) {
-											ZicZacZoe.FBWrapper.userName	=	response.name;
-										});
-									} else {
-										
-									}
-								});
-							},
-							
-		shareAIWinText	:	function() {
-								var				string;
-								string		=	ZicZacZoe.FBWrapper.userName + " won the game against AI in " + (ZicZacZoe.GameState.p1ElapsedTime/1000.0) + " seconds";
-								
+		shareStatus		:	function() {
 								FB.ui({
 									method: 'feed',
 									name: 'Tic Tac Toe Extended',
 									link: 'http://www.gethugames.in/tictactoe/',
 									picture: 'http://www.gethugames.in/tictactoe/images/icon128.png',
 									caption: 'Won the game',
-									description: string
+									description: ZicZacZoe.GameState.gameDescription;
 								},
 								function(response) {
 								});

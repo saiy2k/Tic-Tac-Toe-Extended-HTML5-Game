@@ -85,7 +85,7 @@ ZicZacZoe.GameManager	=	function() {
 			ZicZacZoe.GameState.p1Name =	text;
 			$("#p1NameDiv2").text(text);
 			if(currentScreen == "End")
-				updateGameOverStatus();				
+				updateGameOverStatus();	
 		});
 
 		$("#p2NameDiv1").keypress(function() {
