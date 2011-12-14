@@ -58,6 +58,7 @@ ZicZacZoe.GameManager	=	function() {
 	
 	function setupJqueryHandlers() {
 		$( "#vsHumanButton" ).click(function() {
+			console.log($("#p1NameDiv1").focus());
 			currentScreen		=	"Game";
 			isAI				=	false;
 			ZicZacZoe.GameState.reset();
@@ -80,9 +81,20 @@ ZicZacZoe.GameManager	=	function() {
 		});
 		
 		$("#p1NameDiv1").keypress(function() {
-			$("#p1NameDiv2").text($("#p1NameDiv1").val());
+			var text		=	$("#p1NameDiv1").val();
+			ZicZacZoe.GameState.p1Name =	text;
+			$("#p1NameDiv2").text(text);
+			if(currentScreen == "End")
+				updateGameOverStatus();				
 		});
-		
+
+		$("#p2NameDiv1").keypress(function() {
+			var text		=	$("#p2NameDiv1").val();
+			ZicZacZoe.GameState.p2Name =	text;
+			if(currentScreen == "End")
+				updateGameOverStatus();				
+		});
+	
 		$("#p1NameDiv1").blur(function() {
 			ZicZacZoe.GameState.p1Name = $("#p1NameDiv1").val();
 		});
@@ -90,6 +102,15 @@ ZicZacZoe.GameManager	=	function() {
 		$("#p2NameDiv1").blur(function() {
 			ZicZacZoe.GameState.p2Name = $("#p2NameDiv1").val();
 		});
+
+		$("#p1NameDiv1").click(function(e) {
+			e.stopPropagation();
+		});
+
+		$("#p2NameDiv1").click(function(e) {
+			e.stopPropagation();
+		});
+
 	}
 	
 	function updateGameOverStatus() {
