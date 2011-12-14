@@ -148,7 +148,7 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 			ctx.fillText(ZicZacZoe.GameState.tiles[tileX][tileY], tileY*tileWidth + tileWidth/4, tileX*tileHeight + tileHeight/4);
 		*/
 		//if (ZicZacZoe.GameLogic.scoreTile[tileX][tileY] != 0)
-			ctx.fillText(ZicZacZoe.GameLogic.scoreTile[tileX][tileY], tileY*tileWidth + tileWidth/4, tileX*tileHeight + tileHeight/2);
+		//	ctx.fillText(ZicZacZoe.GameLogic.scoreTile[tileX][tileY], tileY*tileWidth + tileWidth/4, tileX*tileHeight + tileHeight/2);
     };
 
 	/** Sets the state of the tile. And resets the keyValue to 0.0

@@ -133,7 +133,7 @@ ZicZacZoe.GameOver		=	function(ctx) {
 		ctx.font		=	statusFontSize + 'px Arial';
 		ctx.fillText(t.gameStatus, boardWidth / 2, boardHeight / 3);
 		
-		ctx.font		=	(statusFontSize/4) + 'px Arial';
+		ctx.font		=	(statusFontSize/3) + 'px Arial';
 		ctx.fillText(t.gameDescription, boardWidth / 2, boardHeight / 3 + 30);
 	};
 	

@@ -94,23 +94,33 @@ ZicZacZoe.GameManager	=	function() {
 	
 	function updateGameOverStatus() {
 		var							st;
+		var							rankArray;
 		st						=	ZicZacZoe.GameState;
-		
+		rankArray					=	["Amoeba", "Mosquito", "Street Dog", "Police Dog", "Monkey", "Student", "Professor", "Scientist", "Super Hero", "God"];
 		if(isAI) {
 			if(st.player1Score > st.player2Score) {
+				var rank			=	st.player1Score - st.player2Score;
+				rank				=	rank<0 ? 0 : rank;
+				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p1Name + " Wins";
-				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and won the game";			
+				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points and earned the title of " + rankArray[rank];			
 			} else {
 				st.gameStatus			=	st.p1Name + " Loses";
 				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and lost the game";			
 			}
 		} else {
 			if(st.currentPlayerID == 1) {
+				var rank			=	(st.player1Score - st.player2Score) / 2 + (st.p2ElapsedTime - st.p1ElapsedTime) / 30000;
+				rank				=	rank<0 ? 0 : rank;
+				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p1Name + " Wins";
-				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and won the game";
+				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points against " + st.p2Name + " and earned the title of " + rankArray[rank];
 			} else {
+				var rank			=	(st.player2Score - st.player1Score) / 2 + (st.p1ElapsedTime - st.p2ElapsedTime) / 30000;
+				rank				=	rank<0 ? 0 : rank;
+				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p2Name + " Wins";
-				st.gameDescription		=	st.p2Name + " scored " + st.player2Score + " points in Tic Tac Tow and won the game";
+				st.gameDescription		=	st.p2Name + " scored " + st.player2Score + " points against " + st.p1Name + " and earned the title of " + rankArray[rank];
 			}
 		}
 	}
@@ -121,8 +131,7 @@ ZicZacZoe.GameManager	=	function() {
 		init			:	function() {
 								currentScreen			=	"Game";
 							
-                                var canvas              =	document.getElementById("boardCanvas");
-		                        context					=	canvas.getContext('2d');
+                                var canvas              =	document.getElementById("boardCanvas"); context					=	canvas.getContext('2d');
         
 								ZicZacZoe.GameState.reset();
 								gBoard					=	new ZicZacZoe.GameBoard(context, ZicZacZoe.GameState.rows, ZicZacZoe.GameState.cols);
@@ -167,7 +176,6 @@ ZicZacZoe.GameManager	=	function() {
 											if(isAI) {
 												if(ZicZacZoe.GameState.isValidMove) {
 													ZicZacZoe.GameLogic.aiMove(ZicZacZoe.GameState);
-													ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);												
 													gBoard.updateAIMove(ZicZacZoe.GameState);
 													ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
 													ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
