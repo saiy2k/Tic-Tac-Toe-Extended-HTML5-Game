@@ -116,11 +116,12 @@ ZicZacZoe.GameManager	=	function() {
 	function updateGameOverStatus() {
 		var							st;
 		var							rankArray;
+		var							rank;
 		st						=	ZicZacZoe.GameState;
 		rankArray					=	["Amoeba", "Mosquito", "Street Dog", "Police Dog", "Monkey", "Student", "Professor", "Scientist", "Super Hero", "God"];
 		if(isAI) {
 			if(st.player1Score > st.player2Score) {
-				var rank			=	st.player1Score - st.player2Score;
+				rank				=	st.player1Score - st.player2Score;
 				rank				=	rank<0 ? 0 : rank;
 				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p1Name + " Wins";
@@ -131,19 +132,20 @@ ZicZacZoe.GameManager	=	function() {
 			}
 		} else {
 			if(st.currentPlayerID == 1) {
-				var rank			=	(st.player1Score - st.player2Score) / 2 + (st.p2ElapsedTime - st.p1ElapsedTime) / 30000;
+				rank				=	(st.player1Score - st.player2Score) / 2 + (st.p2ElapsedTime - st.p1ElapsedTime) / 30000;
 				rank				=	rank<0 ? 0 : rank;
 				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p1Name + " Wins";
 				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points against " + st.p2Name + " and earned the title of " + rankArray[rank];
 			} else {
-				var rank			=	(st.player2Score - st.player1Score) / 2 + (st.p1ElapsedTime - st.p2ElapsedTime) / 30000;
+				rank				=	(st.player2Score - st.player1Score) / 2 + (st.p1ElapsedTime - st.p2ElapsedTime) / 30000;
 				rank				=	rank<0 ? 0 : rank;
 				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p2Name + " Wins";
 				st.gameDescription		=	st.p2Name + " scored " + st.player2Score + " points against " + st.p1Name + " and earned the title of " + rankArray[rank];
 			}
 		}
+		$("#badgeImageHolder").src			=	"images/Monkey.png";
 	}
 	
 	/** @scope ZicZacZoe.GameManager */
@@ -180,7 +182,7 @@ ZicZacZoe.GameManager	=	function() {
 								if(currentScreen		==	"Game") {
 									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height()) {
 										gBoard.update(mouse, click);
-										
+
 										if ( click != null ) {
 											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);	
 											if(ZicZacZoe.GameState.isValidMove)
