@@ -145,6 +145,8 @@ ZicZacZoe.GameManager	=	function() {
 				st.gameDescription		=	st.p2Name + " scored " + st.player2Score + " points against " + st.p1Name + " and earned the title of " + rankArray[rank];
 			}
 		}
+		$("#gOverStatus").text(st.gameStatus);
+		$("#gOverDescription").text(st.gameDescription);
 		$("#badgeImageHolder").src			=	"images/Monkey.png";
 	}
 	
@@ -217,9 +219,6 @@ ZicZacZoe.GameManager	=	function() {
 									ZicZacZoe.GameLogic.calcTime(ZicZacZoe.GameState);
 									
 								} else if(currentScreen	==	"End") {
-									if ( click != null ) {
-										gOver.update(mouse, click);
-									}
 								} else if(currentScreen	==	"Splash") {
 								
 								}

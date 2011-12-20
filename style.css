@@ -36,11 +36,22 @@ body{
 }
 
 #shareScoreWidget {
+	background-image			:	url('images/gameOver.png');
 	position				:	absolute;
-	top					:	140px;
+	top					:	40px;
 	text-align				:	center;
 	color					:	#bbb;
 	width					:	100%;	
+}
+
+#gOverStatus {
+	font					:	24px 'Arial';
+	font-weight				:	bold;
+}
+
+#gOverDescription {
+    font					:	16px 'Arial";
+    font-weight					:	bold;
 }
 
 #playOptionsDiv {
@@ -75,8 +86,10 @@ body{
 }
 
 .nameInputBox {
-	border					:	2px solid #ff9999;
-	background-color		:	#ee8888;
+	border					:	2px solid rgba(125, 76, 24, 0.5);
+	background-color			:	rgba(191, 127, 46, 0.5);
+	width					:	70px;
+	height					:	22px;
 }
 
 /* big screens */
