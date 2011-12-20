@@ -609,7 +609,7 @@ ZicZacZoe.GameLogic	=	function() {
 											bestTileJ = j;
 										}
 									}
-									console.log(str);
+									//console.log(str);
 								}
 								
 								t.aiTileX = bestTileI;

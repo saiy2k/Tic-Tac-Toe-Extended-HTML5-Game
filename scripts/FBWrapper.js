@@ -26,7 +26,7 @@ ZicZacZoe.FBWrapper	=	function() {
 									method: 'feed',
 									name: 'Tic Tac Toe Extended',
 									link: 'http://www.gethugames.in/tictactoe/',
-									picture: 'http://www.gethugames.in/tictactoe/images/icon128.png',
+									picture: ZicZacZoe.GameState.badgeURL, 
 									caption: ZicZacZoe.GameState.gameStatus,
 									description: ZicZacZoe.GameState.gameDescription
 								},

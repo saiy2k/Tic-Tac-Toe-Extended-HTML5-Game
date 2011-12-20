@@ -110,7 +110,6 @@ ZicZacZoe.GameManager	=	function() {
 		$("#p2NameDiv1").click(function(e) {
 			e.stopPropagation();
 		});
-
 	}
 	
 	function updateGameOverStatus() {
@@ -118,10 +117,12 @@ ZicZacZoe.GameManager	=	function() {
 		var							rankArray;
 		var							rank;
 		st						=	ZicZacZoe.GameState;
-		rankArray					=	["Amoeba", "Mosquito", "Street Dog", "Police Dog", "Monkey", "Student", "Professor", "Scientist", "Super Hero", "God"];
+		rankArray					=	["Amoeba", "Mosquito", "Dog", "Monkey", "Baby", "Student", "Professor", "Scientist", "Super Hero", "God"];
+		picArray					=	["images/Amoeba.png", "images/Mosquito.png", "images/Dog.png", "images/Monkey.png", "images/Baby.png", "images/Student.png", "images/Professor.png", "images/Scientist.png", "images/SuperHero.png", "images/God.png"]; 
 		if(isAI) {
 			if(st.player1Score > st.player2Score) {
-				rank				=	st.player1Score - st.player2Score;
+				rank				=	Math.round((st.player1Score - st.player2Score) - st.p1ElapsedTime / 30000);
+
 				rank				=	rank<0 ? 0 : rank;
 				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p1Name + " Wins";
@@ -131,23 +132,29 @@ ZicZacZoe.GameManager	=	function() {
 				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and lost the game";			
 			}
 		} else {
-			if(st.currentPlayerID == 1) {
-				rank				=	(st.player1Score - st.player2Score) / 2 + (st.p2ElapsedTime - st.p1ElapsedTime) / 30000;
+			if(st.player1Score > st.player2Score) {
+				rank				=	Math.round(((st.player1Score - st.player2Score) / 2) + ((st.p2ElapsedTime - st.p1ElapsedTime) / 30000));
 				rank				=	rank<0 ? 0 : rank;
 				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p1Name + " Wins";
 				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points against " + st.p2Name + " and earned the title of " + rankArray[rank];
-			} else {
-				rank				=	(st.player2Score - st.player1Score) / 2 + (st.p1ElapsedTime - st.p2ElapsedTime) / 30000;
+			} else if(st.player2Score < st.player1Score) {
+				rank				=	Math.round(((st.player2Score - st.player1Score)) / 2 + ((st.p1ElapsedTime - st.p2ElapsedTime) / 30000));
 				rank				=	rank<0 ? 0 : rank;
 				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p2Name + " Wins";
 				st.gameDescription		=	st.p2Name + " scored " + st.player2Score + " points against " + st.p1Name + " and earned the title of " + rankArray[rank];
 			}
 		}
+		console.log(st.player1Score);
+		console.log(st.player2Score);
+		console.log(st.p1ElapsedTime/30000);
+		console.log(st.p2ElapsedTime/30000);
+		console.log(rank);
 		$("#gOverStatus").text(st.gameStatus);
 		$("#gOverDescription").text(st.gameDescription);
-		$("#badgeImageHolder").src			=	"images/Monkey.png";
+		$("#badgeImageHolder").attr({ src:  picArray[rank] });
+		st.badgeURL = "http://www.gethugames.in/tictactoe/" + picArray[rank];
 	}
 	
 	/** @scope ZicZacZoe.GameManager */

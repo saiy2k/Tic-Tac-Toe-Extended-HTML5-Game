@@ -71,13 +71,13 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 
 <body onload="init()">
 	<div id="container">
-		<div id="titleDiv">Tic Tac Toe Extended</div>
+		<div id="titleDiv">Tic Tac Toe Extended BETA</div>
 		<div id="canvasContainer">
 			<canvas id="boardCanvas" width="480" height="480" ></canvas>
 			<div id="shareScoreWidget">
 				<p id="gOverStatus">  </p>
 				<p id="gOverDescription"> </p>
-				<div id="shareFacebookWidget" style="display:inline;"> <img src="images/fbIcon.png" /> </div>
+				<div id="shareFacebookWidget" style="display:inline;"> <img id="shareFacebookWidget" src="images/fbIcon.png" /> </div>
 				<div id="shareTwitterWidget" style="display:inline;"> <img src="images/tweetIcon.png" /> </div>
 			       	<br/>
 				<div id="badgeWidget"><img src="images/Amoeba.png" id="badgeImageHolder" /></div> <br/>
@@ -103,7 +103,7 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 			<div id="creditsDiv"	class="playOptionsHalf">
 				<div class="playOptionsRow" style="height: 88px">
-					<div id="gplus" style="display:block; float:left; width: 80px; height: 70px;">
+					<div id="gplus" style="display:inline; float:left; width: 70px; height: 70px;">
 					<!-- Place this tag where you want the +1 button to render -->
 					<g:plusone size="tall"></g:plusone>
 
@@ -117,8 +117,13 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 					</script>
 					</div>
 				
-					<div id="fb" style="display:block; float:left; width: 80px; height: 70px;">
+					<div id="fb" style="display:inline; float:left; width: 70px; height: 70px;">
 						<fb:like href="http://www.gethugames.in/tictactoe/" send="false" layout="box_count" width="100" show_faces="false" colorscheme="dark" font=""></fb:like>
+					</div>
+
+					<div id="tweet" style="display:inline; float:left; width: 70px; height: 70px;">
+<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 					</div>
 				</div>
 			</div>
