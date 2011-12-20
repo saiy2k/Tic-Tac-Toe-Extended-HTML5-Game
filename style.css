@@ -50,7 +50,7 @@ body{
 }
 
 #gOverDescription {
-    font					:	16px 'Arial";
+    font					:	16px 'Arial';
     font-weight					:	bold;
 }
 
@@ -90,6 +90,7 @@ body{
 	background-color			:	rgba(191, 127, 46, 0.5);
 	width					:	70px;
 	height					:	22px;
+	color					:	#4b3318;	
 }
 
 /* big screens */

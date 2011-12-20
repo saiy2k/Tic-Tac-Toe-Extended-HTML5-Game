@@ -143,6 +143,10 @@ ZicZacZoe.GameState	=	function() {
 		/** game end description
 			@type	string */
 		gameDescription		:	"",
+		
+		/** badge give
+		 	@type	image */
+		badgeURL		:	"",
 
 		/** resets the gamestate function */
 		reset			:	function() {
