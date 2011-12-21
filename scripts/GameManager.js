@@ -77,7 +77,7 @@ ZicZacZoe.GameManager	=	function() {
 		});
 		
 		$("#shareTwitterWidget").click(function() {
-			console.log("share in twitter");
+			ZicZacZoe.TwitterWrapper.shareStatus();
 		});
 		
 		$("#p1NameDiv1").keypress(function() {
