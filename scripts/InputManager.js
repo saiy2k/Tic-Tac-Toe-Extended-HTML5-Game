@@ -52,6 +52,14 @@ ZicZacZoe.InputManager	=	function() {
         isClicked       =   true;
 	});
 	
+document.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    var touch = e.touches[0];
+pageX = touch.pageX;
+pageY = touch.pageY;
+isClicked = true;
+}, false);
+
 	/** @scope ZicZacZoe.InputManager */
 	return {
 		/** return mouse co-ordinates*/

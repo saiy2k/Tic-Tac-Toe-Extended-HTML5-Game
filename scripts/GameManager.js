@@ -189,7 +189,8 @@ ZicZacZoe.GameManager	=	function() {
 								var my		=	mouse.y - gBoard.y();
 															
 								if(currentScreen		==	"Game") {
-									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height()) {
+									//if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height()) {
+{
 										gBoard.update(mouse, click);
 
 										if ( click != null ) {
