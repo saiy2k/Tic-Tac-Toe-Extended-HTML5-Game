@@ -138,7 +138,7 @@ ZicZacZoe.GameManager	=	function() {
 				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p1Name + " Wins";
 				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points against " + st.p2Name + " and earned the title of " + rankArray[rank];
-			} else if(st.player2Score < st.player1Score) {
+			} else if(st.player1Score < st.player2Score) {
 				rank				=	Math.round(((st.player2Score - st.player1Score)) / 2 + ((st.p1ElapsedTime - st.p2ElapsedTime) / 30000));
 				rank				=	rank<0 ? 0 : rank;
 				rank				=	rank>9 ? 9 : rank;
