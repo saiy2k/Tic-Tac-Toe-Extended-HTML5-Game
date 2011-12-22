@@ -71,6 +71,16 @@ ZicZacZoe.GameManager	=	function() {
 			ZicZacZoe.GameState.reset();
 			gBoard.reset();
 		});
+
+		$("#infoButton").click(function() {
+			if($('#infoScreen').css('display') == 'none') {
+				currentScreen	=	"Info";
+				$('#infoScreen').show();
+			} else {
+				currentScreen	=	"Game";
+				$('#infoScreen').hide();
+			}
+		});
 		
 		$("#shareFacebookWidget").click(function() {
 			ZicZacZoe.FBWrapper.shareStatus();

@@ -36,13 +36,22 @@ body{
 }
 
 #shareScoreWidget {
-	background-color			:	rgba(78, 55, 30, 0.8);
+	background-color		:	rgba(78, 55, 30, 0.8);
 	position				:	absolute;
-	top					:	20px;
+	top						:	20px;
 	text-align				:	center;
 	color					:	#bbb;
 	width					:	100%;	
 	height					:	320px;
+}
+
+#infoScreen {
+	position				:	absolute;
+	background				:	url('images/infoScreen.png');
+	width					:	320px;
+	height					:	320px;
+	top						:	20px;
+	text-align				: 	center;
 }
 
 #gOverStatus {
@@ -52,7 +61,7 @@ body{
 
 #gOverDescription {
     font					:	12px 'Arial';
-    font-weight					:	bold;
+    font-weight				:	bold;
 }
 
 #playOptionsDiv {
@@ -94,7 +103,7 @@ body{
 .playOptionsRow{
 	display					:	block;
 	height					:	38px;
-	text-decoration				:	none;
+	text-decoration			:	none;
 	padding-top				:	19px;
 }
 .playOptionsRow:hover{
@@ -103,92 +112,149 @@ body{
 
 .nameInputBox {
 	border					:	2px solid rgba(125, 76, 24, 0.5);
-	background-color			:	rgba(191, 127, 46, 0.5);
+	background-color		:	rgba(191, 127, 46, 0.5);
 	width					:	52px;
 	height					:	22px;
 	color					:	#4b3318;	
 }
 
-/* big screens */
-@media screen and (min-width: 800px) {
-	#container
-	{
-		width				:	480px;
-		height				:	640px;
-		margin				:	-320px 0 0 -240px;
-		background			:	url('images/mainUI2X.png');
-	}
-	
-	#titleDiv
-	{
-		font-size			:	24px;
-		font-weight			:	bold;
-		font-variant		:	small-caps;
-	}
-	
-	#canvasContainer
-	{
-		width				:	480px;
-		height				:	480px;
-	}
-
-	#shareScoreWidget {
-		top				:	28px;
-		height				:	480px;
-	}
-
-#gOverStatus {
-	font					:	24px 'Arial';
+#infoSourceText {
+	position				:	absolute;
+	font					:	9px 'Verdana';
+	top						:	276px;
+	left					:	20px;
+	width					:	280px;
+	margin					:	auto;
 	font-weight				:	bold;
 }
 
+#infoLicenseText {
+	position				:	absolute;
+	font					:	9px 'Verdana';
+	top						:	10px;
+	left					:	20px;
+	width					:	280px;
+	margin					:	auto;
+	font-weight				:	bold;
+}
+
+#infoButton {
+	background				:	rgba(10, 10, 10, 0.5);
+	float					:	right;
+	padding-left			:	4px;
+	padding-right			:	4px;
+	font					:	17px 'Courier';
+	font-weight				:	bold;
+	color					:	#bbb;
+}
+
+/* big screens */
+@media screen and (min-width: 800px) {
+#container
+{
+	width				:	480px;
+	height				:	640px;
+	margin				:	-320px 0 0 -240px;
+	background			:	url('images/mainUI2X.png');
+}
+
+#titleDiv
+{
+	font-size			:	24px;
+	font-weight			:	bold;
+	font-variant		:	small-caps;
+}
+
+#canvasContainer
+{
+	width				:	480px;
+	height				:	480px;
+}
+
+#shareScoreWidget {
+	top					:	28px;
+	height				:	480px;
+}
+
+#infoScreen {
+	background			:	url('images/infoScreen2X.png');
+	top					:	28px;
+	width				:	480px;
+	height				:	480px;
+}
+
+#infoButton {
+	font				:	24px 'Courier';
+	font-weight			:	bold;
+}
+
+#gOverStatus {
+	font				:	24px 'Arial';
+	font-weight			:	bold;
+}
+
 #gOverDescription {
-    font					:	16px 'Arial';
-    font-weight					:	bold;
+    font				:	16px 'Arial';
+    font-weight			:	bold;
 }
 
 
 #badgeImageHolder {
-	width					:	256px;
-	height					:	256px;
+	width				:	256px;
+	height				:	256px;
 }
 
 #shareFacebookWidget {
-	width					:	48px;
-	height					:	48px;
+	width				:	48px;
+	height				:	48px;
 }
 
 #shareTwitterWidget {
-	width					:	48px;
-	height					:	48px;
+	width				:	48px;
+	height				:	48px;
 }
 
-	.scoreBoardLabel {
-		font				:	22px 'Verdana';
-	}
+.scoreBoardLabel {
+	font				:	22px 'Verdana';
+}
 
-	.playOptionsRow{
-		padding-top			:	12px;
-	}
+.playOptionsRow{
+	padding-top			:	12px;
+}
 
-	.nameInputBox {
-		width				:	72px;
-	}
+.nameInputBox {
+	width				:	72px;
+}
+
+#infoSourceText {
+	top					:	420px;
+	left				:	100px;
+
+}
+
+#infoLicenseText {
+	width				:	440px;
+	top					:	28px;
+	left				:	20px;
+	font				:	12px 'Verdana';
+	font-weight			:	bold;
+}
 }
 
 /* mobile screens */
 @media screen and (max-width: 800px) {
-	#container
-	{
-		width				:	320px;
-		height				:	480px;
-		margin				:	-240px 0 0 -160px;
-		background			:	url('images/mainUI.png');
-	}
-	
-	#canvasContainer
-	{
-		width				:	320px;
-		height				:	320px;
-	}
+#container
+{
+	width				:	320px;
+	height				:	480px;
+	margin				:	-240px 0 0 -160px;
+	background			:	url('images/mainUI.png');
+}
+
+#canvasContainer
+{
+	width				:	320px;
+	height				:	320px;
+}
+
 }

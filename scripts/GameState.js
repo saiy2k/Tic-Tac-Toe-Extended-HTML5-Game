@@ -173,6 +173,7 @@ ZicZacZoe.GameState	=	function() {
 								}
 								
 								$('#shareScoreWidget').hide();
+								$('#infoScreen').hide();
 							}
 	};
 }();
