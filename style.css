@@ -36,21 +36,22 @@ body{
 }
 
 #shareScoreWidget {
-	background-image			:	url('images/gameOver.png');
+	background-color			:	rgba(78, 55, 30, 0.8);
 	position				:	absolute;
-	top					:	40px;
+	top					:	20px;
 	text-align				:	center;
 	color					:	#bbb;
 	width					:	100%;	
+	height					:	320px;
 }
 
 #gOverStatus {
-	font					:	24px 'Arial';
+	font					:	18px 'Arial';
 	font-weight				:	bold;
 }
 
 #gOverDescription {
-    font					:	16px 'Arial';
+    font					:	12px 'Arial';
     font-weight					:	bold;
 }
 
@@ -64,7 +65,22 @@ body{
 	display					:	inline-block;
 	width					:	10%;
 	border					:	0px solid;
-	font					:	22px Verdana;
+	font					:	16px Verdana;
+}
+
+#shareFacebookWidget {
+	width					:	32px;
+	height					:	32px;
+}
+
+#shareTwitterWidget {
+	width					:	32px;
+	height					:	32px;
+}
+
+#badgeImageHolder {
+	width					:	180px;
+	height					:	180px;
 }
 
 .playOptionsHalf{
@@ -78,8 +94,8 @@ body{
 .playOptionsRow{
 	display					:	block;
 	height					:	38px;
-	text-decoration			:	none;
-	padding-top				:	12px;
+	text-decoration				:	none;
+	padding-top				:	19px;
 }
 .playOptionsRow:hover{
 	background				:	url('images/brownTransparent.png');
@@ -88,7 +104,7 @@ body{
 .nameInputBox {
 	border					:	2px solid rgba(125, 76, 24, 0.5);
 	background-color			:	rgba(191, 127, 46, 0.5);
-	width					:	70px;
+	width					:	52px;
 	height					:	22px;
 	color					:	#4b3318;	
 }
@@ -116,6 +132,48 @@ body{
 		height				:	480px;
 	}
 
+	#shareScoreWidget {
+		top				:	28px;
+		height				:	480px;
+	}
+
+#gOverStatus {
+	font					:	24px 'Arial';
+	font-weight				:	bold;
+}
+
+#gOverDescription {
+    font					:	16px 'Arial';
+    font-weight					:	bold;
+}
+
+
+#badgeImageHolder {
+	width					:	256px;
+	height					:	256px;
+}
+
+#shareFacebookWidget {
+	width					:	48px;
+	height					:	48px;
+}
+
+#shareTwitterWidget {
+	width					:	48px;
+	height					:	48px;
+}
+
+	.scoreBoardLabel {
+		font				:	22px 'Verdana';
+	}
+
+	.playOptionsRow{
+		padding-top			:	12px;
+	}
+
+	.nameInputBox {
+		width				:	72px;
+	}
 }
 
 /* mobile screens */

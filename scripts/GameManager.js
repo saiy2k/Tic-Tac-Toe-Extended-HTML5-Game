@@ -240,7 +240,6 @@ ZicZacZoe.GameManager	=	function() {
 								else if(currentScreen	==	"End")
 								{
 									gBoard.draw(context);
-									gOver.draw(context);
 								}
 								else if(currentScreen	==	"Splash")
 								{
