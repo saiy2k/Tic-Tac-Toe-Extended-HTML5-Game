@@ -1,7 +1,6 @@
 CACHE MANIFEST
-#This is a comment
+#v1
 
-CACHE
 index.html
 style.css
 README
@@ -9,7 +8,6 @@ images/board.jpg
 images/board2X.jpg
 images/brownTransparent.png
 images/gameOver.png
-images/gameOver2X.png
 images/mainUI.png
 images/mainUI2X.png
 images/oTile.jpg
@@ -26,3 +24,5 @@ scripts/GameOver.js
 scripts/GameState.js
 scripts/InputManager.js
 scripts/ZicZacZoe.js
+scripts/FBWrapper.js
+scripts/TwitterWrapper.js

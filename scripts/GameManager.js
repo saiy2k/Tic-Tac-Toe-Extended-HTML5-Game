@@ -41,11 +41,6 @@ ZicZacZoe.GameManager	=	function() {
 		@private */
 	var gBoard;
 	
-	/**	GameOver Screen
-		@type	ZicZacZoe.GameOver
-		@private */
-	var gOver;
-	
 	/**	Current Game Screen. Possible Values: "Splash", "Game", "End"
 		@type	string
 		@private */
@@ -177,8 +172,6 @@ ZicZacZoe.GameManager	=	function() {
         
 								ZicZacZoe.GameState.reset();
 								gBoard					=	new ZicZacZoe.GameBoard(context, ZicZacZoe.GameState.rows, ZicZacZoe.GameState.cols);
-								gOver					=	new ZicZacZoe.GameOver(context);
-								
 								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
 																
 								setupJqueryHandlers();
