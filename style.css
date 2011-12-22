@@ -21,6 +21,7 @@ body{
     background-color		:	#dddddd;
 	text-align				:	center;
 	color					:	#4b3318;
+	cursor					:	pointer;
 }
 
 #container{
@@ -98,6 +99,7 @@ body{
 	float					:	left;
 	margin					:	2px;
 	background				:	url('images/brownTransparent.png');
+	cursor					:	pointer;
 }
 
 .playOptionsRow{

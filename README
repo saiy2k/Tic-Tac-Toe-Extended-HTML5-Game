@@ -1,0 +1,22 @@
+********************
+Tic Tac Toe Extended
+********************
+
+Game Description:
+This is an extended version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter.
+
+HTML5 Features:
+  * Uses Canvas Tag to draw the game board and player marks.
+  * supports Offline mode
+  * uses CSS media queries to scale to different screen sizes.
+  * Playable on all devices from Desktop, Tablet to mobile devices (with minimum resolution of 320x480)
+
+Class Design:
+  * GameManager: Handles high level game flow and handles UI controls and their events(using jQuery).
+  * InputManager: manages game specific input.
+  * GameState: holds the state of the game from game tile array, scores, clicked tile, elapsed time, player names, etc.,
+  * GameLogic: core game logics like score calculation, checking for win/lose condition, AI.
+  * GameBoard: updates and draws the gameboard using an array of BoardTile objects.
+  * BoardTile: handles a single tile in the board, updates and draws them.
+  * FBWrapper: connects to facebook and shares the game status.
+  * TwitterWrapper: connects to twitter and shares the game status.
