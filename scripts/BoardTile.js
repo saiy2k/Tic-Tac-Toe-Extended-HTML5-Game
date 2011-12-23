@@ -28,7 +28,7 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	@param	{double}	tWidth	width of the tile
 	@param	{double}	tHeight	height of the tile
 */
-ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
+TicTacToe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 	
 	/**	x image
 		@type	image
@@ -144,11 +144,11 @@ ZicZacZoe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 		
 		/*
 		ctx.fillText(tileX + ', ' + tileY, tileY*tileWidth + tileWidth/1.5, tileX*tileHeight + tileHeight/1.5);
-		if (ZicZacZoe.GameState.tiles[tileX][tileY] != -1)
-			ctx.fillText(ZicZacZoe.GameState.tiles[tileX][tileY], tileY*tileWidth + tileWidth/4, tileX*tileHeight + tileHeight/4);
+		if (TicTacToe.GameState.tiles[tileX][tileY] != -1)
+			ctx.fillText(TicTacToe.GameState.tiles[tileX][tileY], tileY*tileWidth + tileWidth/4, tileX*tileHeight + tileHeight/4);
 		*/
-		//if (ZicZacZoe.GameLogic.scoreTile[tileX][tileY] != 0)
-		//	ctx.fillText(ZicZacZoe.GameLogic.scoreTile[tileX][tileY], tileY*tileWidth + tileWidth/4, tileX*tileHeight + tileHeight/2);
+		//if (TicTacToe.GameLogic.scoreTile[tileX][tileY] != 0)
+		//	ctx.fillText(TicTacToe.GameLogic.scoreTile[tileX][tileY], tileY*tileWidth + tileWidth/4, tileX*tileHeight + tileHeight/2);
     };
 
 	/** Sets the state of the tile. And resets the keyValue to 0.0

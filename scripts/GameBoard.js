@@ -26,7 +26,7 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	@param	{int}		rows	number of rows
 	@param	{int}		cols	number of cols
 */
-ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
+TicTacToe.GameBoard		=	function(ctx, rows, cols) {
 	/**	Background Picture
 		@type	image
 		@private */
@@ -161,7 +161,7 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 		@param	{point}		m		the current mouse co-ordinate
 		@param	{bool}		clk		indicates if the mouse is clicked */
 	this.update			=	function(m, clk) {
-		var t			=	ZicZacZoe.GameState;
+		var t			=	TicTacToe.GameState;
 		var mx          =   (m.x - boardX);
 		var my          =   (m.y - boardY);
 		
@@ -230,7 +230,7 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 		//mark the hovered tile in red color
         ctx.fillStyle   =   'rgba(255, 0, 0, 0.5);';
         ctx.beginPath();
-        ctx.rect(ZicZacZoe.GameState.hoverTileY*tileWidth, ZicZacZoe.GameState.hoverTileX*tileHeight, tileWidth, tileHeight);
+        ctx.rect(TicTacToe.GameState.hoverTileY*tileWidth, TicTacToe.GameState.hoverTileX*tileHeight, tileWidth, tileHeight);
         ctx.closePath();
         ctx.fill();
     };
@@ -241,7 +241,7 @@ ZicZacZoe.GameBoard		=	function(ctx, rows, cols) {
 		{
 			tiles[i]    =   [];
 			for (var j = 0; j < colCount; j++)
-				tiles[i][j]	=	new ZicZacZoe.BoardTile(xImage, oImage, i, j, tileWidth, tileHeight);
+				tiles[i][j]	=	new TicTacToe.BoardTile(xImage, oImage, i, j, tileWidth, tileHeight);
 		}
 	};
 	

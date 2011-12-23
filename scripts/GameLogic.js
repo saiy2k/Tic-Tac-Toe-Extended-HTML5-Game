@@ -22,9 +22,9 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	
 	@namespace
 */
-ZicZacZoe.GameLogic	=	function() {
+TicTacToe.GameLogic	=	function() {
 	
-	/** @scope ZicZacZoe.GameLogic */
+	/** @scope TicTacToe.GameLogic */
 	return {
 
 		/** 2D array of scoring tiles		
@@ -33,7 +33,7 @@ ZicZacZoe.GameLogic	=	function() {
 		
 		
 		/** Analyzes the current tile array and calculates the score
-			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
+			@param	{GameState}		t	reference to the TicTacToe.GameState */
 		updateScore		:	function(t)
 							{								
 								var	p1			=	0;
@@ -215,7 +215,7 @@ ZicZacZoe.GameLogic	=	function() {
 							},
 		
 		/** Ends the current turn, by alternating the player ID
-			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
+			@param	{GameState}		t	reference to the TicTacToe.GameState */
 		endTurn			:	function(t)
 							{
 								var						isGameOver;
@@ -256,7 +256,7 @@ ZicZacZoe.GameLogic	=	function() {
 							},
 
 		/** Calculates and updates the elapsed time for both the players
-			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
+			@param	{GameState}		t	reference to the TicTacToe.GameState */
 		calcTime		:	function(t)
 							{
 								var							currentTime;
@@ -290,16 +290,16 @@ ZicZacZoe.GameLogic	=	function() {
 							},
 		
 		/** Updates the Score Div's with the score
-			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
+			@param	{GameState}		t	reference to the TicTacToe.GameState */
 		updateUI		:	function(t) {
 								$("#player1Score").text(t.player1Score);
 								$("#player2Score").text(t.player2Score);
 							},
 							
 		/** analyzes the board and find the best move for ai
-			@param	{GameState}		t	reference to the ZicZacZoe.GameState */
+			@param	{GameState}		t	reference to the TicTacToe.GameState */
 		aiMove			:	function(t) {			
-								var l = ZicZacZoe.GameLogic;
+								var l = TicTacToe.GameLogic;
 
 								for (var i = 0; i < t.rows; i++) {
 									l.scoreTile[i]    =   [];

@@ -22,7 +22,7 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	player scores, current player, etc.,
 	<br> <br>
 	This is a static class and so any other classes/objects can access
-	this class by ZicZacZoe.GameState. Some other global constants like number
+	this class by TicTacToe.GameState. Some other global constants like number
 	of rows and columns are also stored in this class
 	
 	Grid Data Structure:
@@ -47,9 +47,9 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	@namespace
 */
 
-ZicZacZoe.GameState	=	function() {
+TicTacToe.GameState	=	function() {
 	
-	/** @scope ZicZacZoe.GameState */
+	/** @scope TicTacToe.GameState */
 	return {
 	
 		/**	2D Array of numbers that indicate the tile type
@@ -151,7 +151,7 @@ ZicZacZoe.GameState	=	function() {
 		/** resets the gamestate function */
 		reset			:	function() {
 								var						s;
-								s					=	ZicZacZoe.GameState;
+								s					=	TicTacToe.GameState;
 								
 								s.currentPlayerID	=	0;
 								s.player1Score		=	0;
@@ -164,11 +164,11 @@ ZicZacZoe.GameState	=	function() {
 								
 								for (var i = 0; i < s.rows; i++) {
 									s.tiles[i]    =   [];
-									ZicZacZoe.GameLogic.scoreTile[i] = [];
+									TicTacToe.GameLogic.scoreTile[i] = [];
 									
 									for (var  j = 0; j < s.cols; j++) {
 										s.tiles[i][j] =   -1;
-										ZicZacZoe.GameLogic.scoreTile[i][j] = 0;
+										TicTacToe.GameLogic.scoreTile[i][j] = 0;
 									}
 								}
 								

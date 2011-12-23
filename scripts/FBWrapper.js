@@ -17,18 +17,18 @@ You should have received a copy of the GNU General Public License
 along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-ZicZacZoe.FBWrapper	=	function() {
+TicTacToe.FBWrapper	=	function() {
 	
-	/** @scope ZicZacZoe.FBWrapper */
+	/** @scope TicTacToe.FBWrapper */
 	return {
 		shareStatus		:	function() {
 								FB.ui({
 									method: 'feed',
 									name: 'Tic Tac Toe Extended',
 									link: 'http://www.gethugames.in/tictactoe/',
-									picture: ZicZacZoe.GameState.badgeURL, 
-									caption: ZicZacZoe.GameState.gameStatus,
-									description: ZicZacZoe.GameState.gameDescription
+									picture: TicTacToe.GameState.badgeURL, 
+									caption: TicTacToe.GameState.gameStatus,
+									description: TicTacToe.GameState.gameDescription
 								},
 								function(response) {
 								});

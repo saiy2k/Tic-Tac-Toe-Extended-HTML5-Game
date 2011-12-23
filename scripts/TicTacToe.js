@@ -18,8 +18,8 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-    ZicZacZoe Namespace
+    TicTacToe Namespace
 	
 	@namespace
 */
-var ZicZacZoe		=	{};
+var TicTacToe		=	{};

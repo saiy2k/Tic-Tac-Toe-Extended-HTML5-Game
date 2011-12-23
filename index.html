@@ -22,11 +22,12 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	<title> Tic Tac Toe Extended </title>
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
+
 	<meta property="og:title" content="Tic Tac Toe Extended" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="http://www.gethugames.in/tictactoe/" />
 	<meta property="og:image" content="https://lh5.googleusercontent.com/-UV__GZ-xeTM/Tmho-72dHRI/AAAAAAAAAcQ/LDezwfyCnI0/s800/spiroGraph128.png" />
-	<meta property="og:site_name" content="Zic Zac Zoe" />
+	<meta property="og:site_name" content="Tic Tac Toe" />
 	<meta property="fb:admins" content="100000655597076" />
 	<meta property="og:description" content="Extended version of Tic Tac Toe Extended game made in HTML5"/>
 		  
@@ -39,7 +40,7 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	<link type="text/css" href="style.css" rel="Stylesheet" />
 	
 	<script type="text/javascript" src="lib/jquery-1.5.2.js"></script>
-	<script type="text/javascript" src="scripts/ZicZacZoe.js"></script>
+	<script type="text/javascript" src="scripts/TicTacToe.js"></script>
 	<script type="text/javascript" src="scripts/FBWrapper.js"></script>
 	<script type="text/javascript" src="scripts/TwitterWrapper.js"></script>
 	<script type="text/javascript" src="scripts/InputManager.js"></script>
@@ -55,7 +56,7 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 				$("#browserDiv").show();
 				$("#loadingDiv").hide();
 			} else {
-				ZicZacZoe.GameManager.init();
+				TicTacToe.GameManager.init();
 				$("#preLoader").hide();
 			}
 		}

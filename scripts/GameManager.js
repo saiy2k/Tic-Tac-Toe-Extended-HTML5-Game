@@ -24,7 +24,7 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	@namespace
 	@author			<a href="saiy2k.blogspot.com">Saiyasodharan</a>
 */
-ZicZacZoe.GameManager	=	function() {
+TicTacToe.GameManager	=	function() {
 
 	/**	Frames per Second (30)
 		@type	double
@@ -37,7 +37,7 @@ ZicZacZoe.GameManager	=	function() {
     var context;
     
     /** GameBoard object
-		@type	ZicZacZoe.GameBoard
+		@type	TicTacToe.GameBoard
 		@private */
 	var gBoard;
 	
@@ -56,14 +56,14 @@ ZicZacZoe.GameManager	=	function() {
 			console.log($("#p1NameDiv1").focus());
 			currentScreen		=	"Game";
 			isAI				=	false;
-			ZicZacZoe.GameState.reset();
+			TicTacToe.GameState.reset();
 			gBoard.reset();
 		});
 		
 		$("#vsAIButton").click(function() {
 			currentScreen		=	"Game";
 			isAI				=	true;
-			ZicZacZoe.GameState.reset();
+			TicTacToe.GameState.reset();
 			gBoard.reset();
 		});
 
@@ -78,16 +78,16 @@ ZicZacZoe.GameManager	=	function() {
 		});
 		
 		$("#shareFacebookWidget").click(function() {
-			ZicZacZoe.FBWrapper.shareStatus();
+			TicTacToe.FBWrapper.shareStatus();
 		});
 		
 		$("#shareTwitterWidget").click(function() {
-			ZicZacZoe.TwitterWrapper.shareStatus();
+			TicTacToe.TwitterWrapper.shareStatus();
 		});
 		
 		$("#p1NameDiv1").keypress(function() {
 			var text		=	$("#p1NameDiv1").val();
-			ZicZacZoe.GameState.p1Name =	text;
+			TicTacToe.GameState.p1Name =	text;
 			$("#p1NameDiv2").text(text);
 			if(currentScreen == "End")
 				updateGameOverStatus();	
@@ -95,17 +95,17 @@ ZicZacZoe.GameManager	=	function() {
 
 		$("#p2NameDiv1").keypress(function() {
 			var text		=	$("#p2NameDiv1").val();
-			ZicZacZoe.GameState.p2Name =	text;
+			TicTacToe.GameState.p2Name =	text;
 			if(currentScreen == "End")
 				updateGameOverStatus();				
 		});
 	
 		$("#p1NameDiv1").blur(function() {
-			ZicZacZoe.GameState.p1Name = $("#p1NameDiv1").val();
+			TicTacToe.GameState.p1Name = $("#p1NameDiv1").val();
 		});
 		
 		$("#p2NameDiv1").blur(function() {
-			ZicZacZoe.GameState.p2Name = $("#p2NameDiv1").val();
+			TicTacToe.GameState.p2Name = $("#p2NameDiv1").val();
 		});
 
 		$("#p1NameDiv1").click(function(e) {
@@ -121,7 +121,7 @@ ZicZacZoe.GameManager	=	function() {
 		var							st;
 		var							rankArray;
 		var							rank;
-		st						=	ZicZacZoe.GameState;
+		st						=	TicTacToe.GameState;
 		rankArray					=	["Amoeba", "Mosquito", "Dog", "Monkey", "Baby", "Student", "Professor", "Scientist", "Super Hero", "God"];
 		picArray					=	["images/Amoeba.png", "images/Mosquito.png", "images/Dog.png", "images/Monkey.png", "images/Baby.png", "images/Student.png", "images/Professor.png", "images/Scientist.png", "images/SuperHero.png", "images/God.png"]; 
 		if(isAI) {
@@ -162,7 +162,7 @@ ZicZacZoe.GameManager	=	function() {
 		st.badgeURL = "http://www.gethugames.in/tictactoe/" + picArray[rank];
 	}
 	
-	/** @scope ZicZacZoe.GameManager */
+	/** @scope TicTacToe.GameManager */
 	return {
 		/** Initializes the canvas context, game board, gamestate and sets the game loop */
 		init			:	function() {
@@ -170,23 +170,23 @@ ZicZacZoe.GameManager	=	function() {
 							
                                 var canvas              =	document.getElementById("boardCanvas"); context					=	canvas.getContext('2d');
         
-								ZicZacZoe.GameState.reset();
-								gBoard					=	new ZicZacZoe.GameBoard(context, ZicZacZoe.GameState.rows, ZicZacZoe.GameState.cols);
-								setInterval(ZicZacZoe.GameManager.loop, (1/FPS) * 1000);
+								TicTacToe.GameState.reset();
+								gBoard					=	new TicTacToe.GameBoard(context, TicTacToe.GameState.rows, TicTacToe.GameState.cols);
+								setInterval(TicTacToe.GameManager.loop, (1/FPS) * 1000);
 																
 								setupJqueryHandlers();
 							},
 
 		/** Game Loop. Getting called as per the given FPS */
 		loop			:	function() {
-								ZicZacZoe.GameManager.update();
-								ZicZacZoe.GameManager.draw();
+								TicTacToe.GameManager.update();
+								TicTacToe.GameManager.draw();
 							},
 
 		/** update the current screen */
 		update			:	function() {								
-								var mouse	=   ZicZacZoe.InputManager.getMouse();
-                                var click   =   ZicZacZoe.InputManager.getClickIfAny();
+								var mouse	=   TicTacToe.InputManager.getMouse();
+                                var click   =   TicTacToe.InputManager.getClickIfAny();
 
 								var	mx		=	mouse.x - gBoard.x();
 								var my		=	mouse.y - gBoard.y();
@@ -197,12 +197,12 @@ ZicZacZoe.GameManager	=	function() {
 										gBoard.update(mouse, click);
 
 										if ( click != null ) {
-											ZicZacZoe.GameLogic.updateScore(ZicZacZoe.GameState);	
-											if(ZicZacZoe.GameState.isValidMove)
-												ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
-											ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+											TicTacToe.GameLogic.updateScore(TicTacToe.GameState);	
+											if(TicTacToe.GameState.isValidMove)
+												TicTacToe.GameLogic.endTurn(TicTacToe.GameState);
+											TicTacToe.GameLogic.updateUI(TicTacToe.GameState);
 											
-											if(ZicZacZoe.GameState.isGameOver) {
+											if(TicTacToe.GameState.isGameOver) {
 												updateGameOverStatus();
 												currentScreen = "End";
 												$('#shareScoreWidget').show();
@@ -210,14 +210,14 @@ ZicZacZoe.GameManager	=	function() {
 											}
 											
 											if(isAI) {
-												if(ZicZacZoe.GameState.isValidMove) {
-													ZicZacZoe.GameLogic.aiMove(ZicZacZoe.GameState);
-													gBoard.updateAIMove(ZicZacZoe.GameState);
-													ZicZacZoe.GameLogic.endTurn(ZicZacZoe.GameState);
-													ZicZacZoe.GameLogic.updateUI(ZicZacZoe.GameState);
+												if(TicTacToe.GameState.isValidMove) {
+													TicTacToe.GameLogic.aiMove(TicTacToe.GameState);
+													gBoard.updateAIMove(TicTacToe.GameState);
+													TicTacToe.GameLogic.endTurn(TicTacToe.GameState);
+													TicTacToe.GameLogic.updateUI(TicTacToe.GameState);
 												}
 												
-												if(ZicZacZoe.GameState.isGameOver) {
+												if(TicTacToe.GameState.isGameOver) {
 													updateGameOverStatus();		
 													currentScreen = "End";
 													$('#shareScoreWidget').show();
@@ -227,7 +227,7 @@ ZicZacZoe.GameManager	=	function() {
 										}
 									}
 									
-									ZicZacZoe.GameLogic.calcTime(ZicZacZoe.GameState);
+									TicTacToe.GameLogic.calcTime(TicTacToe.GameState);
 									
 								} else if(currentScreen	==	"End") {
 								} else if(currentScreen	==	"Splash") {

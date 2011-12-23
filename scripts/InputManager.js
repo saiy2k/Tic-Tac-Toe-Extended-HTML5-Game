@@ -22,7 +22,7 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	
 	@class
 */
-ZicZacZoe.InputManager	=	function() {
+TicTacToe.InputManager	=	function() {
 
 	/** x coordinate of the mouse in the page, in pixels
 		@type	double
@@ -60,7 +60,7 @@ pageY = touch.pageY;
 isClicked = true;
 }, false);
 
-	/** @scope ZicZacZoe.InputManager */
+	/** @scope TicTacToe.InputManager */
 	return {
 		/** return mouse co-ordinates*/
 		getMouse		:	function()

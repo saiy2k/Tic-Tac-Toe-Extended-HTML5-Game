@@ -17,12 +17,12 @@ You should have received a copy of the GNU General Public License
 along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-ZicZacZoe.TwitterWrapper	=	function() {
+TicTacToe.TwitterWrapper	=	function() {
 	
-	/** @scope ZicZacZoe.Wrapper */
+	/** @scope TicTacToe.Wrapper */
 	return {
 		shareStatus		:	function() {
-								window.open("http://twitter.com/home?status=" + ZicZacZoe.GameState.gameDescription + " goo.gl/sfb8L", 'title', 'height=300, width=480');
+								window.open("http://twitter.com/home?status=" + TicTacToe.GameState.gameDescription + " goo.gl/sfb8L", 'title', 'height=300, width=480');
 							}
 	};
 }();		
