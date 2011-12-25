@@ -94,7 +94,7 @@ body{
 
 .playOptionsHalf{
 	display					:	inline-block;
-	width					:	49%;
+	width					:	48%;
 	float					:	left;
 	margin					:	2px;
 	background				:	url('images/brownTransparent.png');
@@ -142,11 +142,13 @@ body{
 #infoButton {
 	background				:	rgba(10, 10, 10, 0.5);
 	float					:	right;
+	margin					:	0px;
 	padding-left			:	4px;
 	padding-right			:	4px;
 	font					:	17px 'Courier';
 	font-weight				:	bold;
 	color					:	#bbb;
+	height					:	20px;
 }
 
 #boardCanvas {
@@ -207,6 +209,7 @@ text-align:center;
 #infoButton {
 	font				:	24px 'Courier';
 	font-weight			:	bold;
+	height				:	27px;
 }
 
 #gOverStatus {
