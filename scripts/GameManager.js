@@ -126,7 +126,7 @@ TicTacToe.GameManager	=	function() {
 		picArray					=	["images/Amoeba.png", "images/Mosquito.png", "images/Dog.png", "images/Monkey.png", "images/Baby.png", "images/Student.png", "images/Professor.png", "images/Scientist.png", "images/SuperHero.png", "images/God.png"]; 
 		if(isAI) {
 			if(st.player1Score > st.player2Score) {
-				rank				=	Math.round((st.player1Score - st.player2Score) - st.p1ElapsedTime / 30000);
+				rank				=	Math.round(5 + ((st.player1Score - st.player2Score)/2) - st.p1ElapsedTime / 30000);
 
 				rank				=	rank<0 ? 0 : rank;
 				rank				=	rank>9 ? 9 : rank;
@@ -212,6 +212,7 @@ TicTacToe.GameManager	=	function() {
 											if(isAI) {
 												if(TicTacToe.GameState.isValidMove) {
 													TicTacToe.GameLogic.aiMove(TicTacToe.GameState);
+													TicTacToe.GameLogic.updateScore(TicTacToe.GameState);
 													gBoard.updateAIMove(TicTacToe.GameState);
 													TicTacToe.GameLogic.endTurn(TicTacToe.GameState);
 													TicTacToe.GameLogic.updateUI(TicTacToe.GameState);
@@ -229,10 +230,14 @@ TicTacToe.GameManager	=	function() {
 									
 									TicTacToe.GameLogic.calcTime(TicTacToe.GameState);
 									
-								} else if(currentScreen	==	"End") {
+								} else if(currentScreen	==	"Info") {
+									if (click != null) {
+										currentScreen	=	"Game";
+										$('#infoScreen').hide();
+									}
 								} else if(currentScreen	==	"Splash") {
-								
 								}
+
 							},
 
 		/** draw the current screen */

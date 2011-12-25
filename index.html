@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <!DOCTYPE html>
-<html manifest="./offline.appcache"> 
+<html manifest="./offline.appcache">
 <head>
 	<title> Tic Tac Toe Extended </title>
 
@@ -73,6 +73,15 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		  })();
 	</script>
+
+	<!-- Place this render call where appropriate -->
+	<script type="text/javascript">
+	  (function() {
+	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	po.src = 'https://apis.google.com/js/plusone.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	 })();
+	</script>
 </head>
 
 <body onload="init()">
@@ -124,8 +133,8 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 				</div>
 			</div>
 			<div id="creditsDiv"	class="playOptionsHalf">
-				<div class="playOptionsRow" style="height: 88px">
-					<div id="gplus" style="display:inline; float:left; width: 70px; height: 70px;">
+				<div class="playOptionsRow" style="height: 88px; text-align:center">
+					<div id="gplus" class="socialButton">
 					<!-- Place this tag where you want the +1 button to render -->
 					<g:plusone size="tall"></g:plusone>
 
@@ -139,11 +148,11 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 					</script>
 					</div>
 				
-					<div id="fb" style="display:inline; float:left; width: 70px; height: 70px;">
+					<div id="fb" class="socialButton"> 
 						<fb:like href="http://www.gethugames.in/tictactoe/" send="false" layout="box_count" width="100" show_faces="false" colorscheme="dark" font=""></fb:like>
 					</div>
 
-					<div id="tweet" style="display:inline; float:left; width: 70px; height: 70px;">
+					<div id="tweet" class="socialButton">
 <a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 					</div>

@@ -27,11 +27,6 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	@param	{int}		cols	number of cols
 */
 TicTacToe.GameBoard		=	function(ctx, rows, cols) {
-	/**	Background Picture
-		@type	image
-		@private */
-	var boardImage;
-    
     /**	Player 1's Image
 		@type	image
 		@private */
@@ -99,9 +94,6 @@ TicTacToe.GameBoard		=	function(ctx, rows, cols) {
 			strSize					=	'2X';
 		else
 			strSize					=	'';
-		
-		boardImage					=	new Image();
-		boardImage.src				=	'images/board' + strSize + '.png';
 		
 		oImage						=   new Image();
 		oImage.src					=   'images/oTile' + strSize + '.png';
@@ -220,7 +212,7 @@ TicTacToe.GameBoard		=	function(ctx, rows, cols) {
     this.draw           =   function(ctx) {
 	
 		//draws the background image
-        ctx.drawImage(boardImage, 0, 0);
+		ctx.clearRect(0, 0, boardWidth, boardHeight);
         
 		//draw all the tiles
 		for (var i = 0; i < rowCount; i++)
@@ -247,6 +239,7 @@ TicTacToe.GameBoard		=	function(ctx, rows, cols) {
 	
 	/** updates the ai's move from game logic class */
 	this.updateAIMove	=	function(t) {
+			console.log('highlight oucnt' + t.highlightTiles.length);
 		tiles[t.aiTileX][t.aiTileY].setState(t.currentPlayerID);
 		if (t.highlightTiles.length != 0)
 		{

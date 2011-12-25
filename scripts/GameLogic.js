@@ -609,7 +609,6 @@ TicTacToe.GameLogic	=	function() {
 											bestTileJ = j;
 										}
 									}
-									//console.log(str);
 								}
 								
 								t.aiTileX = bestTileI;

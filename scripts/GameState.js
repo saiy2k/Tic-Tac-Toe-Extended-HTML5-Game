@@ -174,6 +174,9 @@ TicTacToe.GameState	=	function() {
 								
 								$('#shareScoreWidget').hide();
 								$('#infoScreen').hide();
+								$('#timeTake.text').text('');
+								$('#player1Score').text('0');
+								$('#player2Score').text('0');
 							}
 	};
 }();

@@ -67,7 +67,6 @@ body{
 
 #playOptionsDiv {
 	border-top				:	2px solid #97672e;
-	height					:	100px;
 	font					:	12px verdana;
 }
 
@@ -148,6 +147,26 @@ body{
 	font					:	17px 'Courier';
 	font-weight				:	bold;
 	color					:	#bbb;
+}
+
+#boardCanvas {
+	background				:	url('images/board.png');
+	width					:	320px;
+	height					:	320px;
+}
+
+.socialButton {
+	display					:	inline;
+	width					:	48px;
+	height					:	48px;
+	float					:	left;
+	transform				:	scale(0.8,0.8);
+	-ms-transform			:	scale(0.8,0.8); /* IE 9 */
+-webkit-transform: scale(0.8,0.8); /* Safari and Chrome */
+-o-transform: scale(0.8,0.8); /* Opera */
+-moz-transform: scale(0.8,0.8); /* Firefox */
+text-align:center;
+
 }
 
 /* big screens */
@@ -241,6 +260,25 @@ body{
 	font				:	12px 'Verdana';
 	font-weight			:	bold;
 }
+
+#boardCanvas {
+	background			:	url('images/board2X.png');
+	width				:	480px;
+	height				:	480px;
+}
+
+.socialButton {
+	display					:	inline;
+	width					:	76px;
+	height					:	76px;
+	float					:	left;
+transform: none;
+-ms-transform: none; /* IE 9 */
+-webkit-transform: none; /* Safari and Chrome */
+-o-transform: none; /* Opera */
+-moz-transform: none; /* Firefox */
+}
+
 }
 
 /* mobile screens */
