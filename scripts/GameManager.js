@@ -171,6 +171,7 @@ TicTacToe.GameManager	=	function() {
                                 var canvas              =	document.getElementById("boardCanvas"); context					=	canvas.getContext('2d');
         
 								TicTacToe.GameState.reset();
+                                TicTacToe.AudioManager.init()
 								gBoard					=	new TicTacToe.GameBoard(context, TicTacToe.GameState.rows, TicTacToe.GameState.cols);
 								setInterval(TicTacToe.GameManager.loop, (1/FPS) * 1000);
 																
@@ -197,9 +198,12 @@ TicTacToe.GameManager	=	function() {
 										gBoard.update(mouse, click);
 
 										if ( click != null ) {
+                                            
 											TicTacToe.GameLogic.updateScore(TicTacToe.GameState);	
-											if(TicTacToe.GameState.isValidMove)
+											if(TicTacToe.GameState.isValidMove) {
+                                                TicTacToe.AudioManager.click();
 												TicTacToe.GameLogic.endTurn(TicTacToe.GameState);
+                                            }
 											TicTacToe.GameLogic.updateUI(TicTacToe.GameState);
 											
 											if(TicTacToe.GameState.isGameOver) {
