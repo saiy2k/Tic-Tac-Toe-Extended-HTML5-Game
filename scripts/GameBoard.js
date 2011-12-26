@@ -196,6 +196,7 @@ TicTacToe.GameBoard		=	function(ctx, rows, cols) {
 			}
 			
 			t.highlightTiles.length = 0;
+            TicTacToe.AudioManager.chime();
 		}
 
 		for (var i = 0; i < rowCount; i++)
@@ -239,11 +240,12 @@ TicTacToe.GameBoard		=	function(ctx, rows, cols) {
 	
 	/** updates the ai's move from game logic class */
 	this.updateAIMove	=	function(t) {
-			console.log('highlight oucnt' + t.highlightTiles.length);
+
 		tiles[t.aiTileX][t.aiTileY].setState(t.currentPlayerID);
 		if (t.highlightTiles.length != 0)
 		{
-			console.log("highlighting tiles");
+            TicTacToe.AudioManager.chime();
+
 			for(var z = 0; z < t.highlightTiles.length; z++)
 			{
 				tiles[t.highlightTiles[z].x][t.highlightTiles[z].y].highlight();
