@@ -76,7 +76,17 @@ TicTacToe.GameManager	=	function() {
 				$('#infoScreen').hide();
 			}
 		});
-		
+
+		$("#creditsButton").click(function() {
+			if($('#creditsScreen').css('display') == 'none') {
+				currentScreen	=	"credits";
+				$('#creditsScreen').show();
+			} else {
+				currentScreen	=	"Game";
+				$('#creditsScreen').hide();
+			}
+		});
+	
 		$("#shareFacebookWidget").click(function() {
 			TicTacToe.FBWrapper.shareStatus();
 		});
