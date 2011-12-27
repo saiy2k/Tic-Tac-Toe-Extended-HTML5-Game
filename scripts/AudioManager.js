@@ -28,11 +28,17 @@ TicTacToe.AudioManager	=	function() {
 		@private */
 	var bgm;
 
+	/** flag for mute feature
+	 	@type bool
+		@private */	
+	var isMute;
+
 	/** @scope TicTacToe.AudioManager */
 	return {
     init        : function() {
                     bgm       = new Audio('audio/bgm.ogg');
                     bgm.volume = 0.3;
+					bgm.loop = true;
                     bgm.play();
                   },
 
@@ -47,7 +53,25 @@ TicTacToe.AudioManager	=	function() {
                         var eff;
                         eff = new Audio('audio/chimeEffect.ogg');
                         eff.play();
-                    }
+                    },
+
+	mute		:	function() {
+						isMute = true;
+						bgm.pause();
+					},
+
+	unMute		:	function() {
+						isMute = false;
+						bgm.play();
+					},
+
+	toggleMute	:	function() {
+						isMute = !isMute;
+						if (isMute)
+							bgm.pause();
+						else
+							bgm.play();
+					}
 	};
 
 }();

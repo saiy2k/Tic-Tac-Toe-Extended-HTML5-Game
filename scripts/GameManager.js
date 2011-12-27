@@ -86,6 +86,10 @@ TicTacToe.GameManager	=	function() {
 				$('#creditsScreen').hide();
 			}
 		});
+
+		$("#musicButton").click(function() {
+			TicTacToe.AudioManager.toggleMute();
+		});
 	
 		$("#shareFacebookWidget").click(function() {
 			TicTacToe.FBWrapper.shareStatus();

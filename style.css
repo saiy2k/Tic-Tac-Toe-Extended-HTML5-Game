@@ -135,20 +135,13 @@ body{
 	text-decoration			:	none;
 }
 
-#infoButton {
+.titleButton {
 	background				:	#865c2a;
 	float					:	right;
 	padding					:	2px;
 	font					:	12px 'Courier';
 	color					:	#dbb991;
-}
-
-#creditsButton {
-	background				:	#865c2a;
-	float					:	left;
-	padding					:	2px;
-	font					:	12px 'Courier';
-	color					:	#dbb991;
+	border-left				:	1px #dbb991 solid;
 }
 
 #boardCanvas {
@@ -159,15 +152,14 @@ body{
 
 .socialButton {
 	display					:	inline;
-	width					:	70px;
-	height					:	70px;
+	width					:	48px;
+	height					:	48px;
 	float					:	left;
-transform: scale(0.5,0.5);
--ms-transform: scale(0.5,0.5); /* IE 9 */
--webkit-transform: scale(0.5,0.5); /* Safari and Chrome */
--o-transform: scale(0.5,0.5); /* Opera */
-??? from here until ???END lines may have been inserted/deleted
--moz-transform: scale(0.5,0.5); /* Firefox */
+transform: scale(0.8,0.8);
+-ms-transform: scale(0.8,0.8); /* IE 9 */
+-webkit-transform: scale(0.8,0.8); /* Safari and Chrome */
+-o-transform: scale(0.8,0.8); /* Opera */
+-moz-transform: scale(0.8,0.8); /* Firefox */
 
 }
 
@@ -207,14 +199,7 @@ transform: scale(0.5,0.5);
 	height				:	480px;
 }
 
-#creditsButton {
-	font				:	16px 'Courier';
-	font-weight			:	bold;
-	padding				:	4px;
-	padding-top			:	5px;
-}
-
-#infoButton {
+.titleButton {
 	font				:	16px 'Courier';
 	font-weight			:	bold;
 	padding				:	4px;
@@ -277,6 +262,12 @@ transform: scale(0.5,0.5);
 	width					:	70px;
 	height					:	70px;
 	float					:	left;
+transform: scale(1.0,1.0);
+-ms-transform: scale(1.0,1.0); /* IE 9 */
+-webkit-transform: scale(1.0,1.0); /* Safari and Chrome */
+-o-transform: scale(1.0,1.0); /* Opera */
+-moz-transform: scale(1.0,1.0); /* Firefox */
+
 }
 
 }
