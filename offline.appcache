@@ -29,15 +29,20 @@ images/oTile2X.png
 images/tweetIcon.png
 images/xTile.png
 images/xTile2X.png
+scripts/TicTacToe.js
 scripts/BoardTile.js
 scripts/FBWrapper.js
 scripts/GameBoard.js
 scripts/GameLogic.js
+scripts/AudioManager.js
 scripts/GameManager.js
 scripts/GameState.js
 scripts/InputManager.js
 scripts/TwitterWrapper.js
 scripts/ZicZacZoe.js
+audio/bgm.ogg
+audio/chimeEffect.ogg
+audio/clickEffect.ogg
 lib/jquery-1.5.2.js
 
 NETWORK:
