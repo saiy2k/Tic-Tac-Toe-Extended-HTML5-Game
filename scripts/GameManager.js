@@ -53,11 +53,13 @@ TicTacToe.GameManager	=	function() {
 	
 	function setupJqueryHandlers() {
 		$( "#vsHumanButton" ).click(function() {
-			console.log($("#p1NameDiv1").focus());
+			$("#p1NameDiv1").focus();
 			currentScreen		=	"Game";
 			isAI				=	false;
 			TicTacToe.GameState.reset();
 			gBoard.reset();
+			$('#vsAIButton').css('color', 'rgba(0, 0, 0, 0.15)');
+			$('.nameInputBox').css('color', '#4b3318');
 		});
 		
 		$("#vsAIButton").click(function() {
@@ -65,29 +67,47 @@ TicTacToe.GameManager	=	function() {
 			isAI				=	true;
 			TicTacToe.GameState.reset();
 			gBoard.reset();
+			$('.nameInputBox').css('color', 'rgba(0, 0, 0, 0.15)');
+			$('#vsAIButton').css('color', '#4b3318');
 		});
 
 		$("#infoButton").click(function() {
+			if (currentScreen == "Game" || currentScreen == "Info") {
 			if($('#infoScreen').css('display') == 'none') {
 				currentScreen	=	"Info";
 				$('#infoScreen').show();
+				$('#infoButton').css('font-weight', 'bold');
+				$('#infoButton').css('color', '#fff');
 			} else {
 				currentScreen	=	"Game";
 				$('#infoScreen').hide();
+				$('#infoButton').css('font-weight', 'none');
+				$('#infoButton').css('color', '#dbb991');
+			}
 			}
 		});
 
 		$("#creditsButton").click(function() {
+			if (currentScreen == "Game" || currentScreen == "credits") {
 			if($('#creditsScreen').css('display') == 'none') {
 				currentScreen	=	"credits";
 				$('#creditsScreen').show();
+				$('#creditsButton').css('font-weight', 'bold');
+				$('#creditsButton').css('color', '#fff');
 			} else {
 				currentScreen	=	"Game";
 				$('#creditsScreen').hide();
+				$('#creditsButton').css('font-weight', 'none');
+				$('#creditsButton').css('color', '#dbb991');
+			}
 			}
 		});
 
 		$("#musicButton").click(function() {
+			if($('#musicButton').css('color') == 'rgb(255, 255, 255)')
+				$('#musicButton').css('color', '#dbb991');
+			else
+				$('#musicButton').css('color', '#fff');
 			TicTacToe.AudioManager.toggleMute();
 		});
 	
@@ -249,10 +269,6 @@ TicTacToe.GameManager	=	function() {
 									TicTacToe.GameLogic.calcTime(TicTacToe.GameState);
 									
 								} else if(currentScreen	==	"Info") {
-									if (click != null) {
-										currentScreen	=	"Game";
-										$('#infoScreen').hide();
-									}
 								} else if(currentScreen	==	"Splash") {
 								}
 

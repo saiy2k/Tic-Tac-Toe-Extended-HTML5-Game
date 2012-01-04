@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <!DOCTYPE html>
-<html manifest="./offline.appcache">
+<html manifest="./offline.appcache" itemscope itemtype="http://schema.org/Product">
 <head>
 	<title> Tic Tac Toe Extended </title>
 
@@ -31,7 +31,6 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	<meta property="fb:admins" content="100000655597076" />
 	<meta property="og:description" content="Extended version of Tic Tac Toe Extended game made in HTML5"/>
 		  
-	<html itemscope itemtype="http://schema.org/Product">
 	<meta itemprop="name" content="Tic Tac Toe Extended">
 	<meta itemprop="description" content="Extended version of Tic Tac Toe Extended game made in HTML5">
 	
@@ -39,6 +38,8 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 
 	<link type="text/css" href="style.css" rel="Stylesheet" />
 	
+	<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
 	<script type="text/javascript" src="lib/jquery-1.5.2.js"></script>
 	<script type="text/javascript" src="scripts/TicTacToe.js"></script>
 	<script type="text/javascript" src="scripts/FBWrapper.js"></script>
@@ -74,15 +75,6 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		  })();
 	</script>
-
-	<!-- Place this render call where appropriate -->
-	<script type="text/javascript">
-	  (function() {
-	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	po.src = 'https://apis.google.com/js/plusone.js';
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-	 })();
-	</script>
 </head>
 
 <body onload="init()">
@@ -100,8 +92,8 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 
 	<div id="container">
 		<div id="titleDiv">
-			<span id="creditsButton" class="titleButton">C</span>
 			Tic Tac Toe Extended
+			<span id="creditsButton" class="titleButton">C</span>
 			<span id="musicButton" class="titleButton">M</span>
 			<span id="infoButton" class="titleButton">?</span>
 		</div>
@@ -142,9 +134,8 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 			<div id="creditsDiv"	class="playOptionsHalf" style="float:right">
 				<div class="playOptionsRow" style="height: 88px; text-align:center">
 					<div id="gplus" class="socialButton">
-					<!-- Place this tag where you want the +1 button to render -->
-					<g:plusone size="tall"></g:plusone>
-
+						<!-- Place this tag where you want the +1 button to render -->
+						<g:plusone size="tall"></g:plusone>
 					</div>
 				
 					<div id="fb" class="socialButton"> 
