@@ -46,7 +46,4 @@ audio/clickEffect.ogg
 lib/jquery-1.5.2.js
 
 NETWORK:
-http://www.google-analytics.com/
-http://platform.twitter.com/
-http://apis.google.com/js/
-http://connect.facebook.net/
+*
