@@ -227,12 +227,10 @@ TicTacToe.GameManager	=	function() {
 								var my		=	mouse.y - gBoard.y();
 															
 								if(currentScreen		==	"Game") {
-									//if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height()) {
-{
-										gBoard.update(mouse, click);
-
+									gBoard.update(mouse, click);
+									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height()) {
 										if ( click != null ) {
-                                            
+                                           console.log('click s not null'); 
 											TicTacToe.GameLogic.updateScore(TicTacToe.GameState);	
 											if(TicTacToe.GameState.isValidMove) {
                                                 TicTacToe.AudioManager.click();
