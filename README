@@ -3,7 +3,7 @@ Tic Tac Toe Extended
 ********************
 
 Game Description:
-This is an extended version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter.
+This is an extended version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter. This game also supports HTML5 offline mode, thus requiring no internet connection to play after first run.
 
 HTML5 Features:
   * Uses Canvas Tag to draw the game board and player marks.
