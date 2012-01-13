@@ -183,13 +183,12 @@ TicTacToe.GameManager	=	function() {
 				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p2Name + " Wins";
 				st.gameDescription		=	st.p2Name + " scored " + st.player2Score + " points against " + st.p1Name + " and earned the title of " + rankArray[rank];
-			}
+			} else {
+                rank                =   0;
+                st.gameStatus       =   "Game Draw";
+                st.gameDescription  =   "Game draw between " + st.p1Name + " and " + st.p2Name + " with a score of " + st.player1Score;
+            }
 		}
-		console.log(st.player1Score);
-		console.log(st.player2Score);
-		console.log(st.p1ElapsedTime/30000);
-		console.log(st.p2ElapsedTime/30000);
-		console.log(rank);
 		$("#gOverStatus").text(st.gameStatus);
 		$("#gOverDescription").text(st.gameDescription);
 		$("#badgeImageHolder").attr({ src:  picArray[rank] });
@@ -202,7 +201,16 @@ TicTacToe.GameManager	=	function() {
 		init			:	function() {
 								currentScreen			=	"Game";
 							
-                                var canvas              =	document.getElementById("boardCanvas"); context					=	canvas.getContext('2d');
+                                var canvas              =	document.getElementById("boardCanvas"); 
+                                context					=	canvas.getContext('2d');
+                                canvas.addEventListener('selectStart', function(e) {
+                                        e.preventDefault();
+                                        return false;
+                                        },false);
+
+                                document.body.addEventListener('touchmove',function(event){
+                                          event.preventDefault();
+                                          },false);
         
 								TicTacToe.GameState.reset();
                                 TicTacToe.AudioManager.init()
