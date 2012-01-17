@@ -265,4 +265,17 @@ TicTacToe.GameBoard		=	function(ctx, rows, cols) {
 	loadResources();
 	
 	this.reset();
+
+    window.addEventListener('resize', resizeGame, false);
+    window.addEventListener('orientationchange', resizeGame, false);
+    
+    function resizeGame() {
+        refreshUI();
+        loadResources();
+		for (var i = 0; i < rowCount; i++)
+            for (var j = 0; j < colCount; j++)
+                tiles[i][j].updateRes(xImage, oImage, i, j, tileWidth, tileHeight);
+        boardX         	=   $('#boardCanvas').offset().left;
+        boardY         	=   $('#boardCanvas').offset().top;
+    };
 };

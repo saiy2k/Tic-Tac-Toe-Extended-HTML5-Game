@@ -149,7 +149,12 @@ TicTacToe.GameManager	=	function() {
 		$("#p2NameDiv1").click(function(e) {
 			e.stopPropagation();
 		});
+
+        if (!navigator.onLine) {
+            $('#creditsDiv').html("<br/><b>OFFLINE MODE</b><br/><br/>Sharing option not available<br/><br/>");
+        }
 	}
+
 	
 	function updateGameOverStatus() {
 		var							st;
@@ -200,6 +205,7 @@ TicTacToe.GameManager	=	function() {
 		/** Initializes the canvas context, game board, gamestate and sets the game loop */
 		init			:	function() {
 								currentScreen			=	"Game";
+                                isAI                    =   true;
 							
                                 var canvas              =	document.getElementById("boardCanvas"); 
                                 context					=	canvas.getContext('2d');

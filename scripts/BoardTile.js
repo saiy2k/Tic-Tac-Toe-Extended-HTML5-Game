@@ -172,6 +172,16 @@ TicTacToe.BoardTile		=	function(xImg, oImg, tX, tY, tWidth, tHeight) {
 			tileState		=	"blinkO";
 		keyValue		=	0.0;
 	};
+
+    this.updateRes      =   function(xi, oi, tix, tiy, twid, thei) {
+        xImage          =   xi;
+        oImage          =   oi;
+        tileX           =   tix;
+        tileY           =   tiy;
+        tileWidth       =   twid;
+        tileHeight      =   thei;
+    };
+
 	
 	tileState			=	"empty";
 	xImage				=	xImg;
