@@ -18,15 +18,19 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <!DOCTYPE html>
 <html manifest="./offline.appcache" itemscope itemtype="http://schema.org/Product">
-<head>
+<head profile="http://www.w3.org/2005/10/profile">
 	<title> Tic Tac Toe Extended </title>
 
     <meta name="keywords" content="free, online, tic, tac, toe, extended, html5, offline, game, board, player, user, AI, share, facebook, twitter, x, o, google, plus, rank, score, god, amoeba"/> 
     <meta name="description" content="Free online version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter. This game also supports HTML5 offline mode, thus requiring no internet connection to play after first run." />
-
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="apple-touch-icon" href="http://www.gethugames.in/tictactoe/image/icon64.png"/>
+    <meta name="meta-apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <link rel="apple-touch-icon" href="http://www.gethugames.in/tictactoe/images/icon64.png"/>
+    <link rel="icon" type="image/png" href="images/icon64.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link type="text/css" href="style.css" rel="Stylesheet" />
 
+    <!--tags for FB opengraph-->
 	<meta property="og:title" content="Tic Tac Toe Extended" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="http://www.gethugames.in/tictactoe/" />
@@ -35,15 +39,11 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	<meta property="fb:admins" content="100000655597076" />
 	<meta property="og:description" content="This is an extended version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter."/>
 		  
+    <!--tags for Google+-->
 	<meta itemprop="name" content="Tic Tac Toe Extended">
 	<meta itemprop="description" content="This is an extended version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter.">
 	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-	<link type="text/css" href="style.css" rel="Stylesheet" />
-	
 	<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
-
 	<script type="text/javascript" src="lib/jquery-1.5.2.js"></script>
 	<script type="text/javascript" src="scripts/TicTacToe.js"></script>
 	<script type="text/javascript" src="scripts/FBWrapper.js"></script>
@@ -68,17 +68,16 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 		}
 	</script>
 	
-	<script type="text/javascript">
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-24593968-3']);
-		  _gaq.push(['_trackPageview']);
-		
-		  (function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-	</script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-24593968-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 </head>
 
 <body onload="init()">
