@@ -24,6 +24,21 @@ body{
 	cursor					:	pointer;
 }
 
+h1
+{
+    margin              :   0px;
+    padding             :   0px;
+	font-size			:	24px;
+	font-weight			:	bold;
+	font-variant		:	small-caps;
+	overflow			:	hidden;
+}
+
+a {
+    color                   :   #eee;
+    text-decoration         :   none;
+}
+
 #container{
 	position				:	absolute;
 	border					:	4px solid #865c2a;
@@ -46,13 +61,18 @@ body{
 	position				:	absolute;
 	width					:	320px;
 	height					:	320px;
-	top						:	20px;
+	top						:	28px;
 	text-align				: 	center;
     color                   :   #bbb;
+	font    				:	9px 'Verdana';
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 #infoScreen {
-	background				:	url('images/infoScreen.png');
+	background				:	url('images/infoScreen2X.png');
 }
 
 #gOverStatus {
@@ -60,24 +80,8 @@ body{
 	font-weight				:	bold;
 }
 
-#gOverRemark {
-    font					:	12px 'Arial';
-    font-weight				:	bold;
-}
-
-#gOverDescription {
-    font					:	12px 'Arial';
-    font-weight				:	bold;
-}
-
 #playOptionsDiv {
 	border-top				:	2px solid #97672e;
-	font					:	12px verdana;
-}
-
-.selectedButton {
-    font-weight             :   bold;
-    color                   :   #fff;
 }
 
 .scoreBoardLabel{
@@ -107,52 +111,15 @@ body{
 	width					:	48%;
 	float					:	left;
 	margin					:	2px;
-	background				:	url('images/brownTransparent.png');
-	cursor					:	pointer;
-}
-
-.playOptionsRow{
-	display					:	block;
-	height					:	38px;
-	text-decoration			:	none;
-	padding-top				:	19px;
-}
-.playOptionsRow:hover{
-	background				:	url('images/brownTransparent.png');
 }
 
 .nameInputBox {
 	border					:	2px solid rgba(125, 76, 24, 0.5);
 	background-color		:	rgba(191, 127, 46, 0.5);
-	width					:	52px;
 	height					:	22px;
+    width                   :   90%;
 	color					:	#4b3318;	
-}
-
-#creditsText {
-	position				:	absolute;
-	font					:	9px 'Verdana';
-	top						:	40px;
-	left					:	20px;
-	width					:	280px;
-	margin					:	auto;
-	background				:	#865c2a;
-	padding					:	5px;
-	color					:	#ccc;
-}
-#creditsText a {
-	color					:	#eee;
-	text-decoration			:	none;
-}
-
-.titleButton {
-	background				:	#865c2a;
-	float					:	right;
-	padding					:	2px;
-	font					:	12px 'Courier';
-	border-left				:	1px #dbb991 solid;
-    text-decoration         :   none;
-    height                  :   100%;
+    margin                  :   2px;
 }
 
 #boardCanvas {
@@ -187,14 +154,6 @@ transform: scale(0.8,0.8);
 	margin				:	-320px 0 0 -240px;
 }
 
-#titleDiv
-{
-	font-size			:	24px;
-	font-weight			:	bold;
-	font-variant		:	small-caps;
-	overflow			:	hidden;
-}
-
 #canvasContainer
 {
 	width				:	480px;
@@ -204,34 +163,13 @@ transform: scale(0.8,0.8);
 .otherScreen {
 	width					:	480px;
 	height					:	480px;
-	top						:	28px;
-}
-}
-
-#infoScreen {
-	background			:	url('images/infoScreen2X.png');
-}
-
-.titleButton {
-	font				:	16px 'Courier';
-	padding				:	5px;
+	font    				:	14px 'Verdana';
 }
 
 #gOverStatus {
 	font				:	24px 'Arial';
 	font-weight			:	bold;
 }
-
-#gOverRemark {
-    font				:	16px 'Arial';
-    font-weight			:	bold;
-}
-
-#gOverDescription {
-    font				:	16px 'Arial';
-    font-weight			:	bold;
-}
-
 
 #badgeImageHolder {
 	width				:	256px;
@@ -252,21 +190,6 @@ transform: scale(0.8,0.8);
 	font				:	22px 'Verdana';
 }
 
-.playOptionsRow{
-	padding-top			:	12px;
-}
-
-.nameInputBox {
-	width				:	72px;
-}
-
-#creditsText {
-	top					:	68px;
-	left				:	40px;
-	width				:	400px;
-	font				:	14px 'Verdana';
-}
-
 #boardCanvas {
 	width				:	480px;
 	height				:	480px;
@@ -285,4 +208,3 @@ transform: scale(1.0,1.0);
 
 }
 
-}

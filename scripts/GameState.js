@@ -52,10 +52,10 @@ TicTacToe.GameState	=	function() {
 	/** @scope TicTacToe.GameState */
 	return {
         
-        /**	Current Game Screen. Possible Values: "Splash", "Game", "End"
+        /**	Current Game Screen. Possible Values: "Menu", "Game", "End", "Info", "Credits"
             @type	string
             @private */
-        currentScreen   :  0,
+        currentScreen   :  "Menu",
         
         /** if true, AI will take the role of Player 2 and make its move automatically
             @type	bool
@@ -163,7 +163,7 @@ TicTacToe.GameState	=	function() {
 								var						s;
 								s					=	TicTacToe.GameState;
 
-                                s.currentScreen     =   "Game";
+                                s.currentScreen     =   "Menu";
                                 s.isAI              =   true;                                
 								s.currentPlayerID	=	0;
 								s.player1Score		=	0;
@@ -187,7 +187,7 @@ TicTacToe.GameState	=	function() {
 								$('#shareScoreWidget').hide();
 								$('#infoScreen').hide();
 								$('#creditsScreen').hide();
-								$('#timeTake.text').text('');
+								$('#timeTaken.text').text('');
 								$('#player1Score').text('0');
 								$('#player2Score').text('0');
 							}

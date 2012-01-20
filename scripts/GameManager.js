@@ -42,23 +42,27 @@ TicTacToe.GameManager	=	function() {
 	var gBoard;
 	
 	function setupJqueryHandlers() {
-		$( "#vsHumanButton" ).click(function() {
+		$( "#newAIGameButton" ).click(function() {
 			$("#p1NameDiv1").focus();
 			TicTacToe.GameState.curentScreen		=	"Game";
 			TicTacToe.GameState.isAI				=	false;
 			TicTacToe.GameState.reset();
 			gBoard.reset();
-			$('#vsAIButton').css('color', 'rgba(0, 0, 0, 0.15)');
-			$('.nameInputBox').css('color', '#4b3318');
+            $("#menuScreen").hide();
+            $('#scoreBoardDiv').show();
+            $('#playOptionsDiv').show(); 
+            $('#p2NameDiv1').hide(); 
 		});
 		
-		$("#vsAIButton").click(function() {
+		$("#newHumanGameButton").click(function() {
 			TicTacToe.GameState.curentScreen		=	"Game";
 			TicTacToe.GameState.isAI				=	true;
 			TicTacToe.GameState.reset();
 			gBoard.reset();
-			$('.nameInputBox').css('color', 'rgba(0, 0, 0, 0.15)');
-			$('#vsAIButton').css('color', '#4b3318');
+            $("#menuScreen").hide();
+            $('#scoreBoardDiv').show();
+            $('#playOptionsDiv').show(); 
+            $('#p2NameDiv1').show(); 
 		});
 		
 		$("#p1NameDiv1").keypress(function() {
@@ -142,9 +146,6 @@ TicTacToe.GameManager	=	function() {
 	return {
 		/** Initializes the canvas context, game board, gamestate and sets the game loop */
 		init			:	function() {
-								TicTacToe.GameState.curentScreen			=	"Game";
-                                TicTacToe.GameState.isAI                    =   true;
-							
                                 var canvas              =	document.getElementById("boardCanvas"); 
                                 context					=	canvas.getContext('2d');
                                 canvas.addEventListener('selectStart', function(e) {

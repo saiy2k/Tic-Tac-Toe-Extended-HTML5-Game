@@ -85,42 +85,41 @@ TicTacToe.InputManager	=	function() {
 
         init            :   function()
                             {
-                                $("#infoButton").click(function() {
-                                    if (TicTacToe.GameState.curentScreen == "Game" || TicTacToe.GameState.curentScreen == "Info") {
-                                    if($('#infoScreen').css('display') == 'none') {
-                                        TicTacToe.GameState.curentScreen	=	"Info";
-                                        $('#infoScreen').show();
-                                        $('#infoButton').addClass('selectedButton');
-                                    } else {
-                                        TicTacToe.GameState.curentScreen	=	"Game";
-                                        $('#infoScreen').hide();
-                                        $('#infoButton').removeClass('selectedButton');
-                                    }
-                                    }
+                                $('#scoreBoardDiv').hide();
+                                $('#playOptionsDiv').hide(); 
+
+                                $("#menuButton").click(function() {
+                                    TicTacToe.GameState.curentScreen	=	"Menu";
+                                    $('#menuScreen').show();
+                                    $('#scoreBoardDiv').hide();
+                                    $('#playOptionsDiv').hide(); 
+                                });
+
+                                $("#infoScreen").click(function() {
+                                    TicTacToe.GameState.curentScreen	=	"Menu";
+                                    $('#infoScreen').hide();
+                                    $('#menuScreen').show();
+                                });
+
+                                $("#helpButton").click(function() {
+                                    TicTacToe.GameState.curentScreen	=	"Info";
+                                    $('#infoScreen').show();
+                                    $('#menuScreen').hide();
+                                });
+
+                                $("#creditsScreen").click(function() {
+                                    TicTacToe.GameState.curentScreen	=	"Menu";
+                                    $('#creditsScreen').hide();
+                                    $('#menuScreen').show();
                                 });
 
                                 $("#creditsButton").click(function() {
-                                    if (TicTacToe.GameState.curentScreen == "Game" || TicTacToe.GameState.curentScreen == "credits") {
-                                    if($('#creditsScreen').css('display') == 'none') {
-                                        TicTacToe.GameState.curentScreen	=	"credits";
-                                        $('#creditsScreen').show();
-                                        $('#creditsButton').addClass('selectedButton');
-                                    } else {
-                                        TicTacToe.GameState.curentScreen	=	"Game";
-                                        $('#creditsScreen').hide();
-                                        $('#creditsButton').removeClass('selectedButton');
-                                    }
-                                    }
+                                    TicTacToe.GameState.curentScreen	=	"Credits";
+                                    $('#creditsScreen').show();
+                                    $('#menuScreen').hide();
                                 });
 
-                                $("#musicButton").click(function() {
-                                    if($('#musicButton').css('color') == 'rgb(255, 255, 255)') {
-                                            $('#musicButton').css('color', '#dbb991');
-                                            $('#musicButton').addClass('selectedButton');
-                                        } else {
-                                            $('#musicButton').css('color', '#fff');
-                                            $('#musicButton').removeClass('selectedButton');
-                                        }
+                                $("#muteMusicButton").click(function() {
                                     TicTacToe.AudioManager.toggleMute();
                                 });
 
