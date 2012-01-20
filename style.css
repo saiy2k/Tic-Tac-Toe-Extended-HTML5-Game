@@ -39,6 +39,33 @@ a {
     text-decoration         :   none;
 }
 
+.menuButton {
+    background              :   #2b1b07;
+    border                  :   2px solid #2b1b07;
+    width                   :   50%;
+    padding                 :   2%;
+    margin                  :   auto;
+    margin-top              :   8%;
+    border-radius           :   10px;
+    box-shadow              :   4px 4px 5px #2b1b07;
+}
+
+.menuButton:hover {
+    font-weight             :   bold;
+    border                  :   2px solid #7d5e3b;
+}
+
+#menuButton {
+    background-color        :   rgba(125, 76, 24, 0.5);
+    margin                  :   4px;
+    padding                 :   4px;
+    border-radius           :   10px;
+}
+
+#menuButton:hover {
+    font-weight             :   bold;
+}
+
 #container{
 	position				:	absolute;
 	border					:	4px solid #865c2a;
@@ -48,6 +75,7 @@ a {
 	width				:	320px;
 	height				:	480px;
 	margin				:	-240px 0 0 -160px;
+    box-shadow              :   0px 0px 50px #2b1b07;
 }
 
 #canvasContainer{
@@ -57,6 +85,7 @@ a {
 }
 
 .otherScreen {
+    text-align              :   center;
 	background-color		:	rgba(78, 55, 30, 0.8);
 	position				:	absolute;
 	width					:	320px;
@@ -172,8 +201,8 @@ transform: scale(0.8,0.8);
 }
 
 #badgeImageHolder {
-	width				:	256px;
-	height				:	256px;
+	width				:	220px;
+	height				:	220px;
 }
 
 #shareFacebookWidget {

@@ -93,6 +93,7 @@ TicTacToe.InputManager	=	function() {
                                     $('#menuScreen').show();
                                     $('#scoreBoardDiv').hide();
                                     $('#playOptionsDiv').hide(); 
+                                    $('#shareScoreWidget').hide(); 
                                 });
 
                                 $("#infoScreen").click(function() {
@@ -119,16 +120,26 @@ TicTacToe.InputManager	=	function() {
                                     $('#menuScreen').hide();
                                 });
 
+                                $("#closeGameOver").click(function() {
+                                    TicTacToe.GameState.curentScreen	=	"Menu";
+                                    $('#shareScoreWidget').hide();
+                                    $('#menuScreen').show();
+                                    $('#scoreBoardDiv').hide();
+                                    $('#playOptionsDiv').hide(); 
+                                });
+
                                 $("#muteMusicButton").click(function() {
                                     TicTacToe.AudioManager.toggleMute();
                                 });
 
-                                $("#shareFacebookWidget").click(function() {
+                                $("#shareFacebookWidget").click(function(e) {
                                     TicTacToe.FBWrapper.shareStatus();
+                                    e.stopPropogation();
                                 });
                                 
-                                $("#shareTwitterWidget").click(function() {
+                                $("#shareTwitterWidget").click(function(e) {
                                     TicTacToe.TwitterWrapper.shareStatus();
+                                    e.stopPropogation();
                                 });
 
                                 $("#p1NameDiv1").blur(function() {
