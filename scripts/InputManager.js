@@ -51,14 +51,15 @@ TicTacToe.InputManager	=	function() {
 		pageY			=	ev.pageY;
         isClicked       =   true;
 	});
-	
-document.addEventListener('touchend', function(e) {
-    e.preventDefault();
-    var touch = e.touches[0];
-pageX = touch.pageX;
-pageY = touch.pageY;
-isClicked = true;
-}, false);
+
+    /** getting touches in mobile devices */
+    document.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        var touch = e.touches[0];
+        pageX = touch.pageX;
+        pageY = touch.pageY;
+        isClicked = true;
+    }, false);
 
 	/** @scope TicTacToe.InputManager */
 	return {
@@ -80,6 +81,77 @@ isClicked = true;
                                 {
                                     return null;
                                 }
-							}
+							},
+
+        init            :   function()
+                            {
+                                $("#infoButton").click(function() {
+                                    if (TicTacToe.GameState.curentScreen == "Game" || TicTacToe.GameState.curentScreen == "Info") {
+                                    if($('#infoScreen').css('display') == 'none') {
+                                        TicTacToe.GameState.curentScreen	=	"Info";
+                                        $('#infoScreen').show();
+                                        $('#infoButton').addClass('selectedButton');
+                                    } else {
+                                        TicTacToe.GameState.curentScreen	=	"Game";
+                                        $('#infoScreen').hide();
+                                        $('#infoButton').removeClass('selectedButton');
+                                    }
+                                    }
+                                });
+
+                                $("#creditsButton").click(function() {
+                                    if (TicTacToe.GameState.curentScreen == "Game" || TicTacToe.GameState.curentScreen == "credits") {
+                                    if($('#creditsScreen').css('display') == 'none') {
+                                        TicTacToe.GameState.curentScreen	=	"credits";
+                                        $('#creditsScreen').show();
+                                        $('#creditsButton').addClass('selectedButton');
+                                    } else {
+                                        TicTacToe.GameState.curentScreen	=	"Game";
+                                        $('#creditsScreen').hide();
+                                        $('#creditsButton').removeClass('selectedButton');
+                                    }
+                                    }
+                                });
+
+                                $("#musicButton").click(function() {
+                                    if($('#musicButton').css('color') == 'rgb(255, 255, 255)') {
+                                            $('#musicButton').css('color', '#dbb991');
+                                            $('#musicButton').addClass('selectedButton');
+                                        } else {
+                                            $('#musicButton').css('color', '#fff');
+                                            $('#musicButton').removeClass('selectedButton');
+                                        }
+                                    TicTacToe.AudioManager.toggleMute();
+                                });
+
+                                $("#shareFacebookWidget").click(function() {
+                                    TicTacToe.FBWrapper.shareStatus();
+                                });
+                                
+                                $("#shareTwitterWidget").click(function() {
+                                    TicTacToe.TwitterWrapper.shareStatus();
+                                });
+
+                                $("#p1NameDiv1").blur(function() {
+                                    TicTacToe.GameState.p1Name = $("#p1NameDiv1").val();
+                                });
+                                
+                                $("#p2NameDiv1").blur(function() {
+                                    TicTacToe.GameState.p2Name = $("#p2NameDiv1").val();
+                                });
+
+                                $("#p1NameDiv1").click(function(e) {
+                                    e.stopPropagation();
+                                });
+
+                                $("#p2NameDiv1").click(function(e) {
+                                    e.stopPropagation();
+                                });
+
+                                if (!navigator.onLine) {
+                                    $('#creditsDiv').html("<br/><b>OFFLINE MODE</b><br/><br/>Sharing option not available<br/><br/>");
+                                }
+
+                            }
 	};
 }();

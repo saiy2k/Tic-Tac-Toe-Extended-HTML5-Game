@@ -51,7 +51,17 @@ TicTacToe.GameState	=	function() {
 	
 	/** @scope TicTacToe.GameState */
 	return {
-	
+        
+        /**	Current Game Screen. Possible Values: "Splash", "Game", "End"
+            @type	string
+            @private */
+        currentScreen   :  0,
+        
+        /** if true, AI will take the role of Player 2 and make its move automatically
+            @type	bool
+            @private */
+        isAI            :   0,
+        
 		/**	2D Array of numbers that indicate the tile type
 			@type	int[][] */
 		tiles           :   [],
@@ -152,7 +162,9 @@ TicTacToe.GameState	=	function() {
 		reset			:	function() {
 								var						s;
 								s					=	TicTacToe.GameState;
-								
+
+                                s.currentScreen     =   "Game";
+                                s.isAI              =   true;                                
 								s.currentPlayerID	=	0;
 								s.player1Score		=	0;
 								s.player2Score		=	0;

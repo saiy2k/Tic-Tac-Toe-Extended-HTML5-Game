@@ -41,21 +41,11 @@ TicTacToe.GameManager	=	function() {
 		@private */
 	var gBoard;
 	
-	/**	Current Game Screen. Possible Values: "Splash", "Game", "End"
-		@type	string
-		@private */
-	var	currentScreen;
-	
-	/** if true, AI will take the role of Player 2 and make its move automatically
-		@type	bool
-		@private */
-	var isAI;
-	
 	function setupJqueryHandlers() {
 		$( "#vsHumanButton" ).click(function() {
 			$("#p1NameDiv1").focus();
-			currentScreen		=	"Game";
-			isAI				=	false;
+			TicTacToe.GameState.curentScreen		=	"Game";
+			TicTacToe.GameState.isAI				=	false;
 			TicTacToe.GameState.reset();
 			gBoard.reset();
 			$('#vsAIButton').css('color', 'rgba(0, 0, 0, 0.15)');
@@ -63,107 +53,51 @@ TicTacToe.GameManager	=	function() {
 		});
 		
 		$("#vsAIButton").click(function() {
-			currentScreen		=	"Game";
-			isAI				=	true;
+			TicTacToe.GameState.curentScreen		=	"Game";
+			TicTacToe.GameState.isAI				=	true;
 			TicTacToe.GameState.reset();
 			gBoard.reset();
 			$('.nameInputBox').css('color', 'rgba(0, 0, 0, 0.15)');
 			$('#vsAIButton').css('color', '#4b3318');
-		});
-
-		$("#infoButton").click(function() {
-			if (currentScreen == "Game" || currentScreen == "Info") {
-			if($('#infoScreen').css('display') == 'none') {
-				currentScreen	=	"Info";
-				$('#infoScreen').show();
-				$('#infoButton').css('font-weight', 'bold');
-				$('#infoButton').css('color', '#fff');
-			} else {
-				currentScreen	=	"Game";
-				$('#infoScreen').hide();
-				$('#infoButton').css('font-weight', 'none');
-				$('#infoButton').css('color', '#dbb991');
-			}
-			}
-		});
-
-		$("#creditsButton").click(function() {
-			if (currentScreen == "Game" || currentScreen == "credits") {
-			if($('#creditsScreen').css('display') == 'none') {
-				currentScreen	=	"credits";
-				$('#creditsScreen').show();
-				$('#creditsButton').css('font-weight', 'bold');
-				$('#creditsButton').css('color', '#fff');
-			} else {
-				currentScreen	=	"Game";
-				$('#creditsScreen').hide();
-				$('#creditsButton').css('font-weight', 'none');
-				$('#creditsButton').css('color', '#dbb991');
-			}
-			}
-		});
-
-		$("#musicButton").click(function() {
-			if($('#musicButton').css('color') == 'rgb(255, 255, 255)')
-				$('#musicButton').css('color', '#dbb991');
-			else
-				$('#musicButton').css('color', '#fff');
-			TicTacToe.AudioManager.toggleMute();
-		});
-	
-		$("#shareFacebookWidget").click(function() {
-			TicTacToe.FBWrapper.shareStatus();
-		});
-		
-		$("#shareTwitterWidget").click(function() {
-			TicTacToe.TwitterWrapper.shareStatus();
 		});
 		
 		$("#p1NameDiv1").keypress(function() {
 			var text		=	$("#p1NameDiv1").val();
 			TicTacToe.GameState.p1Name =	text;
 			$("#p1NameDiv2").text(text);
-			if(currentScreen == "End")
+			if(TicTacToe.GameState.curentScreen == "End")
 				updateGameOverStatus();	
 		});
 
 		$("#p2NameDiv1").keypress(function() {
 			var text		=	$("#p2NameDiv1").val();
 			TicTacToe.GameState.p2Name =	text;
-			if(currentScreen == "End")
+			if(TicTacToe.GameState.curentScreen == "End")
 				updateGameOverStatus();				
 		});
-	
-		$("#p1NameDiv1").blur(function() {
-			TicTacToe.GameState.p1Name = $("#p1NameDiv1").val();
-		});
-		
-		$("#p2NameDiv1").blur(function() {
-			TicTacToe.GameState.p2Name = $("#p2NameDiv1").val();
-		});
-
-		$("#p1NameDiv1").click(function(e) {
-			e.stopPropagation();
-		});
-
-		$("#p2NameDiv1").click(function(e) {
-			e.stopPropagation();
-		});
-
-        if (!navigator.onLine) {
-            $('#creditsDiv').html("<br/><b>OFFLINE MODE</b><br/><br/>Sharing option not available<br/><br/>");
-        }
 	}
-
 	
 	function updateGameOverStatus() {
 		var							st;
 		var							rankArray;
+        var                         picArray;
+        var                         remarkArray;
 		var							rank;
 		st						=	TicTacToe.GameState;
 		rankArray					=	["Amoeba", "Mosquito", "Dog", "Monkey", "Baby", "Student", "Professor", "Scientist", "Super Hero", "God"];
 		picArray					=	["images/Amoeba.png", "images/Mosquito.png", "images/Dog.png", "images/Monkey.png", "images/Baby.png", "images/Student.png", "images/Professor.png", "images/Scientist.png", "images/SuperHero.png", "images/God.png"]; 
-		if(isAI) {
+        remarkArray                 =   ["Amoeba huh? Wish you atleast had multi celled brains.",
+                                         "Silly Insect. But atleast you hav brains",
+                                         "You played with doggy instincts, not bad",
+                                         "Come on. You are on the right track. Practice more",
+                                         "Allast you show the IQ of human species",
+                                         "You got the potential to be the best. just Practice",
+                                         "Wow! Now can teach your fellow mates on how to play",
+                                         "Brainy, Brainy, keep it up",
+                                         "No one can beat you now. You are off the charts",
+                                         "The Super computer AI bows before you my lord"];
+
+		if(TicTacToe.GameState.isAI) {
 			if(st.player1Score > st.player2Score) {
 				rank				=	Math.round(5 + ((st.player1Score - st.player2Score)/2) - st.p1ElapsedTime / 30000);
 
@@ -174,6 +108,7 @@ TicTacToe.GameManager	=	function() {
 			} else {
 				st.gameStatus			=	st.p1Name + " Loses";
 				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and lost the game";			
+                rank                =   0;
 			}
 		} else {
 			if(st.player1Score > st.player2Score) {
@@ -196,6 +131,9 @@ TicTacToe.GameManager	=	function() {
 		}
 		$("#gOverStatus").text(st.gameStatus);
 		$("#gOverDescription").text(st.gameDescription);
+		$("#gOverRemark").text(remarkArray[rank]);
+        console.log(remarkArray[1]);
+        console.log(rank);
 		$("#badgeImageHolder").attr({ src:  picArray[rank] });
 		st.badgeURL = "http://www.gethugames.in/tictactoe/" + picArray[rank];
 	}
@@ -204,8 +142,8 @@ TicTacToe.GameManager	=	function() {
 	return {
 		/** Initializes the canvas context, game board, gamestate and sets the game loop */
 		init			:	function() {
-								currentScreen			=	"Game";
-                                isAI                    =   true;
+								TicTacToe.GameState.curentScreen			=	"Game";
+                                TicTacToe.GameState.isAI                    =   true;
 							
                                 var canvas              =	document.getElementById("boardCanvas"); 
                                 context					=	canvas.getContext('2d');
@@ -219,7 +157,8 @@ TicTacToe.GameManager	=	function() {
                                           },false);
         
 								TicTacToe.GameState.reset();
-                                TicTacToe.AudioManager.init()
+                                TicTacToe.AudioManager.init();
+                                TicTacToe.InputManager.init();
 								gBoard					=	new TicTacToe.GameBoard(context, TicTacToe.GameState.rows, TicTacToe.GameState.cols);
 								setInterval(TicTacToe.GameManager.loop, (1/FPS) * 1000);
 																
@@ -240,7 +179,7 @@ TicTacToe.GameManager	=	function() {
 								var	mx		=	mouse.x - gBoard.x();
 								var my		=	mouse.y - gBoard.y();
 															
-								if(currentScreen		==	"Game") {
+								if(TicTacToe.GameState.curentScreen		==	"Game") {
 									gBoard.update(mouse, click);
 									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height()) {
 										if ( click != null ) {
@@ -254,12 +193,12 @@ TicTacToe.GameManager	=	function() {
 											
 											if(TicTacToe.GameState.isGameOver) {
 												updateGameOverStatus();
-												currentScreen = "End";
+												TicTacToe.GameState.curentScreen = "End";
 												$('#shareScoreWidget').show();
 												return;
 											}
 											
-											if(isAI) {
+											if(TicTacToe.GameState.isAI) {
 												if(TicTacToe.GameState.isValidMove) {
 													TicTacToe.GameLogic.aiMove(TicTacToe.GameState);
 													TicTacToe.GameLogic.updateScore(TicTacToe.GameState);
@@ -270,7 +209,7 @@ TicTacToe.GameManager	=	function() {
 												
 												if(TicTacToe.GameState.isGameOver) {
 													updateGameOverStatus();		
-													currentScreen = "End";
+													TicTacToe.GameState.curentScreen = "End";
 													$('#shareScoreWidget').show();
 													return;
 												}
@@ -280,22 +219,22 @@ TicTacToe.GameManager	=	function() {
 									
 									TicTacToe.GameLogic.calcTime(TicTacToe.GameState);
 									
-								} else if(currentScreen	==	"Info") {
-								} else if(currentScreen	==	"Splash") {
+								} else if(TicTacToe.GameState.curentScreen	==	"Info") {
+								} else if(TicTacToe.GameState.curentScreen	==	"Splash") {
 								}
 
 							},
 
 		/** draw the current screen */
 		draw			:	function() {
-								if(currentScreen		==	"Game") {
+								if(TicTacToe.GameState.curentScreen		==	"Game") {
 									gBoard.draw(context);
 								}
-								else if(currentScreen	==	"End")
+								else if(TicTacToe.GameState.curentScreen	==	"End")
 								{
 									gBoard.draw(context);
 								}
-								else if(currentScreen	==	"Splash")
+								else if(TicTacToe.GameState.curentScreen	==	"Splash")
 								{
 								
 								}

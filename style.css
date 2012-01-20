@@ -60,6 +60,11 @@ body{
 	font-weight				:	bold;
 }
 
+#gOverRemark {
+    font					:	12px 'Arial';
+    font-weight				:	bold;
+}
+
 #gOverDescription {
     font					:	12px 'Arial';
     font-weight				:	bold;
@@ -68,6 +73,11 @@ body{
 #playOptionsDiv {
 	border-top				:	2px solid #97672e;
 	font					:	12px verdana;
+}
+
+.selectedButton {
+    font-weight             :   bold;
+    color                   :   #fff;
 }
 
 .scoreBoardLabel{
@@ -88,8 +98,8 @@ body{
 }
 
 #badgeImageHolder {
-	width					:	180px;
-	height					:	180px;
+	width					:	128px;
+	height					:	128px;
 }
 
 .playOptionsHalf{
@@ -140,7 +150,6 @@ body{
 	float					:	right;
 	padding					:	2px;
 	font					:	12px 'Courier';
-	color					:	#dbb991;
 	border-left				:	1px #dbb991 solid;
     text-decoration         :   none;
 }
@@ -209,6 +218,11 @@ transform: scale(0.8,0.8);
 #gOverStatus {
 	font				:	24px 'Arial';
 	font-weight			:	bold;
+}
+
+#gOverRemark {
+    font				:	16px 'Arial';
+    font-weight			:	bold;
 }
 
 #gOverDescription {
