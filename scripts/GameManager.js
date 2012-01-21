@@ -49,6 +49,7 @@ TicTacToe.GameManager	=	function() {
 			TicTacToe.GameState.currentScreen		=	"Game";
 			gBoard.reset();
             $("#menuScreen").hide();
+            $(".freeBoardDiv").hide();
             $('#scoreBoardDiv').show();
             $('#playOptionsDiv').show(); 
             $('#p2NameDiv1').hide(); 
@@ -60,6 +61,7 @@ TicTacToe.GameManager	=	function() {
 			TicTacToe.GameState.isAI				=	false;;
 			gBoard.reset();
             $("#menuScreen").hide();
+            $(".freeBoardDiv").hide();
             $('#scoreBoardDiv').show();
             $('#playOptionsDiv').show(); 
             $('#p2NameDiv1').show(); 

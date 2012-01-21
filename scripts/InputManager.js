@@ -91,6 +91,7 @@ TicTacToe.InputManager	=	function() {
                                 $("#menuButton").click(function() {
                                     TicTacToe.GameState.currentScreen	=	"Menu";
                                     $('#menuScreen').show();
+                                    $(".freeBoardDiv").show();
                                     $('#scoreBoardDiv').hide();
                                     $('#playOptionsDiv').hide(); 
                                     $('#shareScoreWidget').hide(); 
@@ -124,6 +125,7 @@ TicTacToe.InputManager	=	function() {
                                     TicTacToe.GameState.currentScreen	=	"Menu";
                                     $('#shareScoreWidget').hide();
                                     $('#menuScreen').show();
+                                    $(".freeBoardDiv").show();
                                     $('#scoreBoardDiv').hide();
                                     $('#playOptionsDiv').hide(); 
                                 });
