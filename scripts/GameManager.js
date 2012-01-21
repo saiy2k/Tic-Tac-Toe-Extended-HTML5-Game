@@ -44,9 +44,9 @@ TicTacToe.GameManager	=	function() {
 	function setupJqueryHandlers() {
 		$( "#newAIGameButton" ).click(function() {
 			$("#p1NameDiv1").focus();
-			TicTacToe.GameState.curentScreen		=	"Game";
-			TicTacToe.GameState.isAI				=	false;
 			TicTacToe.GameState.reset();
+            TicTacToe.GameState.isAI				=	true;
+			TicTacToe.GameState.currentScreen		=	"Game";
 			gBoard.reset();
             $("#menuScreen").hide();
             $('#scoreBoardDiv').show();
@@ -55,9 +55,9 @@ TicTacToe.GameManager	=	function() {
 		});
 		
 		$("#newHumanGameButton").click(function() {
-			TicTacToe.GameState.curentScreen		=	"Game";
-			TicTacToe.GameState.isAI				=	true;
 			TicTacToe.GameState.reset();
+			TicTacToe.GameState.currentScreen		=	"Game";
+			TicTacToe.GameState.isAI				=	false;;
 			gBoard.reset();
             $("#menuScreen").hide();
             $('#scoreBoardDiv').show();
@@ -69,14 +69,14 @@ TicTacToe.GameManager	=	function() {
 			var text		=	$("#p1NameDiv1").val();
 			TicTacToe.GameState.p1Name =	text;
 			$("#p1NameDiv2").text(text);
-			if(TicTacToe.GameState.curentScreen == "End")
+			if(TicTacToe.GameState.currentScreen == "End")
 				updateGameOverStatus();	
 		});
 
 		$("#p2NameDiv1").keypress(function() {
 			var text		=	$("#p2NameDiv1").val();
 			TicTacToe.GameState.p2Name =	text;
-			if(TicTacToe.GameState.curentScreen == "End")
+			if(TicTacToe.GameState.currentScreen == "End")
 				updateGameOverStatus();				
 		});
 	}
@@ -179,8 +179,7 @@ TicTacToe.GameManager	=	function() {
 
 								var	mx		=	mouse.x - gBoard.x();
 								var my		=	mouse.y - gBoard.y();
-															
-								if(TicTacToe.GameState.curentScreen		==	"Game") {
+								if(TicTacToe.GameState.currentScreen		==	"Game") {
 									gBoard.update(mouse, click);
 									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height()) {
 										if ( click != null ) {
@@ -194,7 +193,7 @@ TicTacToe.GameManager	=	function() {
 											
 											if(TicTacToe.GameState.isGameOver) {
 												updateGameOverStatus();
-												TicTacToe.GameState.curentScreen = "End";
+												TicTacToe.GameState.currentScreen = "End";
 												$('#shareScoreWidget').show();
 												return;
 											}
@@ -210,7 +209,7 @@ TicTacToe.GameManager	=	function() {
 												
 												if(TicTacToe.GameState.isGameOver) {
 													updateGameOverStatus();		
-													TicTacToe.GameState.curentScreen = "End";
+													TicTacToe.GameState.currentScreen = "End";
 													$('#shareScoreWidget').show();
 													return;
 												}
@@ -220,22 +219,22 @@ TicTacToe.GameManager	=	function() {
 									
 									TicTacToe.GameLogic.calcTime(TicTacToe.GameState);
 									
-								} else if(TicTacToe.GameState.curentScreen	==	"Info") {
-								} else if(TicTacToe.GameState.curentScreen	==	"Splash") {
+								} else if(TicTacToe.GameState.currentScreen	==	"Info") {
+								} else if(TicTacToe.GameState.currentScreen	==	"Splash") {
 								}
 
 							},
 
 		/** draw the current screen */
 		draw			:	function() {
-								if(TicTacToe.GameState.curentScreen		==	"Game") {
+								if(TicTacToe.GameState.currentScreen		==	"Game") {
 									gBoard.draw(context);
 								}
-								else if(TicTacToe.GameState.curentScreen	==	"End")
+								else if(TicTacToe.GameState.currentScreen	==	"End")
 								{
 									gBoard.draw(context);
 								}
-								else if(TicTacToe.GameState.curentScreen	==	"Splash")
+								else if(TicTacToe.GameState.currentScreen	==	"Splash")
 								{
 								
 								}

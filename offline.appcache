@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#v0.0
+#v0.2
 
 index.html
 style.css
@@ -20,15 +20,13 @@ images/brownTransparent.png
 images/fbIcon.png
 images/gameOver.png
 images/html5Logo.png
-images/infoScreen.png
 images/infoScreen2X.png
-images/mainUI.png
-images/mainUI2X.png
 images/oTile.png
 images/oTile2X.png
 images/tweetIcon.png
 images/xTile.png
 images/xTile2X.png
+images/woodBG.png
 scripts/TicTacToe.js
 scripts/BoardTile.js
 scripts/FBWrapper.js
@@ -39,7 +37,6 @@ scripts/GameManager.js
 scripts/GameState.js
 scripts/InputManager.js
 scripts/TwitterWrapper.js
-scripts/ZicZacZoe.js
 audio/bgm.ogg
 audio/chimeEffect.ogg
 audio/clickEffect.ogg

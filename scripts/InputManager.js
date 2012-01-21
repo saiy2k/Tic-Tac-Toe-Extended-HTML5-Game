@@ -89,7 +89,7 @@ TicTacToe.InputManager	=	function() {
                                 $('#playOptionsDiv').hide(); 
 
                                 $("#menuButton").click(function() {
-                                    TicTacToe.GameState.curentScreen	=	"Menu";
+                                    TicTacToe.GameState.currentScreen	=	"Menu";
                                     $('#menuScreen').show();
                                     $('#scoreBoardDiv').hide();
                                     $('#playOptionsDiv').hide(); 
@@ -97,31 +97,31 @@ TicTacToe.InputManager	=	function() {
                                 });
 
                                 $("#infoScreen").click(function() {
-                                    TicTacToe.GameState.curentScreen	=	"Menu";
+                                    TicTacToe.GameState.currentScreen	=	"Menu";
                                     $('#infoScreen').hide();
                                     $('#menuScreen').show();
                                 });
 
                                 $("#helpButton").click(function() {
-                                    TicTacToe.GameState.curentScreen	=	"Info";
+                                    TicTacToe.GameState.currentScreen	=	"Info";
                                     $('#infoScreen').show();
                                     $('#menuScreen').hide();
                                 });
 
                                 $("#creditsScreen").click(function() {
-                                    TicTacToe.GameState.curentScreen	=	"Menu";
+                                    TicTacToe.GameState.currentScreen	=	"Menu";
                                     $('#creditsScreen').hide();
                                     $('#menuScreen').show();
                                 });
 
                                 $("#creditsButton").click(function() {
-                                    TicTacToe.GameState.curentScreen	=	"Credits";
+                                    TicTacToe.GameState.currentScreen	=	"Credits";
                                     $('#creditsScreen').show();
                                     $('#menuScreen').hide();
                                 });
 
                                 $("#closeGameOver").click(function() {
-                                    TicTacToe.GameState.curentScreen	=	"Menu";
+                                    TicTacToe.GameState.currentScreen	=	"Menu";
                                     $('#shareScoreWidget').hide();
                                     $('#menuScreen').show();
                                     $('#scoreBoardDiv').hide();
