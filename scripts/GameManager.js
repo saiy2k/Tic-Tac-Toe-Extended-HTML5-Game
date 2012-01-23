@@ -111,11 +111,15 @@ TicTacToe.GameManager	=	function() {
 				rank				=	rank>9 ? 9 : rank;
 				st.gameStatus			=	st.p1Name + " Wins";
 				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points and earned the title of " + rankArray[rank];			
-			} else {
+			} else if (st.player1Score < st.player2Score) {
 				st.gameStatus			=	st.p1Name + " Loses";
 				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and lost the game";			
                 rank                =   0;
-			}
+			} else {
+                rank                =   0;
+                st.gameStatus       =   "Game Draw";
+                st.gameDescription  =   "Game draw between " + st.p1Name + " and AI with a score of " + st.player1Score;
+            }
 		} else {
 			if(st.player1Score > st.player2Score) {
 				rank				=	Math.round(((st.player1Score - st.player2Score) / 2) + ((st.p2ElapsedTime - st.p1ElapsedTime) / 30000));
