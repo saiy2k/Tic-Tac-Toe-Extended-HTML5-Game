@@ -167,7 +167,7 @@ TicTacToe.GameManager	=	function() {
                                 TicTacToe.AudioManager.init();
                                 TicTacToe.InputManager.init();
 								gBoard					=	new TicTacToe.GameBoard(context, TicTacToe.GameState.rows, TicTacToe.GameState.cols);
-								setInterval(TicTacToe.GameManager.loop, (1/FPS) * 1000);
+								setTimeout(TicTacToe.GameManager.loop, (1/FPS) * 1000);
 																
 								setupJqueryHandlers();
 							},
@@ -176,6 +176,7 @@ TicTacToe.GameManager	=	function() {
 		loop			:	function() {
 								TicTacToe.GameManager.update();
 								TicTacToe.GameManager.draw();
+								setTimeout(TicTacToe.GameManager.loop, (1/FPS) * 1000);
 							},
 
 		/** update the current screen */
