@@ -32,7 +32,7 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
     <link rel="icon" type="image/png" href="http://www.gethugames.in/tictactoe/images/icon64.png" />
 	<link type="text/css" href="style.css" rel="Stylesheet" />
 
-    <!--tags for FB opengraph-->
+    <!--tags for opengraph-->
 	<meta property="og:title" content="Tic Tac Toe Extended" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="http://www.gethugames.in/tictactoe/" />
@@ -43,10 +43,18 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 		  
     <!--tags for Google+-->
 	<meta itemprop="name" content="Tic Tac Toe Extended">
+	<meta itemprop="url" content="http://www.gethugames.in/tictactoe/">
+	<meta itemprop="image" content="http://www.gethugames.in/tictactoe/images/icon128.png">
 	<meta itemprop="description" content="Free online version of Tic Tac Toe game with a board size of 9x9. The player scores a point on placing his sign in 4 consecutive tiles. The game can be played with another human player or with AI. At the end of the game based on player's score and timing a Badge is awarded which can be shared to Facebook / Twitter. This game also supports HTML5 offline mode, thus requiring no internet connection to play after first run.">
     
     <!--external and internal scripts-->
-    <script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAA-K-SVcca0-MnqIv0auo6UBTmyYpNoqlr6vXKSpuPP0ikR59FaxSoeV2aFkGkQLbK36WSk13qjy7zGQ"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof jQuery == 'undefined')
+        {
+            document.write(unescape("%3Cscript src='../libs/jquery.js' type='text/javascript'%3E%3C/script%3E"));
+        }
+    </script>
     <script type="text/javascript">
         google.load("jquery", "1.4");
 
