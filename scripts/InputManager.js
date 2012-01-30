@@ -87,6 +87,7 @@ TicTacToe.InputManager	=	function() {
                             {
                                 $('#scoreBoardDiv').hide();
                                 $('#playOptionsDiv').hide(); 
+                                $('#tipsScreen').hide();
 
                                 $("#menuButton").click(function() {
                                     TicTacToe.GameState.currentScreen	=	"Menu";

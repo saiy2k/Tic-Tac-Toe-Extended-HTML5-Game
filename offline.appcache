@@ -41,6 +41,7 @@ audio/bgm.ogg
 audio/chimeEffect.ogg
 audio/clickEffect.ogg
 lib/jquery-1.5.2.js
+//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js
 
 NETWORK:
 *

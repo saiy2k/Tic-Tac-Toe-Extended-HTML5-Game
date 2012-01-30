@@ -52,6 +52,8 @@ TicTacToe.GameManager	=	function() {
             $(".freeBoardDiv").hide();
             $('#scoreBoardDiv').show();
             $('#playOptionsDiv').show(); 
+            $('#tipsScreen').show(); 
+            $('#tipsScreen').delay(3000).fadeOut(); 
             $('#p2NameDiv1').hide(); 
 		});
 		
@@ -64,6 +66,8 @@ TicTacToe.GameManager	=	function() {
             $(".freeBoardDiv").hide();
             $('#scoreBoardDiv').show();
             $('#playOptionsDiv').show(); 
+            $('#tipsScreen').show(); 
+            $('#tipsScreen').delay(3000).fadeOut(); 
             $('#p2NameDiv1').show(); 
 		});
 		
@@ -174,9 +178,13 @@ TicTacToe.GameManager	=	function() {
 
 		/** Game Loop. Getting called as per the given FPS */
 		loop			:	function() {
+                                console.log('update');
 								TicTacToe.GameManager.update();
+                                console.log('draw');
 								TicTacToe.GameManager.draw();
+                                console.log('loop again');
 								setTimeout(TicTacToe.GameManager.loop, (1/FPS) * 1000);
+                                console.log('loop end');
 							},
 
 		/** update the current screen */
