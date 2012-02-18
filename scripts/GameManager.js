@@ -71,7 +71,7 @@ TicTacToe.GameManager	=	function() {
             $('#p2NameDiv1').show(); 
 		});
 		
-		$("#p1NameDiv1").keypress(function() {
+		$("#p1NameDiv1").keyup(function() {
 			var text		=	$("#p1NameDiv1").val();
 			TicTacToe.GameState.p1Name =	text;
 			$("#p1NameDiv2").text(text);
@@ -79,7 +79,7 @@ TicTacToe.GameManager	=	function() {
 				updateGameOverStatus();	
 		});
 
-		$("#p2NameDiv1").keypress(function() {
+		$("#p2NameDiv1").keyup(function() {
 			var text		=	$("#p2NameDiv1").val();
 			TicTacToe.GameState.p2Name =	text;
 			if(TicTacToe.GameState.currentScreen == "End")
