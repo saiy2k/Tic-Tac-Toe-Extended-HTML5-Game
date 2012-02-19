@@ -146,8 +146,8 @@ TicTacToe.GameManager	=	function() {
 		$("#gOverStatus").text(st.gameStatus);
 		$("#gOverDescription").text(st.gameDescription);
 		$("#gOverRemark").text(remarkArray[rank]);
-        console.log(remarkArray[1]);
-        console.log(rank);
+        //console.log(remarkArray[1]);
+        //console.log(rank);
 		$("#badgeImageHolder").attr({ src:  picArray[rank] });
 		st.badgeURL = "http://www.gethugames.in/tictactoe/" + picArray[rank];
 	}
@@ -178,13 +178,13 @@ TicTacToe.GameManager	=	function() {
 
 		/** Game Loop. Getting called as per the given FPS */
 		loop			:	function() {
-                                console.log('update');
+                                //console.log('update');
 								TicTacToe.GameManager.update();
-                                console.log('draw');
+                                //console.log('draw');
 								TicTacToe.GameManager.draw();
-                                console.log('loop again');
+                                //console.log('loop again');
 								setTimeout(TicTacToe.GameManager.loop, (1/FPS) * 1000);
-                                console.log('loop end');
+                                //console.log('loop end');
 							},
 
 		/** update the current screen */
@@ -198,7 +198,7 @@ TicTacToe.GameManager	=	function() {
 									gBoard.update(mouse, click);
 									if(mx > 0 && my > 0 && mx < gBoard.width() && my < gBoard.height()) {
 										if ( click != null ) {
-                                           console.log('click s not null'); 
+                                           //console.log('click s not null'); 
 											TicTacToe.GameLogic.updateScore(TicTacToe.GameState);	
 											if(TicTacToe.GameState.isValidMove) {
                                                 TicTacToe.AudioManager.click();

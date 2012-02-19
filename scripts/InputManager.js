@@ -89,6 +89,10 @@ TicTacToe.InputManager	=	function() {
                                 $('#playOptionsDiv').hide(); 
                                 $('#tipsScreen').hide();
 
+                                $('#inGameMute').click(function() {
+                                        console.log($('#inGameMneu').css('text-decoration'));
+                                });
+
                                 $("#menuButton").click(function() {
                                     TicTacToe.GameState.currentScreen	=	"Menu";
                                     $('#menuScreen').show();
@@ -164,7 +168,6 @@ TicTacToe.InputManager	=	function() {
                                 if (!navigator.onLine) {
                                     $('#creditsDiv').html("<br/><b>OFFLINE MODE</b><br/><br/>Sharing option not available<br/><br/>");
                                 }
-
                             }
 	};
 }();

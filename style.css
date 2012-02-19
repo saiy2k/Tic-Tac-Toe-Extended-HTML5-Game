@@ -39,6 +39,13 @@ a {
     text-decoration         :   none;
 }
 
+#inGameMute {
+    float                   :   right;
+    padding                 :   5px;
+    border-radius           :   6px;
+    background              :   rgba(125, 76, 24, 0.5);
+}
+
 .menuButton {
     background              :   #2b1b07;
     border                  :   2px solid #2b1b07;
