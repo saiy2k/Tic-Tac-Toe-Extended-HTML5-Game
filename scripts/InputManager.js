@@ -90,7 +90,13 @@ TicTacToe.InputManager	=	function() {
                                 $('#tipsScreen').hide();
 
                                 $('#inGameMute').click(function() {
-                                        console.log($('#inGameMneu').css('text-decoration'));
+                                        TicTacToe.AudioManager.toggleMute();
+
+                                        if($('#inGameMute').html() == '║') {
+                                            $('#inGameMute').html('&#9668;');
+                                        } else {
+                                            $('#inGameMute').html('&#9553;');
+                                        }
                                 });
 
                                 $("#menuButton").click(function() {
