@@ -117,7 +117,7 @@ TicTacToe.GameManager	=	function() {
 				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points and earned the title of " + rankArray[rank];			
 			} else if (st.player1Score < st.player2Score) {
 				st.gameStatus			=	st.p1Name + " Loses";
-				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Tow and lost the game";			
+				st.gameDescription		=	st.p1Name + " scored " + st.player1Score + " points in Tic Tac Toe and lost the game";			
                 rank                =   0;
 			} else {
                 rank                =   0;
@@ -143,15 +143,18 @@ TicTacToe.GameManager	=	function() {
                 st.gameDescription  =   "Game draw between " + st.p1Name + " and " + st.p2Name + " with a score of " + st.player1Score;
             }
 		}
+        TicTacToe.GameState.rank = rank;
 		$("#gOverStatus").text(st.gameStatus);
 		$("#gOverDescription").text(st.gameDescription);
 		$("#gOverRemark").text(remarkArray[rank]);
         //console.log(remarkArray[1]);
-        //console.log(rank);
+        console.log(rank);
 		$("#badgeImageHolder").attr({ src:  picArray[rank] });
 		st.badgeURL = "http://www.gethugames.in/tictactoe/" + picArray[rank];
+
+        TicTacToe.FBWrapper.postAction();
 	}
-	
+
 	/** @scope TicTacToe.GameManager */
 	return {
 		/** Initializes the canvas context, game board, gamestate and sets the game loop */

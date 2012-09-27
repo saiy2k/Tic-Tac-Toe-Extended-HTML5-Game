@@ -158,6 +158,14 @@ TicTacToe.GameState	=	function() {
 		 	@type	image */
 		badgeURL		:	"",
 
+        /** rank scored
+         * @type integer */
+        rank            :   0,
+
+        /** flag to help in fb flow
+         * @type bool */
+        makeFBPost      :   false,
+
 		/** resets the gamestate function */
 		reset			:	function() {
 								var						s;

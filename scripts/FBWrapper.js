@@ -21,7 +21,41 @@ TicTacToe.FBWrapper	=	function() {
 	
 	/** @scope TicTacToe.FBWrapper */
 	return {
-		shareStatus		:	function() {
+        accessToken     : null,
+        checkLoginStatus: function(response) {
+                            if(response && response.status == 'connected') {
+                                TicTacToe.FBWrapper.accessToken = response.authResponse.accessToken;
+                                if (TicTacToe.GameState.makeFBPost == true) {
+                                    TicTacToe.FBWrapper.postAction();
+                                }
+                            } else {
+                                TicTacToe.FBWrapper.accessToken = null;
+                            }
+                          },
+        postAction      : function() {
+                            console.log('postaction');
+                            if (TicTacToe.FBWrapper.accessToken != null) {
+                                FB.api('/me/tictactoeextended:earn', 'post' , {report : TicTacToe.gameDescription, badge : 'http://www.gethugames.in/tictactoe/badge.php?rank=' + (10 - TicTacToe.GameState.rank) }, function(response) {
+                                    console.log(response);
+                                });
+                            } else {
+                            }
+                          },
+		shareStatus		: function() {
+                                if (FB.getLoginStatus(function(response) {
+                                    if (response.authResponse) {
+                                        FB.getLoginStatus(postAction);
+                                    } else {
+                                        FB.login(function(response) {
+                                            if (response.authResponse) {
+                                                console.log('success');
+                                                FB.getLoginStatus(window.postAction);
+                                            } else {
+                                            }
+                                        }, {scope:'user_about_me,publish_stream,publish_actions'});
+                                    }
+                                }));
+                                /*
 								FB.ui({
 									method: 'feed',
 									name: 'Tic Tac Toe Extended',
@@ -32,6 +66,7 @@ TicTacToe.FBWrapper	=	function() {
 								},
 								function(response) {
 								});
-							}
+                                */
+                          }
 	};
 }();		

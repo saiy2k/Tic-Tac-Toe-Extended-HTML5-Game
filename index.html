@@ -76,7 +76,10 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 			}
 		}
     </script>
-	<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+	<script type="text/javascript" src="scripts/min.js"></script>
+
+    <!--
 	<script type="text/javascript" src="scripts/TicTacToe.js"></script>
 	<script type="text/javascript" src="scripts/FBWrapper.js"></script>
 	<script type="text/javascript" src="scripts/TwitterWrapper.js"></script>
@@ -87,6 +90,9 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 	<script type="text/javascript" src="scripts/BoardTile.js"></script>
 	<script type="text/javascript" src="scripts/GameBoard.js"></script>
 	<script type="text/javascript" src="scripts/GameManager.js"></script>
+	<script type="text/javascript" src="scripts/GameManager.js"></script>
+    -->
+
 </head>
 
 <body onload="init()">
@@ -152,16 +158,15 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 			<div id="creditsDiv"	class="playOptionsHalf" style="float:right; overflow:visible">
                 <div id="tweet" class="socialButton">
-<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical" data-url="http://www.gethugames.in/tictactoe/">Tweet</a>
                 </div>
 
                 <div id="gplus" class="socialButton">
-                    <g:plusone size="tall"></g:plusone>
+                    <div class="g-plusone" data-size="tall" data-href="http://www.gethugames.in/tictactoe/"></div>
                 </div>
             
                 <div id="fb" class="socialButton" style="overflow:visible" style="width:500; height:300"> 
-                    <fb:like href="http://www.gethugames.in/tictactoe/" send="false" layout="box_count" width="500" show_faces="false" colorscheme="dark" font=""></fb:like>
+                    <div class="fb-like" data-href="http://www.gethugames.in/tictactoe/" data-send="false" data-layout="box_count" data-width="500" data-show-faces="false" data-colorscheme="dark" data-font="segoe ui"></div>
                 </div>
 			</div>
 		</div>
@@ -178,15 +183,27 @@ along with Tic Tac Toe Extended.  If not, see <http://www.gnu.org/licenses/>.
           oauth      : true, // enable OAuth 2.0
           xfbml      : true  // parse XFBML
         });
-      };
+
+        FB.getLoginStatus(TicTacToe.FBWrapper.checkLoginStatus);
+    };
+
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
       // Load the SDK Asynchronously
       (function(d){
-         var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-         js = d.createElement('script'); js.id = id; js.async = true;
-         js.src = "//connect.facebook.net/en_US/all.js";
-         d.getElementsByTagName('head')[0].appendChild(js);
-       }(document));
+          var e = document.createElement('script'); e.async = true;
+            e.src = document.location.protocol 
+                + '//connect.facebook.net/en_US/all.js';
+                  document.getElementById('fb-root').appendChild(e);
+       }());
+
+        //plus one
+        (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+
     </script>
     <!--Importing Facebook's Javascript SDK - End-->
 
