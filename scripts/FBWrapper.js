@@ -22,9 +22,16 @@ TicTacToe.FBWrapper	=	function() {
 	/** @scope TicTacToe.FBWrapper */
 	return {
         accessToken     : null,
+        namespace       : 'tictactoeextended',
         checkLoginStatus: function(response) {
+                            console.log('checkLoginStatus');
                             if(response && response.status == 'connected') {
                                 TicTacToe.FBWrapper.accessToken = response.authResponse.accessToken;
+                                FB.api('/me', function(response) {
+                                    console.log(response);
+                                    TicTacToe.GameState.p1Name = response.name;
+                                    $('#p1NameDiv1').val(response.name);
+                                });
                                 if (TicTacToe.GameState.makeFBPost == true) {
                                     TicTacToe.FBWrapper.postAction();
                                 }
@@ -35,38 +42,16 @@ TicTacToe.FBWrapper	=	function() {
         postAction      : function() {
                             console.log('postaction');
                             if (TicTacToe.FBWrapper.accessToken != null) {
-                                FB.api('/me/tictactoeextended:earn', 'post' , {report : TicTacToe.gameDescription, badge : 'http://www.gethugames.in/tictactoe/badge.php?rank=' + (10 - TicTacToe.GameState.rank) }, function(response) {
-                                    console.log(response);
-                                });
-                            } else {
+                                FB.api('/me/' + TicTacToe.FBWrapper.namespace + ':earn',
+                                        'post',
+                                        {'report' : TicTacToe.GameState.gameDescription,
+                                            badge : 'http://www.gethugames.in/tictactoe/badge.php?rank=' + (10 - TicTacToe.GameState.rank) },
+                                        function(response) {
+                                            console.log(response);
+                                        });
                             }
                           },
 		shareStatus		: function() {
-                                if (FB.getLoginStatus(function(response) {
-                                    if (response.authResponse) {
-                                        FB.getLoginStatus(postAction);
-                                    } else {
-                                        FB.login(function(response) {
-                                            if (response.authResponse) {
-                                                console.log('success');
-                                                FB.getLoginStatus(window.postAction);
-                                            } else {
-                                            }
-                                        }, {scope:'user_about_me,publish_stream,publish_actions'});
-                                    }
-                                }));
-                                /*
-								FB.ui({
-									method: 'feed',
-									name: 'Tic Tac Toe Extended',
-									link: 'http://www.gethugames.in/tictactoe/',
-									picture: TicTacToe.GameState.badgeURL, 
-									caption: TicTacToe.GameState.gameStatus,
-									description: TicTacToe.GameState.gameDescription
-								},
-								function(response) {
-								});
-                                */
                           }
 	};
 }();		

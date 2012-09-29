@@ -25,24 +25,24 @@ if($params['rank'] == "")
     $params['rank'] = "10";
 $index = 10 - (int)$params['rank'];
 $params['title'] = $rankArray[$index];
-$params['image'] = "http://www.gethugames.in/tictactoe/" . $picArray[$index];
+$params['image'] = "http://localhost/ttt/" . $picArray[$index];
 $params['description'] = $remarkArray[$index];
 
 ?>
 
 <!DOCTYPE html>
 <html>
-    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# tictactoeextended: http://ogp.me/ns/fb/tictactoeextended#">
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ggtestapplication: http://ogp.me/ns/fb/ggtestapplication#">
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-        <meta property="fb:app_id" content="267249556660656" />
-        <meta property="og:type" content="tictactoeextended:badge"/>
-        <meta property="og:url" content="http://www.gethugames.in/tictactoe/badge.php?rank=<?php echo $params['rank']; ?>"/>
+        <meta property="fb:app_id" content="162128140592033" />
+        <meta property="og:type" content="ggtestapplication:badge"/>
+        <meta property="og:url" content="http:/localhost/ttt/badge.php?rank=<?php echo $params['rank']; ?>"/>
         <meta property="og:title" content="<?php echo $params['title']; ?>"/>
         <meta property="og:image" content="<?php echo $params['image']; ?>"/>
         <meta property="og:description" content="<?php echo $params['description']; ?>"/>
-        <meta property="tictactoeextended:rank" content="<?php echo $params['rank']; ?>"/>
+        <meta property="ggtestapplication:rank" content="<?php echo $params['rank']; ?>"/>
 
     </head>
 </html> 

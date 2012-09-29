@@ -146,7 +146,14 @@ TicTacToe.InputManager	=	function() {
                                 });
 
                                 $("#shareFacebookWidget").click(function(e) {
-                                    TicTacToe.FBWrapper.shareStatus();
+                                    TicTacToe.GameState.makeFBPost = true;
+                                    console.log('logging in');
+                                    FB.login(function(response) {
+                                        if (response.authResponse) {
+                                            console.log('logged in');
+                                            FB.getLoginStatus(TicTacToe.FBWrapper.checkLoginStatus);
+                                        }
+                                    }, {scope:'user_about_me,publish_stream,publish_actions'});
                                     e.stopPropogation();
                                 });
                                 
