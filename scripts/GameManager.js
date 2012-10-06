@@ -147,13 +147,23 @@ TicTacToe.GameManager	=	function() {
 		$("#gOverStatus").text(st.gameStatus);
 		$("#gOverDescription").text(st.gameDescription);
 		$("#gOverRemark").text(remarkArray[rank]);
-        //console.log(remarkArray[1]);
         console.log(rank);
 		$("#badgeImageHolder").attr({ src:  picArray[rank] });
 		st.badgeURL = "http://www.gethugames.in/tictactoe/" + picArray[rank];
 
         TicTacToe.FBWrapper.postAction();
 	}
+
+    function runIt() {
+        if (TicTacToe.FBWrapper.accessToken != null) {
+            $('#shareFacebookWidget').hide();
+            return;
+        }
+
+        $('#shareFacebookWidget').fadeIn(500)
+            .delay(2000)
+            .fadeOut(400, runIt);
+    }
 
 	/** @scope TicTacToe.GameManager */
 	return {
@@ -213,6 +223,11 @@ TicTacToe.GameManager	=	function() {
 												updateGameOverStatus();
 												TicTacToe.GameState.currentScreen = "End";
 												$('#shareScoreWidget').show();
+                                                if (TicTacToe.FBWrapper.accessToken == null) {
+                                                    runIt();
+                                                } else {
+                                                    $('#shareFacebookWidget').hide();
+                                                }
 												return;
 											}
 											
@@ -229,6 +244,11 @@ TicTacToe.GameManager	=	function() {
 													updateGameOverStatus();		
 													TicTacToe.GameState.currentScreen = "End";
 													$('#shareScoreWidget').show();
+                                                    if (TicTacToe.FBWrapper.accessToken == null) {
+                                                        runIt();
+                                                    } else {
+                                                        $('#shareFacebookWidget').hide();
+                                                    }
 													return;
 												}
 											}
